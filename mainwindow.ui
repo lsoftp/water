@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1300</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>登记</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_2">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>样本</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>标准曲线</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_4">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>质控</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_5">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>测试项目</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_6">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>维护保养</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_7">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>0</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>系统设置</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_8">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>120</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始条件</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_9">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>190</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>停止加样</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_10">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>260</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>停止</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_11">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>330</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>仪器状态</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_12">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>400</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>报警</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_13">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>470</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关闭</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_14">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>540</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关于</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>69</y>
+      <width>1221</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>100</y>
+       <width>351</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(85, 0, 255);</string>
+     </property>
+     <property name="title">
+      <string>系统状态</string>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>26</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>数据索引：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>65</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>反应杯温度：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>105</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>去离子水：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>146</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>废水：</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>20</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>60</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>100</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>140</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../Pictures/ttt.bmp</normaloff>../../Pictures/ttt.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>登记</string>
+   </property>
+   <property name="toolTip">
+    <string>测试登记</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
