@@ -27,13 +27,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     itembutton.cpp \
-    cabutton.cpp
+    cabutton.cpp \
+    samplebutton.cpp
 
 
 HEADERS += \
         mainwindow.h \
     itembutton.h \
-    cabutton.h
+    cabutton.h \
+    samplebutton.h
 
 
 FORMS += \

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "itembutton.h"
 #include "cabutton.h"
+#include "samplebutton.h"
 namespace Ui {
 class MainWindow;
 }

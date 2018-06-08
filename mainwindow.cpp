@@ -53,7 +53,9 @@ MainWindow::MainWindow(QWidget *parent) :
         pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH*3/2,IB_LENGTH*3,IB_LENGTH,IB_LENGTH);
     }
     initcabutton();
-    ui->comboBox->setCurrentText("sdfsdfjkl");
+    ui->comboBox->setCurrentText("sdfsdfjkl");\
+    SampleButton *sb=new SampleButton(ui->frame);
+    sb->setGeometry(0,0,50,60);
 }
 
 MainWindow::~MainWindow()
