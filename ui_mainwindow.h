@@ -16,6 +16,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -80,6 +81,12 @@ public:
     QFrame *frame_4;
     QWidget *tab_2;
     QFrame *frame_5;
+    QGraphicsView *graphicsView;
+    QGraphicsView *graphicsView_2;
+    QGraphicsView *graphicsView_3;
+    QLabel *label_20;
+    QLabel *label_21;
+    QLabel *label_22;
     QGroupBox *groupBox_4;
     QLabel *label_10;
     QLineEdit *lineEdit_7;
@@ -213,6 +220,7 @@ public:
         comboBox = new QComboBox(groupBox);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setGeometry(QRect(200, 20, 111, 22));
+        comboBox->setEditable(true);
         lineEdit = new QLineEdit(groupBox);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(200, 60, 113, 20));
@@ -301,6 +309,28 @@ public:
         frame_5->setGeometry(QRect(20, 220, 701, 291));
         frame_5->setFrameShape(QFrame::StyledPanel);
         frame_5->setFrameShadow(QFrame::Raised);
+        graphicsView = new QGraphicsView(frame_5);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setGeometry(QRect(160, 230, 51, 51));
+        graphicsView->setStyleSheet(QStringLiteral("background-color: rgb(170, 170, 255);"));
+        graphicsView_2 = new QGraphicsView(frame_5);
+        graphicsView_2->setObjectName(QStringLiteral("graphicsView_2"));
+        graphicsView_2->setGeometry(QRect(310, 230, 51, 51));
+        graphicsView_2->setStyleSheet(QLatin1String("background-color: rgb(85, 255, 0);\n"
+""));
+        graphicsView_3 = new QGraphicsView(frame_5);
+        graphicsView_3->setObjectName(QStringLiteral("graphicsView_3"));
+        graphicsView_3->setGeometry(QRect(460, 230, 51, 51));
+        graphicsView_3->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 0);"));
+        label_20 = new QLabel(frame_5);
+        label_20->setObjectName(QStringLiteral("label_20"));
+        label_20->setGeometry(QRect(220, 250, 54, 12));
+        label_21 = new QLabel(frame_5);
+        label_21->setObjectName(QStringLiteral("label_21"));
+        label_21->setGeometry(QRect(380, 250, 54, 12));
+        label_22 = new QLabel(frame_5);
+        label_22->setObjectName(QStringLiteral("label_22"));
+        label_22->setGeometry(QRect(520, 250, 54, 12));
         groupBox_4 = new QGroupBox(tab_2);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         groupBox_4->setGeometry(QRect(0, 20, 671, 151));
@@ -316,6 +346,7 @@ public:
         comboBox_5 = new QComboBox(groupBox_4);
         comboBox_5->setObjectName(QStringLiteral("comboBox_5"));
         comboBox_5->setGeometry(QRect(340, 20, 69, 22));
+        comboBox_5->setEditable(false);
         checkBox_3 = new QCheckBox(groupBox_4);
         checkBox_3->setObjectName(QStringLiteral("checkBox_3"));
         checkBox_3->setGeometry(QRect(450, 20, 71, 16));
@@ -439,13 +470,13 @@ public:
         toolButton_12->raise();
         toolButton_13->raise();
         toolButton_14->raise();
-        frame->raise();
         frame_3->raise();
         frame_2->raise();
+        frame->raise();
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(3);
 
 
@@ -495,9 +526,13 @@ public:
         );
         groupBox_3->setTitle(QApplication::translate("MainWindow", "\345\267\245\344\275\234\345\210\227\350\241\250", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "\346\240\267\346\234\254\347\231\273\350\256\260", Q_NULLPTR));
+        label_20->setText(QApplication::translate("MainWindow", "\346\227\240\345\256\232\346\240\207", Q_NULLPTR));
+        label_21->setText(QApplication::translate("MainWindow", "\347\251\272\347\231\275", Q_NULLPTR));
+        label_22->setText(QApplication::translate("MainWindow", "\345\256\232\346\240\207", Q_NULLPTR));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "\346\240\267\346\234\254\344\277\241\346\201\257", Q_NULLPTR));
         label_10->setText(QApplication::translate("MainWindow", "\346\240\267\346\234\254\345\217\267", Q_NULLPTR));
         label_11->setText(QApplication::translate("MainWindow", "\344\275\215\347\275\256", Q_NULLPTR));
+        comboBox_5->setCurrentText(QString());
         checkBox_3->setText(QApplication::translate("MainWindow", "\351\242\204\347\250\200\351\207\212", Q_NULLPTR));
         label_12->setText(QApplication::translate("MainWindow", "\346\240\267\346\234\254id", Q_NULLPTR));
         checkBox_4->setText(QApplication::translate("MainWindow", "\345\212\240\346\200\245\346\240\267", Q_NULLPTR));
