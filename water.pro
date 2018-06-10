@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT  += sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = water
@@ -28,14 +28,16 @@ SOURCES += \
         mainwindow.cpp \
     itembutton.cpp \
     cabutton.cpp \
-    samplebutton.cpp
+    samplebutton.cpp \
+    dbinterface.cpp
 
 
 HEADERS += \
         mainwindow.h \
     itembutton.h \
     cabutton.h \
-    samplebutton.h
+    samplebutton.h \
+    dbinterface.h
 
 
 FORMS += \

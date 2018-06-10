@@ -26,8 +26,10 @@ private:
     Ui::MainWindow *ui;
     ItemButton *pb[38];
     CaButton *pb1[38];
+    ItemButton *pb2[38];
 
     void initcabutton();
+    void initqubutton();
 };
 
 #endif // MAINWINDOW_H

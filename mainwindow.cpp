@@ -53,14 +53,48 @@ MainWindow::MainWindow(QWidget *parent) :
         pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH*3/2,IB_LENGTH*3,IB_LENGTH,IB_LENGTH);
     }
     initcabutton();
+    initqubutton();
     ui->comboBox->setCurrentText("sdfsdfjkl");\
     SampleButton *sb=new SampleButton(ui->frame);
     sb->setGeometry(0,0,50,60);
+     ui->tableWidget->setColumnWidth(0,60);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::initqubutton()
+{
+    QWidget *qw=ui->frame_6;
+    for(int i=0;i<11;i++)
+    {
+        pb2[i]= new ItemButton(qw);
+        pb2[i]->setText("test");
+        pb2[i]->setGeometry(IB_LENGTH*i,0,IB_LENGTH,IB_LENGTH);
+    }
+    for(int j=0;j<10;j++)
+    {
+        int i=j+11;
+        pb2[i]= new ItemButton(qw);
+        pb2[i]->setText("test");
+        pb2[i]->setGeometry(IB_LENGTH*j+IB_LENGTH/2,IB_LENGTH,IB_LENGTH,IB_LENGTH);
+    }
+    for(int j=0;j<9;j++)
+    {
+        int i=j+21;
+        pb2[i]= new ItemButton(qw);
+        pb2[i]->setText("test");
+        pb2[i]->setGeometry(IB_LENGTH*j+IB_LENGTH,IB_LENGTH*2,IB_LENGTH,IB_LENGTH);
+    }
+    for(int j=0;j<8;j++)
+    {
+        int i=j+30;
+        pb2[i]= new ItemButton(qw);
+        pb2[i]->setText("test");
+        pb2[i]->setGeometry(IB_LENGTH*j+IB_LENGTH*3/2,IB_LENGTH*3,IB_LENGTH,IB_LENGTH);
+    }
+
 }
 void MainWindow::initcabutton()
 {
