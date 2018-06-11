@@ -64,7 +64,7 @@ struct TestConfig{
 	int wavenum;//读取波长数目
 	int wl0;//主波长
 	int wl1;//副波长
-
+    int isreplace; // TRUE SAMPLE BLANK IS CHECKED
 
 };
 
