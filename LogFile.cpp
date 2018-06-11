@@ -10,7 +10,7 @@
 
 //-----------------------------------------------------------------------------------------
 QString mydir="c:\\temp\\";
-LogFile g_log(QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss.log"));
+LogFile g_log(mydir  +QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss.log"));
 LogFile::LogFile(const QString szFileName)//设定日志文件名
 {
 	_hFile = INVALID_HANDLE_VALUE;

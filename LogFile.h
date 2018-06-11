@@ -26,6 +26,7 @@
 #include <windows.h>
 //#include <tchar.h>
 #include <QString>
+#include <QByteArray>
 #include <QDateTime>
 using namespace std;
 
@@ -48,7 +49,9 @@ public:
 	void Close();
 
     void Log(const QString szText){
-        Log(szText.data(), szText.length() );
+        QByteArray ba = szText.toLatin1();
+
+        Log(ba.data(), szText.length() );
 	}
 
 protected:
