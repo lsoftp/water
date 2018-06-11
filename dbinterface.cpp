@@ -18,7 +18,7 @@ void DBInterface::open1()
     QString qs =m_db.lastError().text();
     qDebug(qs.toLatin1().data());
     m_db.setHostName("localhost");
-    m_db.setDatabaseName("water");
+    //m_db.setDatabaseName("water");
     m_db.setUserName("root");
     m_db.setPassword("123456");
     m_db.setConnectOptions("MYSQL_OPT_RECONNECT=1");
