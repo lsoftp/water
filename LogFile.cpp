@@ -95,9 +95,9 @@ void LogFile::WriteLog( LPCVOID lpBuffer, DWORD dwLength)//写日志, 可以扩展修改
 		struct tm timeInfo;
         localtime_s( &timeInfo,&now1); //转换成tm结构
 		strftime(temp, sizeof(temp), "%Y-%m-%d %H:%M:%S", &timeInfo);
-		WriteFile(_hFile, "\xd\xa#-----------------------------", 32, &dwWriteLength, NULL);
+        //WriteFile(_hFile, "\xd\xa#-----------------------------", 32, &dwWriteLength, NULL);
 		WriteFile(_hFile, temp, 19, &dwWriteLength, NULL);
-		WriteFile(_hFile, "-----------------------------#\xd\xa", 32, &dwWriteLength, NULL);
+        WriteFile(_hFile, ":  ", 3, &dwWriteLength, NULL);
 		WriteFile(_hFile, lpBuffer, dwLength, &dwWriteLength, NULL);
 		WriteFile(_hFile, "\xd\xa", 2, &dwWriteLength, NULL);
 
