@@ -22,6 +22,8 @@ private slots:
 
     void on_toolButton_5_clicked();
 
+    void on_toolButton_8_clicked();
+
 private:
     Ui::MainWindow *ui;
     ItemButton *pb[38];

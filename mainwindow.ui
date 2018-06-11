@@ -2015,7 +2015,7 @@
       </attribute>
      </widget>
     </widget>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="tableWidget1">
      <property name="geometry">
       <rect>
        <x>950</x>
@@ -2107,7 +2107,6 @@
      </widget>
     </widget>
    </widget>
-   <zorder>toolButton</zorder>
    <zorder>toolButton_2</zorder>
    <zorder>toolButton_3</zorder>
    <zorder>toolButton_4</zorder>
@@ -2122,8 +2121,9 @@
    <zorder>toolButton_13</zorder>
    <zorder>toolButton_14</zorder>
    <zorder>frame</zorder>
-   <zorder>frame_3</zorder>
    <zorder>frame_2</zorder>
+   <zorder>toolButton</zorder>
+   <zorder>frame_3</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

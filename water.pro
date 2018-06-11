@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT  += sql
+QT +=network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = water
@@ -29,7 +30,13 @@ SOURCES += \
     itembutton.cpp \
     cabutton.cpp \
     samplebutton.cpp \
-    dbinterface.cpp
+    dbinterface.cpp \
+    LogFile.cpp \
+    debugout.cpp \
+    clientsockt.cpp \
+    myprocess.cpp \
+    handlethread.cpp \
+    interface.cpp
 
 
 HEADERS += \
@@ -37,8 +44,15 @@ HEADERS += \
     itembutton.h \
     cabutton.h \
     samplebutton.h \
-    dbinterface.h
+    dbinterface.h \
+    LogFile.h \
+    debugout.h \
+    clientsockt.h \
+    myprocess.h \
+    handlethread.h \
+    interface.h
 
+LIBS += -lws2_32
 
 FORMS += \
         mainwindow.ui

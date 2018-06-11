@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "handlethread.h"
 #define IB_LENGTH 50
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -143,4 +144,10 @@ void MainWindow::on_toolButton_5_clicked()
     ui->frame->hide();
     ui->frame_2->hide();
     ui->frame_3->show();
+}
+
+void MainWindow::on_toolButton_8_clicked()
+{
+    if(!g_handler.command)
+    g_handler.command=1;
 }
