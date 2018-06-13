@@ -36,7 +36,8 @@ SOURCES += \
     clientsockt.cpp \
     myprocess.cpp \
     handlethread.cpp \
-    interface.cpp
+    interface.cpp \
+    sampleregister.cpp
 
 
 HEADERS += \
@@ -50,7 +51,8 @@ HEADERS += \
     clientsockt.h \
     myprocess.h \
     handlethread.h \
-    interface.h
+    interface.h \
+    sampleregister.h
 
 LIBS += -lws2_32
 

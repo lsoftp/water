@@ -6,7 +6,14 @@
 //#include <datastruct.h>
 #include <QTime>
 #include <QTimer>
-
+#include <qsqlquery.h>
+#include <qsqlquerymodel.h>
+#include <qsqlrecord.h>
+#include <QSqlError>
+#include <QVariant>
+#include <QDebug>
+#include <QByteArray>
+#include <QThread>
 
 
 class DBInterface : public QObject
@@ -20,6 +27,11 @@ public:
     QSqlDatabase m_db;
     void open();
     void open1();
+    void getTestItem(QSqlQueryModel &querymodel);// 获取项目列表
+    void getPos(QSqlQueryModel &querymodel,const QString &index);//获取已占用位置
+    void getSampleNo(QSqlQueryModel &querymodel,const QString &index);//获取已用样本号
+    void getSampleId(QSqlQueryModel &querymodel,const QString &index);//获取已用样品Id
+
 
 signals:
 

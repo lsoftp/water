@@ -48,13 +48,14 @@ DBInterface db;
 DBInterface dbhandle;
 int main(int argc, char *argv[])
 {
+    db.open();
+    dbhandle.open1();
     QApplication a(argc, argv);
     MainWindow w;
     printf("thisis a test");
     w.show();
-    db.open();
-    dbhandle.open1();
-    testinit();
+
+    //testinit();
     g_handler.start();
     fflush(stdout);
     return a.exec();

@@ -44,3 +44,28 @@ void DBInterface::open()
     if(!b) qDebug(qs.toLatin1().data());
    // qtimer = new QTimer(this);
 }
+
+void DBInterface::getTestItem(QSqlQueryModel &querymodel)
+{
+    //QSqlQueryModel querymodel;
+    querymodel.setQuery("SELECT * FROM item ",m_db);
+
+
+
+
+ qDebug()<<"&&&&&&&& threadid "<<QThread::currentThreadId()<<  endl;
+}
+
+
+void DBInterface::getPos(QSqlQueryModel &querymodel,const QString &index)//获取已占用位置
+{
+    querymodel.setQuery(QString("SELECT distinct Pos FROM sr where testpageid='%1' order by pos").arg(index),m_db);
+}
+void DBInterface::getSampleNo(QSqlQueryModel &querymodel,const QString &index)//获取已用样本号
+{
+    querymodel.setQuery(QString("SELECT id  FROM sr where testpageid='%1' order by id").arg(index),m_db);
+}
+void DBInterface::getSampleId(QSqlQueryModel &querymodel,const QString &index)//获取已用样品Id
+{
+    querymodel.setQuery(QString("SELECT sampleid  FROM sr where testpageid='%1' order by sampleid").arg(index),m_db);
+}

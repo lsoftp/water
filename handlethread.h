@@ -6,6 +6,7 @@
 #include <QThread>
 #include "clientsockt.h"
 #include "myprocess.h"
+
 //---------------------------------------------------------------------------
 class HandleThread : public QThread
 {

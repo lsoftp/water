@@ -8,7 +8,7 @@
 //#include<iostream>
 //#include<cstring>
 //using namespace std;
-#pragma comment(lib, "ws2_32.lib")
+
 //---------------------------------------------------------------------------
 #define BUFFER_SIZE 1024
 struct  RecvStream{
