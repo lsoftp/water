@@ -1,6 +1,7 @@
 #include "sampleregister.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "myprocess.h"
 
 SampleRegister::SampleRegister(QObject *p)
     :QObject(p)
@@ -10,52 +11,149 @@ SampleRegister::SampleRegister(QObject *p)
 }
 void SampleRegister::SetSampleNo()
 {
-   //w->ui->pushButton_8->setEnabled(false);
-    //Ui::MainWindow *ppp=w->ui;
-//ppp->pushButton_8->setEnabled(false);
-}
-void SampleRegister::setYesEnable(bool b)
-{
-    w->ui->pushButton_8->setEnabled(b);
+    QSqlQueryModel sqm;
+    db.getSampleNo(sqm, g_current_index);
+    int j=0;
+    if(sqm.rowCount()==0)
+    {
+        w->ui->lineEdit_4->setText(QString::number(1));
+        return;
+    }
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+        int k=sqm.record(i).value("id").toInt();
+        int p=k-j;
+        j=k;
+        if(p>1)
+        {
+            w->ui->lineEdit_4->setText(QString::number(j+1));
+            return;
+        }
+    }
+    w->ui->lineEdit_4->setText(QString::number(j+1));
 }
 
-void SampleRegister::initsabutton()
+void SampleRegister::SetPos()
 {
-    QWidget *qw=w->ui->frame_4;
-    //qw->deleteLater();
+    w->ui->comboBox_2->clear();
+    QSqlQueryModel sqm;
+    db.getPos(sqm, g_current_index);
+    for(int i=0;i<40;i++)
+    {
+        w->ui->comboBox_2->addItem(QString::number(i+1));
+    }
+    for(int j=0;j<sqm.rowCount();j++)
+    {
+        QString num=sqm.record(j).value("pos").toString();
+        int index=w->ui->comboBox_2->findText(num);
+        if(index!=-1)
+        {
+            w->ui->comboBox_2->removeItem(index);
+        }
+    }
+    w->ui->comboBox_2->setCurrentIndex(0);
+    //w->ui->comboBox_2->currentData()
+
+}
+
+void SampleRegister::setYesEnable(bool b)
+{
+    w->ui->sr_yes->setEnabled(b);
+}
+
+
+void SampleRegister::setbutton()
+{
     QSqlQueryModel sqm;
     db.getTestItem(sqm);
-    for (int i=0;i<38;i++)
+    w->itemnum=sqm.rowCount();
+    for(int i=0;i<sqm.rowCount();i++)
+
     {
-        if(w->pb[i]!=NULL) {delete w->pb[i];
-        w->pb[i]=NULL;}
+
+        QString name=sqm.record(i).value("Name").toString();
+        int   testid=sqm.record(i).value("TestId").toInt();
+
+        w->pb[i]->setText(name);
+        w->pb[i]->testid=testid;
+
+        w->pb[i]->setEnabled(true);
+        w->pb[i]->setCheckable(true);
+        connect(w->pb[i],SIGNAL(toggled(bool)),g_w,SLOT(ontoggle(bool)));
     }
-    for(int i=0;i<11;i++)
+
+
+
+}
+
+void SampleRegister::showpage(int i)
+{
+    if(!i) {
+        w->ui->frame_4->show();
+        w->ui->frame_10->hide();
+    }
+    else
     {
-        w->pb[i]= new ItemButton(qw);
-        w->setbutton(i,w->pb,sqm);
-        w->pb[i]->setGeometry(IB_LENGTH*i,0,IB_LENGTH,IB_LENGTH);
+        w->ui->frame_4->hide();
+        w->ui->frame_10->show();
+
     }
-    for(int j=0;j<10;j++)
-    {
-        int i=j+11;
-        w->pb[i]= new ItemButton(qw);
-        w->setbutton(i,w->pb,sqm);
-        w->pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH/2,IB_LENGTH,IB_LENGTH,IB_LENGTH);
-    }
-    for(int j=0;j<9;j++)
-    {
-        int i=j+21;
-        w->pb[i]= new ItemButton(qw);
-        w->setbutton(i,w->pb,sqm);
-        w->pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH,IB_LENGTH*2,IB_LENGTH,IB_LENGTH);
-    }
-    for(int j=0;j<8;j++)
-    {
-        int i=j+30;
-        w->pb[i]= new ItemButton(qw);
-        w->setbutton(i,w->pb,sqm);
-        w->pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH*3/2,IB_LENGTH*3,IB_LENGTH,IB_LENGTH);
-    }
+}
+
+void SampleRegister::initstate()
+{
+    w->ui->comboBox_4->setCurrentIndex(0);
+
+    showpage(0);
+    setYesEnable(false);
+    this->SetSampleNo();
+    SetPos();
+}
+
+void SampleRegister::reg()
+{
+   TestRegister t;
+   QDateTime now=QDateTime::currentDateTime();
+
+   t.id=w->ui->lineEdit_4->text().toInt();
+   //t.tr.test_row_id=QDateTime::currentDateTime().toString()
+   t.no=QString::number(t.id);
+   t.sampleid=w->ui->lineEdit_6->text();
+   t.pre_dilute=w->ui->checkBox->isChecked();
+   t.pre_d_times=w->ui->lineEdit_5->text().toInt();
+   t.tr.position=w->ui->comboBox_2->currentText().toInt();
+   t.tr.sample_cup_type=w->ui->comboBox_3->currentIndex();
+   t.tr.priority=!(w->ui->checkBox_2->isChecked());
+   t.tr.test_type=4;
+   t.qname="";
+   t.cname="";
+   t.tr.isdilute=0;
+   t.tr.status=0;
+   //初始化  g_current_index 在全局变量中
+   //还有test_row_id ,isreplace, test_id
+   int j=0;
+   for(int i=0;i<w->itemnum;i++)
+   {
+       if(w->pb[i]->isChecked())
+       {
+           //insert
+           QString tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+           //if test_id isreplace add two rows
+           t.tr.test_row_id=tempid.toStdString();
+           t.tr.isreplace=0;
+           t.tr.test_id=w->pb[i]->testid;
+           db.insertSample(t);
+           j++;
+           if(gi::isReplace(w->pb[i]->testid))
+           {
+               tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+               t.tr.isreplace=1;
+               db.insertSample(t);
+               j++;
+           }
+
+           //
+       }
+   }
 
 }

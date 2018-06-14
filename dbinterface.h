@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QtSql/QSqlDatabase>
-//#include <datastruct.h>
+#include <myprocess.h>
 #include <QTime>
 #include <QTimer>
 #include <qsqlquery.h>
@@ -14,7 +14,18 @@
 #include <QDebug>
 #include <QByteArray>
 #include <QThread>
+#include <QString>
 
+struct  TestRegister{
+    TestRow tr;
+    int id;
+    QString no;
+    QString sampleid;
+    int pre_dilute;
+    int pre_d_times;
+    QString qname;
+    QString cname;
+};
 
 class DBInterface : public QObject
 {
@@ -31,8 +42,8 @@ public:
     void getPos(QSqlQueryModel &querymodel,const QString &index);//获取已占用位置
     void getSampleNo(QSqlQueryModel &querymodel,const QString &index);//获取已用样本号
     void getSampleId(QSqlQueryModel &querymodel,const QString &index);//获取已用样品Id
-
-
+    void getLastSampleNo(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
+    void insertSample(const TestRegister & tr );
 signals:
 
 public slots:

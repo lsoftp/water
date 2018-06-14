@@ -7,6 +7,7 @@
 #include "handlethread.h"
 #include "debugout.h"
 #include "LogFile.h"
+#include "sampleregister.h"
 
 void testinit()
 
@@ -46,15 +47,18 @@ void testinit()
 }
 DBInterface db;
 DBInterface dbhandle;
+    MainWindow *g_w;
 int main(int argc, char *argv[])
 {
     db.open();
     dbhandle.open1();
     QApplication a(argc, argv);
-    MainWindow w;
+    g_w=new MainWindow ;
     printf("thisis a test");
-    w.show();
 
+    g_w->sr->setbutton();
+    g_w->sr->initstate();
+    g_w->show();
     //testinit();
     g_handler.start();
     fflush(stdout);

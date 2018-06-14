@@ -40,7 +40,8 @@ void MainWindow::initGUI()
     ui->toolButton_14->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     ui->frame_2->hide();
     ui->frame_3->hide();
-    sr->initsabutton();
+    initsabutton();
+
     initcabutton();
     initqubutton();
     ui->comboBox->setCurrentText("sdfsdfjkl");\
@@ -59,65 +60,61 @@ MainWindow::~MainWindow()
     delete ui;
 
 }
-void MainWindow::setbutton(int i,ItemButton **p,QSqlQueryModel &sqm)
-{
-    if(i<sqm.rowCount())
-    {
 
-        QString name=sqm.record(i).value("Name").toString();
-        int   testid=sqm.record(i).value("TestId").toInt();
-
-        p[i]->setText(name);
-        p[i]->testid=testid;
-
-        //pb[i]->setCheckable(true);
-    }
-    else
-    {
-        p[i]->setCheckable(false);
-        p[i]->setEnabled(false);
-    }
-
-
-}
 
 void MainWindow::initsabutton()
 {
     QWidget *qw=ui->frame_4;
     //qw->deleteLater();
-    QSqlQueryModel sqm;
-    db.getTestItem(sqm);
-    for (int i=0;i<38;i++)
-    {
-        if(pb[i]!=NULL) {delete pb[i];
-        pb[i]=NULL;}
-    }
+
     for(int i=0;i<11;i++)
     {
         pb[i]= new ItemButton(qw);
-        setbutton(i,pb,sqm);
         pb[i]->setGeometry(IB_LENGTH*i,0,IB_LENGTH,IB_LENGTH);
     }
     for(int j=0;j<10;j++)
     {
         int i=j+11;
         pb[i]= new ItemButton(qw);
-        setbutton(i,pb,sqm);
         pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH/2,IB_LENGTH,IB_LENGTH,IB_LENGTH);
     }
     for(int j=0;j<9;j++)
     {
         int i=j+21;
         pb[i]= new ItemButton(qw);
-        setbutton(i,pb,sqm);
         pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH,IB_LENGTH*2,IB_LENGTH,IB_LENGTH);
     }
     for(int j=0;j<8;j++)
     {
         int i=j+30;
         pb[i]= new ItemButton(qw);
-        setbutton(i,pb,sqm);
         pb[i]->setGeometry(IB_LENGTH*j+IB_LENGTH*3/2,IB_LENGTH*3,IB_LENGTH,IB_LENGTH);
+    }
+    qw=ui->frame_10;
+    //qw->deleteLater();
+
+    for(int i=0;i<11;i++)
+    {
+        pb[i+38]= new ItemButton(qw);
+        pb[i+38]->setGeometry(IB_LENGTH*i,0,IB_LENGTH,IB_LENGTH);
+    }
+    for(int j=0;j<10;j++)
+    {
+        int i=j+11;
+        pb[i+38]= new ItemButton(qw);
+        pb[i+38]->setGeometry(IB_LENGTH*j+IB_LENGTH/2,IB_LENGTH,IB_LENGTH,IB_LENGTH);
+    }
+    for(int j=0;j<9;j++)
+    {
+        int i=j+21;
+        pb[i+38]= new ItemButton(qw);
+        pb[i+38]->setGeometry(IB_LENGTH*j+IB_LENGTH,IB_LENGTH*2,IB_LENGTH,IB_LENGTH);
+    }
+    for(int j=0;j<8;j++)
+    {
+        int i=j+30;
+        pb[i+38]= new ItemButton(qw);
+        pb[i+38]->setGeometry(IB_LENGTH*j+IB_LENGTH*3/2,IB_LENGTH*3,IB_LENGTH,IB_LENGTH);
     }
 
 }
@@ -237,19 +234,71 @@ void MainWindow::on_radioButton_toggled(bool checked)
     ui->groupBox_10->hide();
 }
 
-void MainWindow::on_pushButton_11_clicked()
-{
-    for (int i=0;i<38;i++)
-    {
-        if(pb[i]!=NULL) {delete pb[i];
-        pb[i]=NULL;}
-    }
-}
+
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     if(index==0)
     {
-        ui->pushButton_8->setEnabled(false);
+        sr->initstate();
     }
+}
+
+void MainWindow::on_toolButton_13_clicked()
+{
+    this->close();
+}
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    on_toolButton_clicked();
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+
+}
+
+void MainWindow::on_comboBox_4_currentIndexChanged(int index)
+{
+    sr->showpage(index);
+}
+
+void MainWindow::on_sr_del_clicked()
+{
+int j=ui->comboBox_4->findText("二");
+qDebug("er is %d",j);
+}
+
+void MainWindow::ontoggle(bool b)
+{
+    bool isOK=false;
+    for (int i=0;i<itemnum;i++)
+    {
+        if(pb[i]->isChecked())
+        {
+            isOK=true;
+            break;
+        }
+
+    }
+    if(isOK)
+    {
+        sr->setYesEnable(true);
+    }
+    else
+    {
+        sr->setYesEnable(false);
+    }
+}
+
+void MainWindow::on_pushButton_6_toggled(bool checked)
+{
+
+}
+
+void MainWindow::on_sr_yes_clicked()
+{
+    sr->reg();
+    sr->initstate();
 }

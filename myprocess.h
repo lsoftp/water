@@ -333,6 +333,10 @@ extern ActionSequence g_action_sequence;
 
 class gi{
 public:
+    static int isReplace(int testid)
+    {
+        return g_test_array.test_config_array[testid].isreplace;
+    }
 
 	static int get_replaceid(int testid)
 	{

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[13];
-    char stringdata0[246];
+    QByteArrayData data[21];
+    char stringdata0[400];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,9 +41,17 @@ QT_MOC_LITERAL(6, 106, 24), // "on_radioButton_2_toggled"
 QT_MOC_LITERAL(7, 131, 7), // "checked"
 QT_MOC_LITERAL(8, 139, 24), // "on_radioButton_3_toggled"
 QT_MOC_LITERAL(9, 164, 22), // "on_radioButton_toggled"
-QT_MOC_LITERAL(10, 187, 24), // "on_pushButton_11_clicked"
-QT_MOC_LITERAL(11, 212, 27), // "on_tabWidget_currentChanged"
-QT_MOC_LITERAL(12, 240, 5) // "index"
+QT_MOC_LITERAL(10, 187, 27), // "on_tabWidget_currentChanged"
+QT_MOC_LITERAL(11, 215, 5), // "index"
+QT_MOC_LITERAL(12, 221, 24), // "on_toolButton_13_clicked"
+QT_MOC_LITERAL(13, 246, 24), // "on_pushButton_14_clicked"
+QT_MOC_LITERAL(14, 271, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(15, 295, 33), // "on_comboBox_4_currentIndexCha..."
+QT_MOC_LITERAL(16, 329, 17), // "on_sr_del_clicked"
+QT_MOC_LITERAL(17, 347, 8), // "ontoggle"
+QT_MOC_LITERAL(18, 356, 1), // "b"
+QT_MOC_LITERAL(19, 358, 23), // "on_pushButton_6_toggled"
+QT_MOC_LITERAL(20, 382, 17) // "on_sr_yes_clicked"
 
     },
     "MainWindow\0on_toolButton_clicked\0\0"
@@ -51,8 +59,14 @@ QT_MOC_LITERAL(12, 240, 5) // "index"
     "on_pushButton_9_clicked\0"
     "on_radioButton_2_toggled\0checked\0"
     "on_radioButton_3_toggled\0"
-    "on_radioButton_toggled\0on_pushButton_11_clicked\0"
-    "on_tabWidget_currentChanged\0index"
+    "on_radioButton_toggled\0"
+    "on_tabWidget_currentChanged\0index\0"
+    "on_toolButton_13_clicked\0"
+    "on_pushButton_14_clicked\0"
+    "on_pushButton_6_clicked\0"
+    "on_comboBox_4_currentIndexChanged\0"
+    "on_sr_del_clicked\0ontoggle\0b\0"
+    "on_pushButton_6_toggled\0on_sr_yes_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,7 +76,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,15 +84,22 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x08 /* Private */,
-       3,    0,   60,    2, 0x08 /* Private */,
-       4,    0,   61,    2, 0x08 /* Private */,
-       5,    0,   62,    2, 0x08 /* Private */,
-       6,    1,   63,    2, 0x08 /* Private */,
-       8,    1,   66,    2, 0x08 /* Private */,
-       9,    1,   69,    2, 0x08 /* Private */,
-      10,    0,   72,    2, 0x08 /* Private */,
-      11,    1,   73,    2, 0x08 /* Private */,
+       1,    0,   94,    2, 0x08 /* Private */,
+       3,    0,   95,    2, 0x08 /* Private */,
+       4,    0,   96,    2, 0x08 /* Private */,
+       5,    0,   97,    2, 0x08 /* Private */,
+       6,    1,   98,    2, 0x08 /* Private */,
+       8,    1,  101,    2, 0x08 /* Private */,
+       9,    1,  104,    2, 0x08 /* Private */,
+      10,    1,  107,    2, 0x08 /* Private */,
+      12,    0,  110,    2, 0x08 /* Private */,
+      13,    0,  111,    2, 0x08 /* Private */,
+      14,    0,  112,    2, 0x08 /* Private */,
+      15,    1,  113,    2, 0x08 /* Private */,
+      16,    0,  116,    2, 0x08 /* Private */,
+      17,    1,  117,    2, 0x08 /* Private */,
+      19,    1,  120,    2, 0x08 /* Private */,
+      20,    0,  123,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -88,8 +109,15 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Bool,    7,
     QMetaType::Void, QMetaType::Bool,    7,
     QMetaType::Void, QMetaType::Bool,    7,
+    QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   12,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   11,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,   18,
+    QMetaType::Void, QMetaType::Bool,    7,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -107,8 +135,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_radioButton_2_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 5: _t->on_radioButton_3_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 6: _t->on_radioButton_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 7: _t->on_pushButton_11_clicked(); break;
-        case 8: _t->on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->on_toolButton_13_clicked(); break;
+        case 9: _t->on_pushButton_14_clicked(); break;
+        case 10: _t->on_pushButton_6_clicked(); break;
+        case 11: _t->on_comboBox_4_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 12: _t->on_sr_del_clicked(); break;
+        case 13: _t->ontoggle((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 14: _t->on_pushButton_6_toggled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 15: _t->on_sr_yes_clicked(); break;
         default: ;
         }
     }
@@ -139,13 +174,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 16;
     }
     return _id;
 }
