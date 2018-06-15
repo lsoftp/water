@@ -64,15 +64,23 @@ void DBInterface::getPos(QSqlQueryModel &querymodel,const QString &index)//获�
 }
 void DBInterface::getSampleNo(QSqlQueryModel &querymodel,const QString &index)//获取已用样本号
 {
-    querymodel.setQuery(QString("SELECT id  FROM sr where testpageid='%1' order by id").arg(index),m_db);
+    QString sql=QString("SELECT id  FROM sr where testpageid='%1' order by id").arg(index);
+    querymodel.setQuery(sql,m_db);
 }
 void DBInterface::getSampleId(QSqlQueryModel &querymodel,const QString &index)//获取已用样品Id
 {
     querymodel.setQuery(QString("SELECT sampleid  FROM sr where testpageid='%1' order by sampleid").arg(index),m_db);
 }
-void DBInterface::getLastSampleNo(QSqlQueryModel &querymodel,const QString &index)
+
+void DBInterface::getalltest(QSqlQueryModel &querymodel,const QString &index)
 {
-    querymodel.setQuery(QString("SELECT MAX(testsn),id  FROM sr where testpageid='%1' order by id").arg(index),m_db);
+    querymodel.setQuery(QString("SELECT *  FROM sr where testpageid='%1' order by sampleid").arg(index),m_db);
+
+}
+
+void DBInterface::getSr(QSqlQueryModel &querymodel,const QString &index)
+{
+    querymodel.setQuery(QString("SELECT distinct id,Pos,Stage  FROM sr where testpageid='%1' AND (Stage!=1 ) order by id").arg(index),m_db);
 }
 
 void DBInterface::insertSample(const TestRegister & tr )

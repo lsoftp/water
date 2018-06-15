@@ -32,25 +32,29 @@ void testinitial()
 	TestConfig tc={2, -2,0,20,3,0, 30,1 ,0,40,-3,0,50,-3,0,60,1,2,3,4,5, 2,2,3, 3,2,4, 2, 349,560};
 	g_test_array.push(tc);
 	}
+    {
+    TestConfig tc={3, -2,0,20,3,0, 30,1 ,0,40,-3,0,50,-3,0,60,1,2,3,4,5, 2,2,3, 3,2,4, 2, 349,560};
+    g_test_array.push(tc);
+    }
+    for(int i=0;i<80;i++)
+    {
+        Reagent_Info ri={i,i/40,i%40,3000,0,300};
+        g_reagent_array.push(ri);
+    }
 
-	{  Reagent_Info ri={0,0,1,3000}; g_reagent_array.push(ri);}
-	{  Reagent_Info ri={0,0,3,3000}; g_reagent_array.push(ri);}
-	{  Reagent_Info ri={1,0,2,3000}; g_reagent_array.push(ri);}
-	{  Reagent_Info ri={2,1,1,3000}; g_reagent_array.push(ri);}
-	{  Reagent_Info ri={3,1,2,3000}; g_reagent_array.push(ri);}
 
-	{ TestRow tr={"1", 0,  0, 0, 1, 1,0,0,1,0, 0, 1, 0}; g_test_row_array.push(tr);}
-	{ TestRow tr={"2", 1,  0, 1, 0, 2,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
-	{ TestRow tr={"3", 2,  0, 1, 0, 3,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
-	{ TestRow tr={"4", 3,  0, 1, 0, 4,1,2,3,4, 1, 0, 3}; g_test_row_array.push(tr);}
-	{ TestRow tr={"5", 4,  0, 1, 0, 1,0,1,0,0, 1, 1, 0}; g_test_row_array.push(tr);}
-	{ TestRow tr={"6", 5,  0, 1, 0, 2,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
-	{ TestRow tr={"7", 6,  0, 1, 0, 3,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
-	{ TestRow tr={"8", 7,  0, 1, 0, 4,0,1,0,0, 1, 0, 4}; g_test_row_array.push(tr);}
-	{ TestRow tr={"9", 8,  0, 1, 0, 1,0,1,0,0, 1, 2, 0}; g_test_row_array.push(tr);}
-	{ TestRow tr={"10",9,  0, 1, 0, 2,0,1,0,0, 1, 1, 1}; g_test_row_array.push(tr);}
-	{ TestRow tr={"11",10, 0, 1, 0, 3,0,1,0,0, 1, 1, 1}; g_test_row_array.push(tr);}
-	{ TestRow tr={"12",11, 0, 1, 0, 4,0,1,0,0, 1, 0, 3}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"1", 0,  0, 0, 1, 1,0,0,1,0, 0, 1, 0}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"2", 1,  0, 1, 0, 2,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"3", 2,  0, 1, 0, 3,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"4", 3,  0, 1, 0, 4,1,2,3,4, 1, 0, 3}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"5", 4,  0, 1, 0, 1,0,1,0,0, 1, 1, 0}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"6", 5,  0, 1, 0, 2,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"7", 6,  0, 1, 0, 3,0,1,0,0, 1, 1, 2}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"8", 7,  0, 1, 0, 4,0,1,0,0, 1, 0, 4}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"9", 8,  0, 1, 0, 1,0,1,0,0, 1, 2, 0}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"10",9,  0, 1, 0, 2,0,1,0,0, 1, 1, 1}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"11",10, 0, 1, 0, 3,0,1,0,0, 1, 1, 1}; g_test_row_array.push(tr);}
+//	{ TestRow tr={"12",11, 0, 1, 0, 4,0,1,0,0, 1, 0, 3}; g_test_row_array.push(tr);}
 
 }
 /*****************************************************************************
@@ -193,6 +197,7 @@ void ActionSequence::insertTestRow(int i)
 	   ar.start_time=0;
        ar.end_time= WASH_ALL_CUP_TIME;
        lasttime=WASH_ALL_CUP_TIME;
+       ar.ptestrow=i;
 	   arv.push_back(ar);
 	   this->from_time=getendtime();    // insert from endtime
 	   //insert last row  to clear all cups
@@ -334,6 +339,7 @@ void ActionSequence::insertTestRow(int i)
 }
 void ActionSequence::makelist() // 通过调用insertTestRow 生成动作序列
 {
+    this->action_list.clear();//clear when start make
 	from_time=0;
 	endtime=0;
 	static int oldtid=-1;

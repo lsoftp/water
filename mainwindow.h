@@ -7,12 +7,22 @@
 #include "samplebutton.h"
 #include <QDateTime>
 #include "dbinterface.h"
-
+#include <QFrame>
 namespace Ui {
 class MainWindow;
 }
 
 class SampleRegister;
+enum GUIFrame{
+    G_BLANK,
+    G_HOME,
+    G_REGISTER,
+    G_ITEM,
+    G_START,
+    G_NUM
+
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -56,6 +66,14 @@ private slots:
 
     void on_sr_yes_clicked();
 
+    void on_pushButton_15_clicked();
+
+    void on_pushButton_16_clicked();
+
+    void on_pushButton_13_clicked();
+
+    void on_toolButton_9_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -63,11 +81,13 @@ private:
     ItemButton *pb[38*2];
     CaButton *pb1[38*2];
     ItemButton *pb2[38*2];
-
+    QFrame *pf[G_NUM];
     void initGUI();
+    void initFrames();
     void initsabutton();//初始化样本登记按钮
     void initcabutton();//初始化定标定标按钮
     void initqubutton();//初始化质控安按钮
+    void display(GUIFrame frame);
 
 
 };

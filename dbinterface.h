@@ -42,8 +42,9 @@ public:
     void getPos(QSqlQueryModel &querymodel,const QString &index);//获取已占用位置
     void getSampleNo(QSqlQueryModel &querymodel,const QString &index);//获取已用样本号
     void getSampleId(QSqlQueryModel &querymodel,const QString &index);//获取已用样品Id
-    void getLastSampleNo(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
+    void getSr(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
     void insertSample(const TestRegister & tr );
+    void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试
 signals:
 
 public slots:

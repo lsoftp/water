@@ -412,6 +412,27 @@ void HandleThread::run()
 				{
 
 				//make action list and handle test
+                    g_test_row_array.rearrange();
+                    g_action_sequence.makelist();
+                    list<ActionRow> &a=g_action_sequence.action_list;
+                    list<ActionRow>::iterator li1;
+                    for(li1=a.begin();li1!=a.end();li1++)
+                    {
+                        // char buf[512];
+                        //ActionRow ar= *li1;
+                        //DP("artype %d,test_id %d   s %d e %d",g_test_row_array.test_array[li->ptestrow].test_id, li->start_time,li->end_time);
+                        LOG("artype %d  test sn  %d testid %d st %d et %d ",li1->a.type, li1->ptestrow,g_test_row_array.test_array[li1->ptestrow].test_id, li1->start_time,li1->end_time);
+                        //g_log.Log(buf);
+                    }
+
+                    if(g_action_sequence.action_list.size()==0)
+                    {
+                            command=0;
+                            started =0;
+                            settime=0;
+                            continue;
+                    }
+
 					li=g_action_sequence.action_list.begin();
 					gettimeofday(&start, NULL);
 					started = 1;
@@ -424,6 +445,8 @@ void HandleThread::run()
 			}
 			if((started)&&(!settime))
 			{
+
+                ActionRow ar= *li;
 				if(g_test_row_array.test_array[li->ptestrow].status>=NOT_ENOUGH_REAGENT)
 				{
 				   li->if_send=0;

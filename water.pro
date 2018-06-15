@@ -37,7 +37,8 @@ SOURCES += \
     myprocess.cpp \
     handlethread.cpp \
     interface.cpp \
-    sampleregister.cpp
+    sampleregister.cpp \
+    stopsampledia.cpp
 
 
 HEADERS += \
@@ -52,9 +53,12 @@ HEADERS += \
     myprocess.h \
     handlethread.h \
     interface.h \
-    sampleregister.h
+    sampleregister.h \
+    stopsampledia.h
 
 LIBS += -lws2_32
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    dialog.ui \
+    dialog.ui

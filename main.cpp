@@ -20,14 +20,14 @@ void testinit()
     char buf[512];
     testinitial();
     DP("rows %d",g_test_row_array.test_array.size());
-    g_test_row_array.rearrange();
+    //g_test_row_array.rearrange();
      DP("****************rows %d",g_test_row_array.test_array.size());
          vector<TestRow>::iterator iter;
     for (iter=g_test_row_array.test_array.begin();iter!=g_test_row_array.test_array.end();iter++)
     {
         DP("***%d*****%d******** %d",(*iter).test_id,(*iter).test_type,(*iter).priority);
     }
-    g_action_sequence.makelist();
+    //g_action_sequence.makelist();
     DP("size %d",g_action_sequence.action_list.size());
     list<ActionRow> &a=g_action_sequence.action_list;
     list<ActionRow>::iterator li;
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     g_w->sr->setbutton();
     g_w->sr->initstate();
     g_w->show();
-    //testinit();
+    testinit();
     g_handler.start();
     fflush(stdout);
     return a.exec();

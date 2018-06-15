@@ -13,22 +13,23 @@ void SampleRegister::SetSampleNo()
 {
     QSqlQueryModel sqm;
     db.getSampleNo(sqm, g_current_index);
-    int j=0;
-    if(sqm.rowCount()==0)
+    int j=0,num=sqm.rowCount();
+    if(num==0)
     {
         w->ui->lineEdit_4->setText(QString::number(1));
         return;
     }
-    for(int i=0;i<sqm.rowCount();i++)
+    for(int i=0;i<num;i++)
     {
         int k=sqm.record(i).value("id").toInt();
         int p=k-j;
-        j=k;
+
         if(p>1)
         {
             w->ui->lineEdit_4->setText(QString::number(j+1));
             return;
         }
+        j=k;
     }
     w->ui->lineEdit_4->setText(QString::number(j+1));
 }
@@ -61,6 +62,13 @@ void SampleRegister::setYesEnable(bool b)
     w->ui->sr_yes->setEnabled(b);
 }
 
+void SampleRegister::uncheckbt()
+{
+    for(int i=0;i<w->itemnum;i++)
+    {
+        w->pb[i]->setChecked(false);
+    }
+}
 
 void SampleRegister::setbutton()
 {
@@ -85,6 +93,23 @@ void SampleRegister::setbutton()
 
 
 }
+void SampleRegister::refreshtable()
+{
+    QSqlQueryModel sqm;
+    db.getSr(sqm,::g_current_index);
+    QTableWidget *tw=w->ui->tableWidget;
+    tw->clearContents();
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+      tw->setItem(i,0,new QTableWidgetItem(sqm.record(i).value("id").toString()));
+      tw->setItem(i,1,new QTableWidgetItem(sqm.record(i).value("Pos").toString()));
+      int k = sqm.record(i).value("Stage").toInt();
+      QString status= k==0?"已登记":"其他";
+      tw->setItem(i,2,new QTableWidgetItem(status));
+
+    }
+
+}
 
 void SampleRegister::showpage(int i)
 {
@@ -102,12 +127,15 @@ void SampleRegister::showpage(int i)
 
 void SampleRegister::initstate()
 {
+    //page 1
     w->ui->comboBox_4->setCurrentIndex(0);
 
     showpage(0);
     setYesEnable(false);
+    this->uncheckbt();
     this->SetSampleNo();
     SetPos();
+    this->refreshtable();
 }
 
 void SampleRegister::reg()

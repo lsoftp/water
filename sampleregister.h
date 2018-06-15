@@ -19,6 +19,8 @@ public:
     void setbutton();
     void showpage(int i);
     void initstate();
+    void uncheckbt();
+    void refreshtable();
     void reg();
 };
 

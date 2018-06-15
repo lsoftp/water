@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "handlethread.h"
 #include "sampleregister.h"
+#include "interface.h"
+#include "stopsampledia.h"
 //按钮的宽度
 
 
@@ -16,10 +18,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     sr=new SampleRegister(this);
+    ui->lineEdit->setText("hahahah");
+    ui->lineEdit->setReadOnly(true);
     memset(pb,NULL,sizeof(pb));
     memset(pb1,NULL,sizeof(pb1));
     memset(pb2,NULL,sizeof(pb2));
     initGUI();
+    this->initFrames();
+    display(G_HOME);
 }
 //初始化界面
 void MainWindow::initGUI()
@@ -38,13 +44,14 @@ void MainWindow::initGUI()
     ui->toolButton_12->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     ui->toolButton_13->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     ui->toolButton_14->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    ui->frame_2->hide();
-    ui->frame_3->hide();
     initsabutton();
-
+    ui->tableWidget->setRowCount(40);
     initcabutton();
     initqubutton();
-    ui->comboBox->setCurrentText("sdfsdfjkl");\
+    //
+    ui->comboBox->setEditText("sdfsdfjkl");
+
+
     SampleButton *sb=new SampleButton(ui->frame);
     sb->setGeometry(0,0,50,60);
      ui->tableWidget->setColumnWidth(0,60);
@@ -53,7 +60,25 @@ void MainWindow::initGUI()
      ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 }
+//assign frames index
+void MainWindow::initFrames()
+{
+    pf[GUIFrame::G_BLANK]=ui->frame_13;
+    pf[GUIFrame::G_HOME]=ui->frame;
+    pf[GUIFrame::G_REGISTER]=ui->frame_2;
+    pf[GUIFrame::G_ITEM]=ui->frame_3;
+    pf[GUIFrame::G_START]=ui->frame_11;
+}
 
+void MainWindow::display(GUIFrame frame)
+{
+    for(int i=0;i<GUIFrame::G_NUM;i++)
+    {
+        if(i!=frame) pf[i]->hide();
+        else pf[frame]->show();
+    }
+
+}
 
 MainWindow::~MainWindow()
 {
@@ -186,31 +211,28 @@ void MainWindow::initcabutton()
 
 void MainWindow::on_toolButton_clicked()
 {
-    ui->frame->hide();
-    ui->frame_2->show();
-    ui->frame_3->hide();
+    display(G_REGISTER);
     //ui->frame_2->tabWidget->hide();
 
 }
 
 void MainWindow::on_toolButton_5_clicked()
 {
-    ui->frame->hide();
-    ui->frame_2->hide();
-    ui->frame_3->show();
+    display(GUIFrame::G_ITEM);
 }
 
 void MainWindow::on_toolButton_8_clicked()
 {
+    display(G_START);
+    Interface::initTestrowArray();
     if(!g_handler.command)
     g_handler.command=1;
 }
 
 void MainWindow::on_pushButton_9_clicked()
-{    ui->frame->show();
-     ui->frame_2->hide();
-     ui->frame_3->hide();
-
+{
+    //register return button
+    display(G_HOME);
 }
 
 void MainWindow::on_radioButton_2_toggled(bool checked)
@@ -251,7 +273,7 @@ void MainWindow::on_toolButton_13_clicked()
 
 void MainWindow::on_pushButton_14_clicked()
 {
-    on_toolButton_clicked();
+    display(G_BLANK);
 }
 
 void MainWindow::on_pushButton_6_clicked()
@@ -301,4 +323,27 @@ void MainWindow::on_sr_yes_clicked()
 {
     sr->reg();
     sr->initstate();
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    display(G_BLANK);
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    display(G_BLANK);
+}
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    display(G_BLANK);
+}
+#include<QMessageBox>
+void MainWindow::on_toolButton_9_clicked()
+{
+    ::StopSDia  dl;
+    int i=dl.exec();
+
+    QMessageBox::question(NULL, "question", QString::number(i), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 }
