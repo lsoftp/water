@@ -339,11 +339,11 @@ void MainWindow::on_pushButton_13_clicked()
 {
     display(G_BLANK);
 }
-#include<QMessageBox>
+//#include<QMessageBox>
 void MainWindow::on_toolButton_9_clicked()
 {
     ::StopSDia  dl;
     int i=dl.exec();
 
-    QMessageBox::question(NULL, "question", QString::number(i), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+   // QMessageBox::question(NULL, "question", QString::number(i), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 }
