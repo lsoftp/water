@@ -312,7 +312,7 @@ int HandleThread::getMsgFromBuf( int & state )
 						settime=0;
 						if(li==g_action_sequence.action_list.end())
 						{
-						//½áÊø
+						//ç»“æŸ
 							command=0;
 							started =0;
 							settime=0;
@@ -486,7 +486,7 @@ void HandleThread::run()
                     DP("*****timeout settime %d, sn %d, retry %d",settime,sn,retry);
 					if(li==g_action_sequence.action_list.end())
 					{
-						//½áÊø
+						//ç»“æŸ
 						command=0;
 						started =0;
 						settime=0;

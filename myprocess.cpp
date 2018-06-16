@@ -58,7 +58,7 @@ void testinitial()
 
 }
 /*****************************************************************************
-°´ÕÕÏîÄ¿ÓÅÏÈ¼¶--²âÊÔÀàÐÍ¡ª¡ª²âÊÔÓÅÏÈ¼¶À´ÅÅÐò
+æŒ‰ç…§é¡¹ç›®ä¼˜å…ˆçº§--æµ‹è¯•ç±»åž‹â€”â€”æµ‹è¯•ä¼˜å…ˆçº§æ¥æŽ’åº
 
 
 
@@ -337,7 +337,7 @@ void ActionSequence::insertTestRow(int i)
 
 	insertOneRow(arv);
 }
-void ActionSequence::makelist() // Í¨¹ýµ÷ÓÃinsertTestRow Éú³É¶¯×÷ÐòÁÐ
+void ActionSequence::makelist() // é€šè¿‡è°ƒç”¨insertTestRow ç”ŸæˆåŠ¨ä½œåºåˆ—
 {
     this->action_list.clear();//clear when start make
 	from_time=0;

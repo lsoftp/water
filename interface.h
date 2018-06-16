@@ -3,9 +3,9 @@
 #ifndef interfaceH
 #define interfaceH
 //---------------------------------------------------------------------------
-#define TEST_STEP_SUCCESS 0 //²âÊÔ²½Öè³É¹¦
-#define TEST_TIME_OUT 9 //²âÊÔ³¬Ê±
-#define NOT_ENOUGH_REAGENT 10      //ÊÔ¼Á²»¹»
+#define TEST_STEP_SUCCESS 0 //æµ‹è¯•æ­¥éª¤æˆåŠŸ
+#define TEST_TIME_OUT 9 //æµ‹è¯•è¶…æ—¶
+#define NOT_ENOUGH_REAGENT 10      //è¯•å‰‚ä¸å¤Ÿ
 
 class Interface{
 public:
@@ -19,8 +19,8 @@ public:
 };
 
 /**************************************************************
-¿ªÊ¼²âÊÔ£ºËùÓĞµÇ¼ÇµÄ²âÊÔpushµ½testrowarrayÖĞ£¬È»ºóÉèÖÃcommand=1
-ÆäËû¶¯×÷£¬¹¹Ôìactionlist£¬È»ºóÉèÖÃcommand=2£»
+å¼€å§‹æµ‹è¯•ï¼šæ‰€æœ‰ç™»è®°çš„æµ‹è¯•pushåˆ°testrowarrayä¸­ï¼Œç„¶åè®¾ç½®command=1
+å…¶ä»–åŠ¨ä½œï¼Œæ„é€ actionlistï¼Œç„¶åè®¾ç½®command=2ï¼›
 
 
 

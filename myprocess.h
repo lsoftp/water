@@ -15,13 +15,13 @@ using namespace std;
 #define TEST_NUMBER 512
 #define REAGENT_NUMBER 512
 #define CUP_NUMBER  44
-#define GET_SAMPLE_TIME 10   //È¡Ñùµ½·´Ó¦±­×î³¤Ê±¼ä£¬±ØĞëÒªÔÚ10s ÄÚÍê³É£¬°üÀ¨Í¨Ñ¶ÔÚÄÚ
-#define GET_REAGENT_TIME  10   // È¡ÊÔ¼Áµ½·´Ó¦±­ °üÀ¨½Á°è ÇåÏ´µÈ
-#define GET_SYSTEM_WATER 10    // ¼ÓÏµÍ³Ë®ÖÜÆÚ
-#define GET_DILUTE_SAMPLE_TIME 10    // ¼ÓÏ¡ÊÍÑùÆ·
+#define GET_SAMPLE_TIME 10   //å–æ ·åˆ°ååº”æ¯æœ€é•¿æ—¶é—´ï¼Œå¿…é¡»è¦åœ¨10s å†…å®Œæˆï¼ŒåŒ…æ‹¬é€šè®¯åœ¨å†…
+#define GET_REAGENT_TIME  10   // å–è¯•å‰‚åˆ°ååº”æ¯ åŒ…æ‹¬æ…æ‹Œ æ¸…æ´—ç­‰
+#define GET_SYSTEM_WATER 10    // åŠ ç³»ç»Ÿæ°´å‘¨æœŸ
+#define GET_DILUTE_SAMPLE_TIME 10    // åŠ ç¨€é‡Šæ ·å“
 
-#define  READ_RESULT_TIME 10    //¶ÁÈ¡½á¹û
-#define  WASH_ALL_CUP_TIME 100 //ÇåÏ´ËùÓĞ±­×Ó
+#define  READ_RESULT_TIME 10    //è¯»å–ç»“æœ
+#define  WASH_ALL_CUP_TIME 100 //æ¸…æ´—æ‰€æœ‰æ¯å­
 //---------------------------------------------------------------------------
 #define WORD_COPY(d,i,v) {d[i]=(0xff00&v)>>8; d[i+1]=(0x00ff&v);}
 #define DWORD_COPY(d,i,v) {d[i]=(0xff000000&v)>>24; d[i+1]=(0x00ff0000&v)>>16;d[i+2]=(0x0000ff00&v)>>8; d[i+3]=v&0xff;}
@@ -30,7 +30,7 @@ using namespace std;
 #define TO_DWORD(d,i,v) {v= (0x00000000|d[i])<<8; v=(v|d[i+1])<<8;v= (v|d[i+2])<<8;v=v|d[i+3];}
 
 
-//²âÊÔÏîÄ¿²½Öè
+//æµ‹è¯•é¡¹ç›®æ­¥éª¤
 struct TestConfig{
 	int test_id;
 
@@ -61,9 +61,9 @@ struct TestConfig{
 	int readinterval;// read inteval after all reagents added
 	int readtimes;//
 
-	int wavenum;//¶ÁÈ¡²¨³¤ÊıÄ¿
-	int wl0;//Ö÷²¨³¤
-	int wl1;//¸±²¨³¤
+	int wavenum;//è¯»å–æ³¢é•¿æ•°ç›®
+	int wl0;//ä¸»æ³¢é•¿
+	int wl1;//å‰¯æ³¢é•¿
     int isreplace; // TRUE SAMPLE BLANK IS CHECKED
 
 };
@@ -75,27 +75,27 @@ struct TestRow{
 	//int sample_no;
 
 	unsigned short position;
-	int sample_type;     //¹ıÁ¿²ÉÑù 1£¬Õı³£²ÉÑù 0  È±Ê¡Îª0
+	int sample_type;     //è¿‡é‡é‡‡æ · 1ï¼Œæ­£å¸¸é‡‡æ · 0  ç¼ºçœä¸º0
 
-	int sample_cup_type; //²ÉÑù±­ÀàĞÍ
-	int priority; //smaller is highest  ³£¹æ 1 ¼Ó¼± 0
-	int test_type;  // ¿Õ°×1 ¶¨±ê 2£¬ÖÊ¿Ø 3  ³£¹æ 04
+	int sample_cup_type; //é‡‡æ ·æ¯ç±»å‹
+	int priority; //smaller is highest  å¸¸è§„ 1 åŠ æ€¥ 0
+	int test_type;  // ç©ºç™½1 å®šæ ‡ 2ï¼Œè´¨æ§ 3  å¸¸è§„ 04
 	//TDateTime reg_time;
-	int isdilute;//ÊÇ·ñ»úÆ÷Ï¡ÊÍ
-	int dilutevolume;//Ï¡ÊÍÈ¡ÑùÁ¿
-	int dilutetimes;//Ï¡ÊÍ±¶Êı
-	int dilutetime;//Ï¡ÊÍÊ±¼ä
-	int dilute_reagent; //Ï¡ÊÍÊÔ¼Áid
+	int isdilute;//æ˜¯å¦æœºå™¨ç¨€é‡Š
+	int dilutevolume;//ç¨€é‡Šå–æ ·é‡
+	int dilutetimes;//ç¨€é‡Šå€æ•°
+	int dilutetime;//ç¨€é‡Šæ—¶é—´
+	int dilute_reagent; //ç¨€é‡Šè¯•å‰‚id
 
-	int  test_id;  //²âÊÔ·½·¨id
-	int isreplace;//ÊÇ·ñÌæ´ú
-	int status;// 0 ³É¹¦£¬1 ³¬Ê±£¬2 ÊÔ¼Á²»¹»
-	//int test_no;  //È·¶¨²âÊÔid
+	int  test_id;  //æµ‹è¯•æ–¹æ³•id
+	int isreplace;//æ˜¯å¦æ›¿ä»£
+	int status;// 0 æˆåŠŸï¼Œ1 è¶…æ—¶ï¼Œ2 è¯•å‰‚ä¸å¤Ÿ
+	//int test_no;  //ç¡®å®šæµ‹è¯•id
 
 };
 struct Reagent_pos{
 
-	unsigned short circle; //ÄÚÈ¦0£¬ÍâÈ¦0
+	unsigned short circle; //å†…åœˆ0ï¼Œå¤–åœˆ0
 	unsigned short pos;
 };
 
@@ -103,7 +103,7 @@ struct Reagent_Info{
 	int reagent_id;
 	Reagent_pos r_pos;
 	double  left_volume;
-	char   bottletype; //ÊÔ¼ÁÆ¿ÀàĞÍ
+	char   bottletype; //è¯•å‰‚ç“¶ç±»å‹
 	unsigned short height;//
 	double getSetVolume(){
 		//for test   to be modified
@@ -207,13 +207,13 @@ public:
 };
 
 
-//µÇ¼ÇµÄËùÓĞÏîÄ¿ÖÊ¿Ø£¬¶¨±ê ³£¹æ£¬¶¼ÏÈ·ÅÔÚÊı¾İ¿âÀïÃæ£¬È»ºóµã»÷¿ªÊ¼Éú³É
+//ç™»è®°çš„æ‰€æœ‰é¡¹ç›®è´¨æ§ï¼Œå®šæ ‡ å¸¸è§„ï¼Œéƒ½å…ˆæ”¾åœ¨æ•°æ®åº“é‡Œé¢ï¼Œç„¶åç‚¹å‡»å¼€å§‹ç”Ÿæˆ
 bool comp(const TestRow &a,const TestRow &b);
 class TestRowArray{
 public:
 	vector<TestRow> test_array;
 
-	void rearrange(){ // °´ÕÕ¹æÔòÅÅĞò £¬ÏÈ°´ÏîÄ¿ÓÅÏÈ¼¶£¬È»ºó°´ÕÕ²âÊÔÓÅÏÈ¼¶ ºÍtest_type
+	void rearrange(){ // æŒ‰ç…§è§„åˆ™æ’åº ï¼Œå…ˆæŒ‰é¡¹ç›®ä¼˜å…ˆçº§ï¼Œç„¶åæŒ‰ç…§æµ‹è¯•ä¼˜å…ˆçº§ å’Œtest_type
 		sort(test_array.begin(),test_array.end(),comp);
 	}
 	void push(TestRow tr){
@@ -224,10 +224,10 @@ public:
 };
 
 struct Action{
-	unsigned short type;// 0  ¼ÓÑùÆ·µ½·´Ó¦±» 1 ¼ÓÊÔ¼Áµ½·´Ó¦±­  2 ¶ÁÈ¡½á¹û
+	unsigned short type;// 0  åŠ æ ·å“åˆ°ååº”è¢« 1 åŠ è¯•å‰‚åˆ°ååº”æ¯  2 è¯»å–ç»“æœ
 	//0
 	union{
-		//0 ¼ÓÑùÆ·µ½·´Ó¦±­
+		//0 åŠ æ ·å“åˆ°ååº”æ¯
 		struct {
 			unsigned short sample_pos;
 			unsigned short cup_pos;
@@ -236,7 +236,7 @@ struct Action{
 			char wash_type;
 			char sam_cup_type;
 		}get_sample;
-		// 1 ¼ÓÊÔ¼Áµ½·´Ó¦±­
+		// 1 åŠ è¯•å‰‚åˆ°ååº”æ¯
 		struct {
 			int reagent_id;
 			Reagent_pos r_pos;
@@ -245,37 +245,37 @@ struct Action{
 			char sample_type;
 			char wash_type;
 		}get_reagent;
-		//2 ¶ÁÈ¡½á¹û
+		//2 è¯»å–ç»“æœ
 		struct{
 			unsigned short cup_pos;
 			int wavenum;
 			int  wavelength0;
 			int  wavelength1;
 		}get_result;
-		 //3 ÇåÏ´·´Ó¦±­
+		 //3 æ¸…æ´—ååº”æ¯
 		struct{
 			unsigned char cup_pos0;       //start
 			unsigned char cup_pos1;              //end
 		}wash_cup;
-		 //4 ÇåÏ´ËùÓĞ·´Ó¦±­
-		//5 ¸´Î»
-		//6 ¹à×¢
-		//7·´Ó¦±­¿Õ°×
-		//8 Í¨ĞÅ¼ì²é
-		//9·´Ó¦±­×¢Ë®
-		//10¼ÓÑùÕëÇåÏ´
-		//11³ÌĞò¼ì²é
-		//12ÊÔ¼ÁÓàÁ¿¼ì²â
+		 //4 æ¸…æ´—æ‰€æœ‰ååº”æ¯
+		//5 å¤ä½
+		//6 çŒæ³¨
+		//7ååº”æ¯ç©ºç™½
+		//8 é€šä¿¡æ£€æŸ¥
+		//9ååº”æ¯æ³¨æ°´
+		//10åŠ æ ·é’ˆæ¸…æ´—
+		//11ç¨‹åºæ£€æŸ¥
+		//12è¯•å‰‚ä½™é‡æ£€æµ‹
 		struct {
 			unsigned short  startpos;
 			unsigned short   endpos;
 		}reagent_check;
-		//13 ¼ÓÏµÍ³Ë®
+		//13 åŠ ç³»ç»Ÿæ°´
 		struct{
 			int v;
 			unsigned char cup_pos;
 		}system_water;
-		//14 ¼ÓÏ¡ÊÍºóÑùÆ·
+		//14 åŠ ç¨€é‡Šåæ ·å“
 		struct{
 			unsigned cup0;  //from
 			unsigned cup1; //to
@@ -313,10 +313,10 @@ public:
 	void clearAll();
 	void insertTestRow(int i);
 	void insertOneRow( vector<ActionRow> & av);
-	void makelist(); // Í¨¹ıµ÷ÓÃinsertTestRow Éú³É¶¯×÷ĞòÁĞ
+	void makelist(); // é€šè¿‡è°ƒç”¨insertTestRow ç”ŸæˆåŠ¨ä½œåºåˆ—
 	int getendtime();
 	int get_next_available(int i);
-	int get_available_time(vector<ActionRow> & av);//»ñÈ¡²åÈëµÄÊ±¼ä
+	int get_available_time(vector<ActionRow> & av);//è·å–æ’å…¥çš„æ—¶é—´
 	void  addsample(ActionRow &ar, int &lt,int pos, int v,int cuppos ,int step,int i);
 	void addreagent(ActionRow &ar, int &lt,int rid, int v,int cuppos ,int step,int i);
 	void readresult(ActionRow &ar, int &lt,int num, int w0, int w1,int cuppos,int step,int i);

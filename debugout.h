@@ -6,9 +6,9 @@
 //#include <tchar.h>
 #include <stdio.h>
 #include "LogFile.h"
-//���������Ϣ��������������ڵĺ궨��
-//ʹ��win API��DEBUG�汾��ִ�У�RELEASE�汾�򲻻�
-//������ʹ��DebugView��WinDbg�ȹ��߲鿴���
+//用于输出信息到编译器输出窗口的宏定义
+//使用win API，DEBUG版本会执行，RELEASE版本则不会
+//还可以使用DebugView，WinDbg等工具查看输出
 #define _DEBUG
 #ifdef _DEBUG
 

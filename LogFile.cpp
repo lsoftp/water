@@ -11,7 +11,7 @@
 //-----------------------------------------------------------------------------------------
 QString mydir="c:\\temp\\";
 LogFile g_log(mydir  +QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss.log"));
-LogFile::LogFile(const QString szFileName)//Éè¶¨ÈÕÖ¾ÎÄ¼şÃû
+LogFile::LogFile(const QString szFileName)//è®¾å®šæ—¥å¿—æ–‡ä»¶å
 {
 	_hFile = INVALID_HANDLE_VALUE;
 	::InitializeCriticalSection(&_csLock);
@@ -28,7 +28,7 @@ LogFile::~LogFile()
 
 //-----------------------------------------------------------------------------------------
 
-void LogFile::SetFileName(const QString szName)//ĞŞ¸ÄÎÄ¼şÃû£¬ Í¬Ê±¹Ø±ÕÉÏÒ»¸öÈÕÖ¾ÎÄ¼ş
+void LogFile::SetFileName(const QString szName)//ä¿®æ”¹æ–‡ä»¶åï¼Œ åŒæ—¶å…³é—­ä¸Šä¸€ä¸ªæ—¥å¿—æ–‡ä»¶
 {
 	Close();
 	this->_szFileName = szName;
@@ -36,7 +36,7 @@ void LogFile::SetFileName(const QString szName)//ĞŞ¸ÄÎÄ¼şÃû£¬ Í¬Ê±¹Ø±ÕÉÏÒ»¸öÈÕÖ¾
 
 //-----------------------------------------------------------------------------------------
 
-bool LogFile::OpenFile()//´ò¿ªÎÄ¼ş£¬ Ö¸Õëµ½ÎÄ¼şÎ²
+bool LogFile::OpenFile()//æ‰“å¼€æ–‡ä»¶ï¼Œ æŒ‡é’ˆåˆ°æ–‡ä»¶å°¾
 {
 	if(IsOpen()) {
 		return true;
@@ -56,7 +56,7 @@ bool LogFile::OpenFile()//´ò¿ªÎÄ¼ş£¬ Ö¸Õëµ½ÎÄ¼şÎ²
 		NULL
 		);
 
-	if(!IsOpen() && GetLastError() == 2)//´ò¿ª²»³É¹¦£¬ ÇÒÒòÎªÎÄ¼ş²»´æÔÚ£¬ ´´½¨ÎÄ¼ş
+	if(!IsOpen() && GetLastError() == 2)//æ‰“å¼€ä¸æˆåŠŸï¼Œ ä¸”å› ä¸ºæ–‡ä»¶ä¸å­˜åœ¨ï¼Œ åˆ›å»ºæ–‡ä»¶
 		_hFile =  CreateFile(
         _szFileName.toStdWString().c_str(),
 		GENERIC_WRITE,
@@ -84,7 +84,7 @@ DWORD LogFile::Write(LPCVOID lpBuffer, DWORD dwLength)
 }
 //-----------------------------------------------------------------------------------------
 
-void LogFile::WriteLog( LPCVOID lpBuffer, DWORD dwLength)//Ğ´ÈÕÖ¾, ¿ÉÒÔÀ©Õ¹ĞŞ¸Ä
+void LogFile::WriteLog( LPCVOID lpBuffer, DWORD dwLength)//å†™æ—¥å¿—, å¯ä»¥æ‰©å±•ä¿®æ”¹
 {
 	char temp[21] = {0};
 	DWORD dwWriteLength;
@@ -93,7 +93,7 @@ void LogFile::WriteLog( LPCVOID lpBuffer, DWORD dwLength)//Ğ´ÈÕÖ¾, ¿ÉÒÔÀ©Õ¹ĞŞ¸Ä
 		time_t now1;
 		time(&now1);
 		struct tm timeInfo;
-        localtime_s( &timeInfo,&now1); //×ª»»³Étm½á¹¹
+        localtime_s( &timeInfo,&now1); //è½¬æ¢æˆtmç»“æ„
 		strftime(temp, sizeof(temp), "%Y-%m-%d %H:%M:%S", &timeInfo);
         //WriteFile(_hFile, "\xd\xa#-----------------------------", 32, &dwWriteLength, NULL);
 		WriteFile(_hFile, temp, 19, &dwWriteLength, NULL);
@@ -118,7 +118,7 @@ void LogFile::Close()
 
 //-----------------------------------------------------------------------------------------
 
-void LogFile::Log(LPCVOID lpBuffer, DWORD dwLength)//×·¼ÓÈÕÖ¾ÄÚÈİ
+void LogFile::Log(LPCVOID lpBuffer, DWORD dwLength)//è¿½åŠ æ—¥å¿—å†…å®¹
 {
 	assert(lpBuffer);
     __try
@@ -172,9 +172,9 @@ void LogFileEx::Log(LPCVOID lpBuffer, DWORD dwLength)
 		char temp[20] = {0};
 		time_t now = time(NULL);
 		tm timeInfo;
-		localtime_s(&timeInfo, &now); //×ª³Étm½á¹¹
+		localtime_s(&timeInfo, &now); //è½¬æˆtmç»“æ„
 		strftime(temp, sizeof(temp), format[_iType], &timeInfo);
-		if(strcmp(_szLastDate, temp) != 0)//¸ü»»ÎÄ¼şÃû
+		if(strcmp(_szLastDate, temp) != 0)//æ›´æ¢æ–‡ä»¶å
 		{
 			int len = sizeof(_szFileName);
 			strcpy_s(_szFileName, len, _szPath); len -= strlen(_szPath);
