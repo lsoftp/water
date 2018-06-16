@@ -9,6 +9,31 @@ CaButton::CaButton(QWidget *parent) : QPushButton(parent)
     connect(this,SIGNAL(clicked(bool)),this,SLOT(setState()));
 }
 
+void CaButton::setState(int s)
+{
+    //state=s;
+    if(s==1)
+    {
+        state=1;
+        this->setStyleSheet("background-color: rgb(85, 255, 0);");
+        return;
+    }
+    if(s==2)
+    {
+        state=2;
+        this->setStyleSheet("background-color:  rgb(255, 255, 0);");
+        return;
+    }
+    if(s==0)
+    {
+        state=0;
+        setStyleSheet("background-color: rgb(170, 170, 255);");
+        return;
+    }
+
+
+}
+
 void CaButton::setState()
 {
     if(!type)

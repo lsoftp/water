@@ -11,6 +11,7 @@ public:
     int testid;
     int type; //0 空白 定标 都有   ，1只有定标一种状态
     explicit CaButton(QWidget *parent = nullptr);
+    void setState(int s);
 
 signals:
 

@@ -45,6 +45,8 @@ public:
     void getSr(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
     void insertSample(const TestRegister & tr );
     void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试
+    void gettestindex(QSqlQueryModel &querymodel);
+
 signals:
 
 public slots:

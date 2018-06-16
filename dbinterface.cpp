@@ -78,6 +78,12 @@ void DBInterface::getalltest(QSqlQueryModel &querymodel,const QString &index)
 
 }
 
+void DBInterface::gettestindex(QSqlQueryModel &querymodel)
+{
+    querymodel.setQuery(QString("SELECT testpageid  FROM sr where  order by testpageid desc limit 7"),m_db);
+
+}
+
 void DBInterface::getSr(QSqlQueryModel &querymodel,const QString &index)
 {
     querymodel.setQuery(QString("SELECT distinct id,Pos,Stage  FROM sr where testpageid='%1' AND (Stage!=1 ) order by id").arg(index),m_db);
