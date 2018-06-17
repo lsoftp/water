@@ -13,22 +13,7 @@
 
 void Interface::initTestArray()
 {
-    unsigned short position;
-    int sample_type;     //过量采样 1，正常采样 0  缺省为0
 
-    int sample_cup_type; //采样杯类型
-    int priority; //smaller is highest  常规 1 加急 0
-    int test_type;  // 空白1 定标 2，质控 3  常规 04
-    //TDateTime reg_time;
-    int isdilute;//是否机器稀释
-    int dilutevolume;//稀释取样量
-    int dilutetimes;//稀释倍数
-    int dilutetime;//稀释时间
-    int dilute_reagent; //稀释试剂id
-
-    int  test_id;  //测试方法id
-    int isreplace;//是否替代
-    int status;// 0 成功，1 超时，2 试剂不够
 
 
 }

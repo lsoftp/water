@@ -6,6 +6,7 @@ CaButton::CaButton(QWidget *parent) : QPushButton(parent)
     type=0;
     state=0;
     setStyleSheet("background-color: rgb(170, 170, 255);");
+    setEnabled(false);
     connect(this,SIGNAL(clicked(bool)),this,SLOT(setState()));
 }
 

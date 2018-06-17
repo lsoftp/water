@@ -12,7 +12,7 @@ namespace Ui {
 class MainWindow;
 }
 
-class SampleRegister;
+
 enum GUIFrame{
     G_BLANK,
     G_HOME,
@@ -31,7 +31,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     friend class SampleRegister;
-    SampleRegister *sr;
+
 private slots:
     void on_toolButton_clicked();
 
@@ -41,11 +41,7 @@ private slots:
 
     void on_pushButton_9_clicked();
 
-    void on_radioButton_2_toggled(bool checked);
 
-    void on_radioButton_3_toggled(bool checked);
-
-    void on_radioButton_toggled(bool checked);
 
     //void on_pushButton_11_clicked();
 
@@ -57,14 +53,10 @@ private slots:
 
     void on_pushButton_6_clicked();
 
-    void on_comboBox_4_currentIndexChanged(int index);
 
-    void on_sr_del_clicked();
 
-    void ontoggle(bool b);
     void on_pushButton_6_toggled(bool checked);
 
-    void on_sr_yes_clicked();
 
     void on_pushButton_15_clicked();
 
@@ -77,16 +69,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    int itemnum;
-    ItemButton *pb[38*2];
-    CaButton *pb1[38*2];
-    ItemButton *pb2[38*2];
+
     QFrame *pf[G_NUM];
     void initGUI();
     void initFrames();
-    void initsabutton();//初始化样本登记按钮
-    void initcabutton();//初始化定标定标按钮
-    void initqubutton();//初始化质控安按钮
+
     void display(GUIFrame frame);
 
 
@@ -94,4 +81,5 @@ private:
 #define IB_LENGTH 50
 extern MainWindow *g_w;
 extern QString g_current_index;
+extern int g_item_num;
 #endif // MAINWINDOW_H

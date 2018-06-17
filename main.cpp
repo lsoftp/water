@@ -7,7 +7,7 @@
 #include "handlethread.h"
 #include "debugout.h"
 #include "LogFile.h"
-#include "sampleregister.h"
+
 
 void testinit()
 
@@ -56,8 +56,7 @@ int main(int argc, char *argv[])
     g_w=new MainWindow ;
     printf("thisis a test");
 
-    g_w->sr->setbutton();
-    g_w->sr->initstate();
+
     g_w->show();
     testinit();
     g_handler.start();

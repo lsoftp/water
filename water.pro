@@ -37,8 +37,11 @@ SOURCES += \
     myprocess.cpp \
     handlethread.cpp \
     interface.cpp \
-    sampleregister.cpp \
-    stopsampledia.cpp
+    stopsampledia.cpp \
+    srtab.cpp \
+    catab.cpp \
+    qutab.cpp \
+    itemframe.cpp
 
 
 HEADERS += \
@@ -53,12 +56,18 @@ HEADERS += \
     myprocess.h \
     handlethread.h \
     interface.h \
-    sampleregister.h \
-    stopsampledia.h
+    stopsampledia.h \
+    srtab.h \
+    catab.h \
+    qutab.h \
+    itemframe.h
 
 LIBS += -lws2_32
 
 FORMS += \
         mainwindow.ui \
-    dialog.ui \
-    dialog.ui
+    srtab.ui \
+    stopsampledlg.ui \
+    catab.ui \
+    qutab.ui \
+    itemframe.ui
