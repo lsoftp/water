@@ -1,5 +1,6 @@
 #include "itemframe.h"
 #include "ui_itemframe.h"
+#include "mainwindow.h"
 
 ItemFrame::ItemFrame(QWidget *parent) :
     QFrame(parent),
@@ -7,11 +8,17 @@ ItemFrame::ItemFrame(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->radioButton->setChecked(true);
+
 }
 
 ItemFrame::~ItemFrame()
 {
     delete ui;
+}
+
+void ItemFrame::init()
+{
+    connect(ui->pushButton_5,SIGNAL(clicked()),g_w,SLOT(display_blank()));
 }
 
 void ItemFrame::on_radioButton_2_toggled(bool checked)
@@ -34,5 +41,9 @@ void ItemFrame::on_radioButton_toggled(bool checked)
     ui->groupBox_9->hide();
     ui->groupBox_10->hide();
 }
-
+#include <QMessageBox>
+void ItemFrame::display_blank()
+{
+    QMessageBox::question(NULL, "question", "QString::number(i)", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+}
 

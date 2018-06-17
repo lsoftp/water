@@ -15,6 +15,9 @@ class ItemFrame : public QFrame
 public:
     explicit ItemFrame(QWidget *parent = 0);
     ~ItemFrame();
+    void init();
+
+public slots:
 
 private slots:
     void on_radioButton_toggled(bool checked);
@@ -22,6 +25,7 @@ private slots:
     void on_radioButton_2_toggled(bool checked);
 
     void on_radioButton_3_toggled(bool checked);
+    void display_blank();
 
 private:
     Ui::ItemFrame *ui;

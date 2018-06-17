@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initGUI();
     this->initFrames();
     display(G_HOME);
+    //ui->frame_3->init();
 }
 //初始化界面
 void MainWindow::initGUI()
@@ -73,6 +74,11 @@ MainWindow::~MainWindow()
 {
     delete ui;
 
+}
+
+void MainWindow::initsignal()
+{
+        ui->frame_3->init();
 }
 
 
@@ -162,5 +168,10 @@ void MainWindow::on_toolButton_9_clicked()
     ::StopSDia  dl;
     int i=dl.exec();
 
-   // QMessageBox::question(NULL, "question", QString::number(i), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    // QMessageBox::question(NULL, "question", QString::number(i), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+}
+
+void MainWindow::display_blank()
+{
+    display(G_BLANK);
 }

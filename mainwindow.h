@@ -30,7 +30,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    friend class SampleRegister;
+    void initsignal();
 
 private slots:
     void on_toolButton_clicked();
@@ -65,6 +65,8 @@ private slots:
     void on_pushButton_13_clicked();
 
     void on_toolButton_9_clicked();
+
+    void display_blank();
 
 private:
     Ui::MainWindow *ui;

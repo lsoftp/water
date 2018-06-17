@@ -54,10 +54,10 @@ int main(int argc, char *argv[])
     dbhandle.open1();
     QApplication a(argc, argv);
     g_w=new MainWindow ;
-    printf("thisis a test");
-
+    g_w->initsignal();
 
     g_w->show();
+
     testinit();
     g_handler.start();
     fflush(stdout);
