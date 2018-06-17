@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>水质分析仪</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QToolButton" name="toolButton">

@@ -71,3 +71,6 @@ FORMS += \
     catab.ui \
     qutab.ui \
     itemframe.ui
+
+RC_FILE += \
+    water.rc
