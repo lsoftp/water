@@ -41,7 +41,9 @@ SOURCES += \
     srtab.cpp \
     catab.cpp \
     qutab.cpp \
-    itemframe.cpp
+    itemframe.cpp \
+    statusframe.cpp \
+    samplestatuswidget.cpp
 
 
 HEADERS += \
@@ -60,7 +62,9 @@ HEADERS += \
     srtab.h \
     catab.h \
     qutab.h \
-    itemframe.h
+    itemframe.h \
+    statusframe.h \
+    samplestatuswidget.h
 
 LIBS += -lws2_32
 
@@ -70,7 +74,8 @@ FORMS += \
     stopsampledlg.ui \
     catab.ui \
     qutab.ui \
-    itemframe.ui
+    itemframe.ui \
+    statusframe.ui
 
 RC_FILE += \
     water.rc

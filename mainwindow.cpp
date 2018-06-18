@@ -58,6 +58,7 @@ void MainWindow::initFrames()
     pf[GUIFrame::G_REGISTER]=ui->frame_2;
     pf[GUIFrame::G_ITEM]=ui->frame_3;
     pf[GUIFrame::G_START]=ui->frame_11;
+    pf[G_STATUS]=ui->frame_4;
 }
 
 void MainWindow::display(GUIFrame frame)
@@ -174,4 +175,9 @@ void MainWindow::on_toolButton_9_clicked()
 void MainWindow::display_blank()
 {
     display(G_BLANK);
+}
+
+void MainWindow::on_toolButton_11_clicked()
+{
+    display(G_STATUS);
 }

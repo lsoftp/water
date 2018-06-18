@@ -19,6 +19,7 @@ enum GUIFrame{
     G_REGISTER,
     G_ITEM,
     G_START,
+    G_STATUS,
     G_NUM
 
 };
@@ -67,6 +68,8 @@ private slots:
     void on_toolButton_9_clicked();
 
     void display_blank();
+
+    void on_toolButton_11_clicked();
 
 private:
     Ui::MainWindow *ui;
