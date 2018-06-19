@@ -7,32 +7,32 @@ SampleStatusWidget::SampleStatusWidget(QWidget *parent) : QWidget(parent)
 {
     for(int i=0;i<40;i++)
     {
-        m_status[i].s=STATE_IDLE;
-        m_status[i].t=TYPE_NULL;
+        m_status[i].s=state(i%STATE_NUM);//STATE_IDLE;
+        m_status[i].t=type(i%TYPE_NUM);//TYPE_NULL;
     }
     current=-1;
 }
 
 void SampleStatusWidget::paintEvent(QPaintEvent *e)
 {
-    R=width()/2-10;
-    r0=width();
-    r1=height();
+    R=width()/2-1;
+
     m_center.setX(width()/2);
     m_center.setY(height()/2);
     QPainter paint;
+
     paint.begin(this);
 
-
+    paint.setRenderHint(QPainter::Antialiasing);
         paint.setPen(QPen(Qt::black,2,Qt::SolidLine));
 
     paint.drawEllipse(m_center,R,R);
-    paint.drawEllipse(m_center,R-40,R-40);
+    paint.drawEllipse(m_center,R-50,R-50);
    // paint.drawEllipse(m_center,R-20,R-20);
-    int mr=getR(R-20);
-    MR=R-20;
+    int mr=getR(R-25);
+    MR=R-25;
     r1=mr;
-    r0=mr-5;
+    r0=mr-6;
     for(int i=0;i<40;i++)
     {
         QPoint cp;
@@ -63,40 +63,40 @@ void SampleStatusWidget::paintEvent(QPaintEvent *e)
     QPoint tp;
     status ts;
     tp.setX(m_center.x()-60);
-    tp.setY(m_center.y()-(r1+2)*3);
+    tp.setY(m_center.y()-(r1+4)*3);
     ts={STATE_IDLE,TYPE_NULL};
     drawLegend(paint,tp,ts,"空闲");
 
-    tp.setY(m_center.y()-(r1+2));
+    tp.setY(m_center.y()-(r1+4));
     ts={STATE_REGISTERED,TYPE_NULL};
     drawLegend(paint,tp,ts,"已登记");
 
-    tp.setY(m_center.y()+(r1+2));
+    tp.setY(m_center.y()+(r1+4));
     ts={STATE_DOING,TYPE_NULL};
     drawLegend(paint,tp,ts,"分析中");
 
-    tp.setY(m_center.y()+(r1+2)*3);
+    tp.setY(m_center.y()+(r1+4)*3);
     ts={STATE_FINISHED,TYPE_NULL};
     drawLegend(paint,tp,ts,"已完成");
 
     tp=m_center;
     tp.setX(m_center.x()+40);
-    tp.setY(m_center.y()-(r1+2)*5);
+    tp.setY(m_center.y()-(r1+4)*5);
     ts={STATE_IDLE,TYPE_NULL};
     drawLegend(paint,tp,ts,"空");
-    tp.setY(m_center.y()-(r1+2)*3);
+    tp.setY(m_center.y()-(r1+4)*3);
     ts={STATE_IDLE,TYPE_NORMAL};
     drawLegend(paint,tp,ts,"常规");
-    tp.setY(m_center.y()-(r1+2)*1);
+    tp.setY(m_center.y()-(r1+4)*1);
     ts={STATE_IDLE,TYPE_URGENT};
     drawLegend(paint,tp,ts,"急诊");
-    tp.setY(m_center.y()+(r1+2)*1);
+    tp.setY(m_center.y()+(r1+4)*1);
     ts={STATE_IDLE,TYPE_QU};
     drawLegend(paint,tp,ts,"质控");
-    tp.setY(m_center.y()+(r1+2)*3);
+    tp.setY(m_center.y()+(r1+4)*3);
     ts={STATE_IDLE,TYPE_CA};
     drawLegend(paint,tp,ts,"定标");
-    tp.setY(m_center.y()+(r1+2)*5);
+    tp.setY(m_center.y()+(r1+4)*5);
     ts={STATE_IDLE,TYPE_NOTENOUGH};
     drawLegend(paint,tp,ts,"不足");
 
@@ -152,7 +152,7 @@ int SampleStatusWidget::getR(int r)
 {
     double L= MY_PI *2*r;
     double r1=L/80;
-    return r1;
+    return r1-1;
     //PI
 }
 

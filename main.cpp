@@ -62,4 +62,5 @@ int main(int argc, char *argv[])
     g_handler.start();
     fflush(stdout);
     return a.exec();
+    delete g_w;
 }

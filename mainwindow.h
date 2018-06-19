@@ -32,6 +32,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void initsignal();
+    void closeEvent(QCloseEvent *e);
 
 private slots:
     void on_toolButton_clicked();
@@ -70,6 +71,8 @@ private slots:
     void display_blank();
 
     void on_toolButton_11_clicked();
+
+    void on_MainWindow_destroyed();
 
 private:
     Ui::MainWindow *ui;

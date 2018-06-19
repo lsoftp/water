@@ -79,7 +79,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::initsignal()
 {
-        ui->frame_3->init();
+    ui->frame_3->init();
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    g_handler.terminate();
+    g_handler.wait();
 }
 
 
@@ -180,4 +186,9 @@ void MainWindow::display_blank()
 void MainWindow::on_toolButton_11_clicked()
 {
     display(G_STATUS);
+}
+
+void MainWindow::on_MainWindow_destroyed()
+{
+
 }

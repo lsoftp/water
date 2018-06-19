@@ -12,7 +12,7 @@
 #define _DEBUG
 #ifdef _DEBUG
 
-#define DP(fmt,...) {printf(fmt,##__VA_ARGS__);}
+#define DP(fmt,...) {printf(fmt,##__VA_ARGS__);fflush(stdout);}
 
 
 #endif
