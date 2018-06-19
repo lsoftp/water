@@ -19,6 +19,7 @@ ItemFrame::~ItemFrame()
 void ItemFrame::init()
 {
     connect(ui->pushButton_5,SIGNAL(clicked()),g_w,SLOT(display_blank()));
+    //ui->com
 }
 
 void ItemFrame::on_radioButton_2_toggled(bool checked)
