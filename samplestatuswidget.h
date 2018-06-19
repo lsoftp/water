@@ -3,7 +3,10 @@
 
 #include <QWidget>
 #include <QPoint>
-
+#include <qpainter.h>
+#include <QtCore/qmath.h>
+#include <QRect>
+#include <QMouseEvent>
 class SampleStatusWidget : public QWidget
 {
     Q_OBJECT
@@ -31,17 +34,25 @@ class SampleStatusWidget : public QWidget
     };
 
 public:
+    int current;
     status m_status[40];
     int r0; //内圈半径
     int r1; //外圈半径
     int R;//大圈半径
+    int MR;
     const static int margin=10;
     //static const int i[2]={1.2};
     //static const  Qt::GlobalColor y=Qt::red;
-     static const  Qt::GlobalColor scolor[STATE_NUM];//={Qt::white,Qt::green,Qt::magenta,Qt::black};
+     static const  QColor scolor[STATE_NUM];
+     static const  QColor tcolor[TYPE_NUM];
     QPoint m_center;
     explicit SampleStatusWidget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *e);
+    int getR(int r);
+    void draw( QPainter &pa, const QPoint &p, const status &s);
+    void drawLegend(QPainter &pa, const QPoint &p, const SampleStatusWidget::status &s,const QString &str);
+    void mousePressEvent(QMouseEvent *e);
+
 signals:
 
 public slots:
