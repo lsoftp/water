@@ -7,8 +7,10 @@
 #include "handlethread.h"
 #include "debugout.h"
 #include "LogFile.h"
+#include <QLockFile>
 
 
+QLockFile g_lock("water.txt");
 void testinit()
 
 {
@@ -50,6 +52,9 @@ DBInterface dbhandle;
     MainWindow *g_w;
 int main(int argc, char *argv[])
 {
+    bool b=g_lock.tryLock();
+    if(!b) exit(0);
+    //g_lock.lock();
     db.open();
     dbhandle.open1();
     QApplication a(argc, argv);

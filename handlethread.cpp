@@ -10,7 +10,7 @@
 #include "debugout.h"
 #include "LogFile.h"
 #include "interface.h"
-
+//#include <QMessageBox>
 //---------------------------------------------------------------------------
 
 //   Important: Methods and properties of objects in VCL can only be
@@ -37,6 +37,12 @@ HandleThread  g_handler;
 static long long inline span(const struct timeval& a, const struct timeval& b)
 {
 	return (a.tv_sec-b.tv_sec)*1000000+a.tv_usec-b.tv_usec;
+}
+
+HandleThread::~HandleThread()
+{
+    this->terminate();
+    this->wait();
 }
 
 unsigned char HandleThread::getSn()
@@ -498,6 +504,7 @@ void HandleThread::run()
 			FD_ZERO(&fsRead);
 			FD_SET(g_tcp_client.clisockfd, &fsRead);
 			iRet = select(1, &fsRead, &fsWrite, NULL, &tv);
+            DP("select result is %d\n",iRet);
 			if(0<iRet){
 		//read or write socket
 
@@ -518,6 +525,7 @@ void HandleThread::run()
 				if (FD_ISSET(g_tcp_client.clisockfd,&fsRead))
 				{
 					int rchars=g_tcp_client.Recv(recvbuf.stream+recvbuf.size,BUFFER_SIZE-recvbuf.size);
+                    DP("select result is %d  read chars %d\n",iRet,rchars);
 					recvbuf.size+=rchars;
 					while( getMsgFromBuf(state)!=0)
 					{
@@ -529,6 +537,8 @@ void HandleThread::run()
 			}
 			if(0==iRet){
 			//time out
+                g_tcp_client.Connect("127.0.0.1",40000);
+                g_tcp_client.setNonBlock();
 			}
 			if(0>iRet){
 			}

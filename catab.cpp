@@ -89,7 +89,7 @@ void CaTab::setbutton()
         pb1[i]->testid=testid;
 
         pb1[i]->setEnabled(true);
-        pb1[i]->setCheckable(true);
+        //pb1[i]->setCheckable(true);
         //connect(pb[i],SIGNAL(toggled(bool)),this,SLOT(ontoggle(bool)));
     }
 

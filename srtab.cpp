@@ -82,6 +82,7 @@ void SrTab::SetSampleNo()
 {
     QSqlQueryModel sqm;
     db.getSampleNo(sqm, g_current_index);
+
     int j=0,num=sqm.rowCount();
     if(num==0)
     {

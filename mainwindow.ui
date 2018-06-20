@@ -762,10 +762,10 @@
    <zorder>toolButton</zorder>
    <zorder>frame_13</zorder>
    <zorder>frame_11</zorder>
-   <zorder>frame</zorder>
    <zorder>frame_2</zorder>
    <zorder>frame_4</zorder>
    <zorder>frame_3</zorder>
+   <zorder>frame</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

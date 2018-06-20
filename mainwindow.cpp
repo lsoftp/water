@@ -84,8 +84,8 @@ void MainWindow::initsignal()
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {
-    g_handler.terminate();
-    g_handler.wait();
+//    g_handler.terminate();
+//    g_handler.wait();
 }
 
 
