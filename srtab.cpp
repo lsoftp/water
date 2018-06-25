@@ -171,11 +171,11 @@ void SrTab::refreshtable()
     tw->clearContents();
     for(int i=0;i<sqm.rowCount();i++)
     {
-      tw->setItem(i,0,new QTableWidgetItem(sqm.record(i).value("id").toString()));
-      tw->setItem(i,1,new QTableWidgetItem(sqm.record(i).value("Pos").toString()));
-      int k = sqm.record(i).value("Stage").toInt();
-      QString status= k==0?"已登记":"其他";
-      tw->setItem(i,2,new QTableWidgetItem(status));
+        tw->setItem(i,0,new QTableWidgetItem(sqm.record(i).value("id").toString()));
+        tw->setItem(i,1,new QTableWidgetItem(sqm.record(i).value("Pos").toString()));
+        int k = sqm.record(i).value("Stage").toInt();
+        QString status= k==0?"已登记":"其他";
+        tw->setItem(i,2,new QTableWidgetItem(status));
 
     }
 
@@ -210,49 +210,49 @@ void SrTab::initstate()
 
 void SrTab::reg()
 {
-   TestRegister t;
-   QDateTime now=QDateTime::currentDateTime();
+    TestRegister t;
+    QDateTime now=QDateTime::currentDateTime();
 
-   t.id=ui->lineEdit_4->text().toInt();
-   //t.tr.test_row_id=QDateTime::currentDateTime().toString()
-   t.no=QString::number(t.id);
-   t.sampleid=ui->lineEdit_6->text();
-   t.pre_dilute=ui->checkBox->isChecked();
-   t.pre_d_times=ui->lineEdit_5->text().toInt();
-   t.tr.position=ui->comboBox_2->currentText().toInt();
-   t.tr.sample_cup_type=ui->comboBox_3->currentIndex();
-   t.tr.priority=!(ui->checkBox_2->isChecked());
-   t.tr.test_type=4;
-   t.qname="";
-   t.cname="";
-   t.tr.isdilute=0;
-   t.tr.status=0;
-   //初始化  g_current_index 在全局变量中
-   //还有test_row_id ,isreplace, test_id
-   int j=0;
-   for(int i=0;i<g_item_num;i++)
-   {
-       if(pb[i]->isChecked())
-       {
-           //insert
-           QString tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
-           //if test_id isreplace add two rows
-           t.tr.test_row_id=tempid.toStdString();
-           t.tr.isreplace=0;
-           t.tr.test_id=pb[i]->testid;
-           db.insertSample(t);
-           j++;
-           if(gi::isReplace(pb[i]->testid))
-           {
-               tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
-               t.tr.isreplace=1;
-               db.insertSample(t);
-               j++;
-           }
+    t.id=ui->lineEdit_4->text().toInt();
+    //t.tr.test_row_id=QDateTime::currentDateTime().toString()
+    t.no=QString::number(t.id);
+    t.sampleid=ui->lineEdit_6->text();
+    t.pre_dilute=ui->checkBox->isChecked();
+    t.pre_d_times=ui->lineEdit_5->text().toInt();
+    t.tr.position=ui->comboBox_2->currentText().toInt();
+    t.tr.sample_cup_type=ui->comboBox_3->currentIndex();
+    t.tr.priority=!(ui->checkBox_2->isChecked());
+    t.tr.test_type=4;
+    t.qname="";
+    t.cname="";
+    t.tr.isdilute=0;
+    t.tr.status=0;
+    //初始化  g_current_index 在全局变量中
+    //还有test_row_id ,isreplace, test_id
+    int j=0;
+    for(int i=0;i<g_item_num;i++)
+    {
+        if(pb[i]->isChecked())
+        {
+            //insert
+            QString tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+            //if test_id isreplace add two rows
+            t.tr.test_row_id=tempid.toStdString();
+            t.tr.isreplace=0;
+            t.tr.test_id=pb[i]->testid;
+            db.insertSample(t);
+            j++;
+            if(gi::isReplace(pb[i]->testid))
+            {
+                tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+                t.tr.isreplace=1;
+                db.insertSample(t);
+                j++;
+            }
 
-           //
-       }
-   }
+            //
+        }
+    }
 
 }
 

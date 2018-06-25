@@ -12,8 +12,8 @@
 //---------------------------------------------------------------------------
 #define BUFFER_SIZE 1024
 struct  RecvStream{
-	unsigned char  stream[BUFFER_SIZE];
-	int size;
+    unsigned char  stream[BUFFER_SIZE];
+    int size;
 };
 
 class RecvBuf
@@ -90,33 +90,33 @@ public:
             return -1;
 
         }
- /*       if((size -end -1) >0)
-		{
-			memcpy(buf, stream+begin, end-begin +1);
-			memmove(stream, stream+end+1,size - end-1);
-			size = size -end -1;
-			*len = end -begin +1;
-			return *len;
-		}
-		else if ((size - end -1) == 0)
-		{
-			memcpy(buf, stream+begin, size-begin);
+        /*       if((size -end -1) >0)
+        {
+            memcpy(buf, stream+begin, end-begin +1);
+            memmove(stream, stream+end+1,size - end-1);
+            size = size -end -1;
+            *len = end -begin +1;
+            return *len;
+        }
+        else if ((size - end -1) == 0)
+        {
+            memcpy(buf, stream+begin, size-begin);
 
-			*len = size -begin;
-			size=0;
-			return *len;
-		}
-		else
-		{
-			*len = 0;
-			return 0;
-		}*/
-	}
-	int verifyMsg(int s, int e)
-	{
-		//int j = 0;
-		int start = 0;
-		//int tmplen = 0;
+            *len = size -begin;
+            size=0;
+            return *len;
+        }
+        else
+        {
+            *len = 0;
+            return 0;
+        }*/
+    }
+    int verifyMsg(int s, int e)
+    {
+        //int j = 0;
+        int start = 0;
+        //int tmplen = 0;
         int comlen =e-s+1;
         unsigned char c=0x00;
         if(comlen<5)
@@ -184,7 +184,7 @@ public:
             return 0;
         else
 
-        return -3;
+            return -3;
     }
 
 };
@@ -192,26 +192,26 @@ public:
 struct Msg
 {
     unsigned char stream[BUFFER_SIZE];
-	int len;
+    int len;
 };
 
 class CCliSocket
 {
 public:
     CCliSocket();
-	virtual ~CCliSocket();
-	int init();
-	bool Connect(const char* ip, int port);
-	bool setNonBlock();
+    virtual ~CCliSocket();
+    int init();
+    bool Connect(const char* ip, int port);
+    bool setNonBlock();
     int Send(unsigned char* sendbuf, int len);
     int Recv(unsigned char* recvbuf, int len);
 
-	static int makeupWSA();
-	static int cleanWSA();
+    static int makeupWSA();
+    static int cleanWSA();
 private:
     bool Close();
 public:
-	SOCKET  clisockfd;
+    SOCKET  clisockfd;
 };
 
 extern CCliSocket g_tcp_client;

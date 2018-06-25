@@ -298,9 +298,9 @@ struct ActionRow{
 	int span_to_next; //seconds
 	int span_to_prev;
 	int if_send;
-	operator <(const ActionRow &a){ return start_time<a.start_time;}
+    bool operator <(const ActionRow &a){ return start_time<a.start_time;}
 	int  toStream(unsigned char * dest);
-	ActionRow(){if_send=1;};
+    ActionRow(){if_send=1;}
 };
 
 //sorted TestRowArray -->  action sequence when start

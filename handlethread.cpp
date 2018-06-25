@@ -36,7 +36,7 @@ RecvBuf HandleThread::recvbuf;
 HandleThread  g_handler;
 static long long inline span(const struct timeval& a, const struct timeval& b)
 {
-	return (a.tv_sec-b.tv_sec)*1000000+a.tv_usec-b.tv_usec;
+    return (a.tv_sec-b.tv_sec)*1000000+a.tv_usec-b.tv_usec;
 }
 
 HandleThread::~HandleThread()
@@ -47,9 +47,9 @@ HandleThread::~HandleThread()
 
 unsigned char HandleThread::getSn()
 {
-	if(sn<255) sn++;
-	else sn=0;
-	return sn;
+    if(sn<255) sn++;
+    else sn=0;
+    return sn;
 }
 
 
@@ -57,85 +57,85 @@ unsigned char HandleThread::getSn()
 
 void HandleThread::HandleActionList()
 { /*
-	TIMEVAL tv;
-	tv.tv_sec=0;
-	tv.tv_usec=10000;
-	int iRet = SOCKET_ERROR;
-	fd_set fsWrite,fsRead;
-	list<ActionRow>::iterator li;
-	list<ActionRow> &a=g_action_sequence.action_list;
-	struct timeval start,now;
-	gettimeofday(&start, NULL);
-	for(li=a.begin();li!=a.end();li++)
-	{
-		RecvBuf recvbuf;
-		//DP3("test_id %d   s %d e %d",li->ptestrow, li->start_time,li->end_time);
-		ActionRow ar=*li;
+    TIMEVAL tv;
+    tv.tv_sec=0;
+    tv.tv_usec=10000;
+    int iRet = SOCKET_ERROR;
+    fd_set fsWrite,fsRead;
+    list<ActionRow>::iterator li;
+    list<ActionRow> &a=g_action_sequence.action_list;
+    struct timeval start,now;
+    gettimeofday(&start, NULL);
+    for(li=a.begin();li!=a.end();li++)
+    {
+        RecvBuf recvbuf;
+        //DP3("test_id %d   s %d e %d",li->ptestrow, li->start_time,li->end_time);
+        ActionRow ar=*li;
 
-		int s=ar.start_time;
-		int e=ar.end_time;
-		struct timeval s1,e1;
-		s1=e1=start;
-		s1.tv_sec=s1.tv_sec+s;
-		e1.tv_sec=e1.tv_sec+e;
-		int retry=0;
-		int state=0;
-		Msg msg;
-		unsigned char sendbuf[BUFFER_SIZE];
-		int l=ar.toStream(sendbuf);
-		sendbuf[2]=getSn();
-		l = addCheckCode(sendbuf,l);
+        int s=ar.start_time;
+        int e=ar.end_time;
+        struct timeval s1,e1;
+        s1=e1=start;
+        s1.tv_sec=s1.tv_sec+s;
+        e1.tv_sec=e1.tv_sec+e;
+        int retry=0;
+        int state=0;
+        Msg msg;
+        unsigned char sendbuf[BUFFER_SIZE];
+        int l=ar.toStream(sendbuf);
+        sendbuf[2]=getSn();
+        l = addCheckCode(sendbuf,l);
 
-		toComposedMsg(sendbuf,l, msg.stream, &(msg.len));
-		currentCmd=ar.a.type;
-		for(;;)
-		{
-			gettimeofday(&now, NULL);
-			if(span(now,e1)>=0)
-			{
-				//to do set testinstance status to 2
-				//....
-				log.Log("timeout");
-				break;
-			}
-			FD_ZERO(&fsWrite);
-			FD_SET(g_tcp_client.clisockfd, &fsWrite);
-			FD_ZERO(&fsRead);
-			FD_SET(g_tcp_client.clisockfd, &fsRead);
-			iRet = select(1, &fsRead, &fsWrite, NULL, &tv);
-			if(0<iRet){
-		//read or write socket
-				if (FD_ISSET(g_tcp_client.clisockfd,&fsRead))
-				{
-					int rchars=g_tcp_client.Recv(recvbuf.stream+recvbuf.size,BUFFER_SIZE-recvbuf.size);
-					recvbuf.size+=rchars;
-					while( getMsgFromBuf(state)!=0)
-					{
-						 if(state!=0) goto next;
-					}
-					//if(state!=0) continue;
-				}
-				if (FD_ISSET(g_tcp_client.clisockfd,&fsWrite))
-				{
-					gettimeofday(&now, NULL);
-					if((span(now,start)>=0)&&retry<RETRY_TIME)
-					{
-						   g_tcp_client.Send(msg.stream,msg.len);
-						   retry++;
+        toComposedMsg(sendbuf,l, msg.stream, &(msg.len));
+        currentCmd=ar.a.type;
+        for(;;)
+        {
+            gettimeofday(&now, NULL);
+            if(span(now,e1)>=0)
+            {
+                //to do set testinstance status to 2
+                //....
+                log.Log("timeout");
+                break;
+            }
+            FD_ZERO(&fsWrite);
+            FD_SET(g_tcp_client.clisockfd, &fsWrite);
+            FD_ZERO(&fsRead);
+            FD_SET(g_tcp_client.clisockfd, &fsRead);
+            iRet = select(1, &fsRead, &fsWrite, NULL, &tv);
+            if(0<iRet){
+        //read or write socket
+                if (FD_ISSET(g_tcp_client.clisockfd,&fsRead))
+                {
+                    int rchars=g_tcp_client.Recv(recvbuf.stream+recvbuf.size,BUFFER_SIZE-recvbuf.size);
+                    recvbuf.size+=rchars;
+                    while( getMsgFromBuf(state)!=0)
+                    {
+                         if(state!=0) goto next;
+                    }
+                    //if(state!=0) continue;
+                }
+                if (FD_ISSET(g_tcp_client.clisockfd,&fsWrite))
+                {
+                    gettimeofday(&now, NULL);
+                    if((span(now,start)>=0)&&retry<RETRY_TIME)
+                    {
+                           g_tcp_client.Send(msg.stream,msg.len);
+                           retry++;
 
-					}
+                    }
 
-				}
+                }
 
-			}
-			if(0==iRet){
-			//time out
-			}
-			if(0>iRet){
-			}
-		}
-		next:
-	}
+            }
+            if(0==iRet){
+            //time out
+            }
+            if(0>iRet){
+            }
+        }
+        next:
+    }
 
     */
 }
@@ -158,7 +158,7 @@ int HandleThread::toOriginalMsg(unsigned char * composed,int comlen, unsigned ch
         {
             if(tmplen != 0)
             {
-                        memcpy(&original[j], &composed[start],tmplen);
+                memcpy(&original[j], &composed[start],tmplen);
             }
             j = j + tmplen;
             continue;
@@ -172,7 +172,7 @@ int HandleThread::toOriginalMsg(unsigned char * composed,int comlen, unsigned ch
             printf("j=%d  tmplen= %d, start=%d\n", j, tmplen, start);
             if(tmplen != 0)
             {
-                        memcpy(&original[j], &composed[start],tmplen);
+                memcpy(&original[j], &composed[start],tmplen);
             }
             if(composed[i+1] == 0x02)
             {
@@ -202,7 +202,7 @@ int HandleThread::toComposedMsg(unsigned char * original,int origlen, unsigned c
 {
     int j = 0;
     int tmplen  = 0;
-	int start = 0;
+    int start = 0;
 
     composed[j] = 0x7e;
     j++;
@@ -214,7 +214,7 @@ int HandleThread::toComposedMsg(unsigned char * original,int origlen, unsigned c
         }
         else
         {
-        //printf("j=%d  tmplen= %d, start=%d\n", j, tmplen, start);
+            //printf("j=%d  tmplen= %d, start=%d\n", j, tmplen, start);
             if(tmplen != 0)
             {
                 memcpy(composed+j, original+start, tmplen);
@@ -263,124 +263,124 @@ int HandleThread::addCheckCode(unsigned char * original, int len)
 
 int HandleThread::getMsgFromBuf( int & state )
 {
-	static unsigned char acksn=0;
-	RecvStream recvstream,rs;
-	static int i=0;
+    static unsigned char acksn=0;
+    RecvStream recvstream,rs;
+    static int i=0;
 
-	int r=0;
-
-
-		if(recvbuf.size>0)
-		{
-			r=recvbuf.getDataFromBuf(recvstream.stream, &(recvstream.size));
-
-		}
-		//mutexRecvStream.unlock();
-		if(r>0)
-		{
-
-			toOriginalMsg(recvstream.stream,recvstream.size, rs.stream,&rs.size);
-			int j = checkCode(rs.stream,rs.size);
-			if( j < 0)
-			{
-				//continue;
-			}
-			if(j ==1)
-			{
-
-				unsigned char c= rs.stream[2];
+    int r=0;
 
 
-				if(i)
-				{
-					if(acksn==c)
-					{
+    if(recvbuf.size>0)
+    {
+        r=recvbuf.getDataFromBuf(recvstream.stream, &(recvstream.size));
+
+    }
+    //mutexRecvStream.unlock();
+    if(r>0)
+    {
+
+        toOriginalMsg(recvstream.stream,recvstream.size, rs.stream,&rs.size);
+        int j = checkCode(rs.stream,rs.size);
+        if( j < 0)
+        {
+            //continue;
+        }
+        if(j ==1)
+        {
+
+            unsigned char c= rs.stream[2];
+
+
+            if(i)
+            {
+                if(acksn==c)
+                {
                     DP("*****discard msg cmd %d, sn %d, command %d",rs.stream[0],c,command);
-					return r;
-					}
-				 }
-				if(i==0)
-				{
-					acksn=c;
-					i=1;
-				}
+                    return r;
+                }
+            }
+            if(i==0)
+            {
+                acksn=c;
+                i=1;
+            }
 
-				 unsigned char  recvcmd = rs.stream[0];
-				 if(recvcmd==currentCmd)
-				 {
-					unsigned char recvsn= rs.stream[3];
-				 //unsigned char replyc= rs.stream[5];
-					if((recvsn==sn))
-					{
-                        DP("*****handlemsg cmd %d, sn %d, command %d",recvcmd,sn,command);
-						handleMsg(rs);
-						li++;
-						settime=0;
-						if(li==g_action_sequence.action_list.end())
-						{
-						//结束
-							command=0;
-							started =0;
-							settime=0;
-						}
-						state=1;//rs.stream[6];
-					}
+            unsigned char  recvcmd = rs.stream[0];
+            if(recvcmd==currentCmd)
+            {
+                unsigned char recvsn= rs.stream[3];
+                //unsigned char replyc= rs.stream[5];
+                if((recvsn==sn))
+                {
+                    DP("*****handlemsg cmd %d, sn %d, command %d",recvcmd,sn,command);
+                    handleMsg(rs);
+                    li++;
+                    settime=0;
+                    if(li==g_action_sequence.action_list.end())
+                    {
+                        //结束
+                        command=0;
+                        started =0;
+                        settime=0;
+                    }
+                    state=1;//rs.stream[6];
+                }
 
-				 }
-				 acksn=c;
+            }
+            acksn=c;
 
-			}
-
-
-
-		}
+        }
 
 
-	return r;
-	//this->stop();
+
+    }
+
+
+    return r;
+    //this->stop();
 }
 
 void HandleThread::handleMsg(const RecvStream &r)
 {
-	unsigned char c= r.stream[0];
-	unsigned short h;
-	unsigned int i;
-	float r1,r2;
-	int numr;
-	switch(c){
-	case 0: Interface::pushTestStatus(li->ptestrow,li->step,r.stream[4]);
-			Interface::updateCup(li->a.params.get_sample.cup_pos,li->step);
-			//Interface:: to update sample volume
+    unsigned char c= r.stream[0];
+    unsigned short h;
+    unsigned int i;
+    float r1,r2;
+    int numr;
+    switch(c){
+    case 0: Interface::pushTestStatus(li->ptestrow,li->step,r.stream[4]);
+        Interface::updateCup(li->a.params.get_sample.cup_pos,li->step);
+        //Interface:: to update sample volume
 
-			break;
-	case 1:  Interface::pushTestStatus(li->ptestrow,li->step,r.stream[4]);
-			Interface::updateCup(li->a.params.get_reagent.cup_pos,li->step);
-			TO_WORD(r.stream, 5,h);
-			//update height and volume
-			Interface::updateReagent(li->a.params.get_reagent.r_pos.circle,li->a.params.get_reagent.r_pos.pos,h);
-			break;
-	case 2:  Interface::pushTestStatus(li->ptestrow,li->step,r.stream[4]);
-			 Interface::updateCup(li->a.params.get_result.cup_pos,li->step);
-				numr=r.stream[5];
-				TO_DWORD(r.stream,6,i);
-				memcpy(&r1,&i,4);
-				TO_DWORD(r.stream,6,i);
-				memcpy(&r2,&i,4);
-			//Interface::pushTestResult(::g_test_row_array.test_array[li->ptestrow].test_no,numr,r1,r2);
-			break;
-	}
+        break;
+    case 1:  Interface::pushTestStatus(li->ptestrow,li->step,r.stream[4]);
+        Interface::updateCup(li->a.params.get_reagent.cup_pos,li->step);
+        TO_WORD(r.stream, 5,h);
+        //update height and volume
+        Interface::updateReagent(li->a.params.get_reagent.r_pos.circle,li->a.params.get_reagent.r_pos.pos,h);
+        break;
+    case 2:  Interface::pushTestStatus(li->ptestrow,li->step,r.stream[4]);
+        Interface::updateCup(li->a.params.get_result.cup_pos,li->step);
+        numr=r.stream[5];
+        TO_DWORD(r.stream,6,i);
+        memcpy(&r1,&i,4);
+        TO_DWORD(r.stream,6,i);
+        memcpy(&r2,&i,4);
+        //Interface::pushTestResult(::g_test_row_array.test_array[li->ptestrow].test_no,numr,r1,r2);
+        break;
+    }
 }
 int HandleThread::checkCode(unsigned char * original, int len)
 {
-	int i;
-	unsigned char c;
-	if(len<4)
-	{
-		return -2;
-	}
-	c=original[1];
-	if((len-4)!= c)
-	{
+    int i;
+    unsigned char c;
+    if(len<4)
+    {
+        return -2;
+    }
+    c=original[1];
+    if((len-4)!= c)
+    {
         return -1;
     }
     else
@@ -391,159 +391,159 @@ int HandleThread::checkCode(unsigned char * original, int len)
 
 void HandleThread::run()
 {
-	struct timeval start,now;
-	struct timeval s1,e1;
-	fd_set fsWrite,fsRead;
-	int iRet;
+    struct timeval start,now;
+    struct timeval s1,e1;
+    fd_set fsWrite,fsRead;
+    int iRet;
 
-	int retry=0;
-	TIMEVAL tv;
-	tv.tv_sec=0;
-	tv.tv_usec=10000;
-	int state=0;
+    int retry=0;
+    TIMEVAL tv;
+    tv.tv_sec=0;
+    tv.tv_usec=10000;
+    int state=0;
 
-	Msg msg;
-	unsigned char sendbuf[BUFFER_SIZE];
-	//list<ActionRow> &a=g_action_sequence.action_list;
-		for(;;)
-		{
+    Msg msg;
+    unsigned char sendbuf[BUFFER_SIZE];
+    //list<ActionRow> &a=g_action_sequence.action_list;
+    for(;;)
+    {
 
-			//int sendout=1;
-			if(command==0)
-			{
-				//just recv
-			}
-			if(command==1)
-			{   if(!started)
-				{
+        //int sendout=1;
+        if(command==0)
+        {
+            //just recv
+        }
+        if(command==1)
+        {   if(!started)
+            {
 
-				//make action list and handle test
-                    g_test_row_array.rearrange();
-                    g_action_sequence.makelist();
-                    list<ActionRow> &a=g_action_sequence.action_list;
-                    list<ActionRow>::iterator li1;
-                    for(li1=a.begin();li1!=a.end();li1++)
-                    {
-                        // char buf[512];
-                        //ActionRow ar= *li1;
-                        //DP("artype %d,test_id %d   s %d e %d",g_test_row_array.test_array[li->ptestrow].test_id, li->start_time,li->end_time);
-                        LOG("artype %d  test sn  %d testid %d st %d et %d ",li1->a.type, li1->ptestrow,g_test_row_array.test_array[li1->ptestrow].test_id, li1->start_time,li1->end_time);
-                        //g_log.Log(buf);
-                    }
-
-                    if(g_action_sequence.action_list.size()==0)
-                    {
-                            command=0;
-                            started =0;
-                            settime=0;
-                            continue;
-                    }
-
-					li=g_action_sequence.action_list.begin();
-					gettimeofday(&start, NULL);
-					started = 1;
-				}
-			}
-			if(command==2)
-			{
-			// handle action list
-			//command=0;
-			}
-			if((started)&&(!settime))
-			{
-
-                ActionRow ar= *li;
-				if(g_test_row_array.test_array[li->ptestrow].status>=NOT_ENOUGH_REAGENT)
-				{
-				   li->if_send=0;
+                //make action list and handle test
+                g_test_row_array.rearrange();
+                g_action_sequence.makelist();
+                list<ActionRow> &a=g_action_sequence.action_list;
+                list<ActionRow>::iterator li1;
+                for(li1=a.begin();li1!=a.end();li1++)
+                {
+                    // char buf[512];
+                    //ActionRow ar= *li1;
+                    //DP("artype %d,test_id %d   s %d e %d",g_test_row_array.test_array[li->ptestrow].test_id, li->start_time,li->end_time);
+                    LOG("artype %d  test sn  %d testid %d st %d et %d ",li1->a.type, li1->ptestrow,g_test_row_array.test_array[li1->ptestrow].test_id, li1->start_time,li1->end_time);
+                    //g_log.Log(buf);
                 }
-				s1=e1=start;
-				int s=li->start_time;
-				int e=li->end_time;
-				s1.tv_sec=s1.tv_sec+s;
-				e1.tv_sec=e1.tv_sec+e;
 
-				if(li->a.type==0x01){
-					if(!g_reagent_array.getPos(li->a.params.get_reagent.r_pos,li->a.params.get_reagent.reagent_id,li->a.params.get_reagent.sample_volume) ){
-					   li->if_send=0;
-					   Interface::pushTestStatus(li->ptestrow,li->step,NOT_ENOUGH_REAGENT);
-					}
-				}
-				int l=li->toStream(sendbuf);
-				sendbuf[2]=getSn();
-                DP("get sn settime %d, sn %d, retry %d",settime,sn,retry);
-				l = addCheckCode(sendbuf,l);
+                if(g_action_sequence.action_list.size()==0)
+                {
+                    command=0;
+                    started =0;
+                    settime=0;
+                    continue;
+                }
 
-				toComposedMsg(sendbuf,l, msg.stream, &(msg.len));
-				currentCmd=li->a.type;
-				retry=0;
-				state=0;
-				settime=1;
-			}
-			if(started&&settime)
-			{
-				gettimeofday(&now, NULL);
-				if(span(now,e1)>=0)
-				{
-				//to do set testinstance status to 2
-				//....
-					li++;
-					settime=0;
-                    DP("*****timeout settime %d, sn %d, retry %d",settime,sn,retry);
-					if(li==g_action_sequence.action_list.end())
-					{
-						//结束
-						command=0;
-						started =0;
-						settime=0;
-					}
-				}
-			}
-			FD_ZERO(&fsWrite);
-			FD_SET(g_tcp_client.clisockfd, &fsWrite);
-			FD_ZERO(&fsRead);
-			FD_SET(g_tcp_client.clisockfd, &fsRead);
-			iRet = select(1, &fsRead, &fsWrite, NULL, &tv);
-            DP("select result is %d\n",iRet);
-			if(0<iRet){
-		//read or write socket
+                li=g_action_sequence.action_list.begin();
+                gettimeofday(&start, NULL);
+                started = 1;
+            }
+        }
+        if(command==2)
+        {
+            // handle action list
+            //command=0;
+        }
+        if((started)&&(!settime))
+        {
 
-				if (FD_ISSET(g_tcp_client.clisockfd,&fsWrite))
-				{
-					gettimeofday(&now, NULL);
-					if(command!=0 && started)
-					{
-						if(settime&&(span(now,s1)>=0)&&retry<RETRY_TIME&&li->if_send)
-						{
-						   g_tcp_client.Send(msg.stream,msg.len);
-						   retry++;
+            ActionRow ar= *li;
+            if(g_test_row_array.test_array[li->ptestrow].status>=NOT_ENOUGH_REAGENT)
+            {
+                li->if_send=0;
+            }
+            s1=e1=start;
+            int s=li->start_time;
+            int e=li->end_time;
+            s1.tv_sec=s1.tv_sec+s;
+            e1.tv_sec=e1.tv_sec+e;
 
-                            DP("send settime %d, sn %d, retry %d",settime,sn,retry);
-						}
-					}
-				}
-				if (FD_ISSET(g_tcp_client.clisockfd,&fsRead))
-				{
-					int rchars=g_tcp_client.Recv(recvbuf.stream+recvbuf.size,BUFFER_SIZE-recvbuf.size);
-                    DP("select result is %d  read chars %d\n",iRet,rchars);
-					recvbuf.size+=rchars;
-					while( getMsgFromBuf(state)!=0)
-					{
-						 //if(state!=0) goto next;
-					}
-					//if(state!=0) continue;
-				}
+            if(li->a.type==0x01){
+                if(!g_reagent_array.getPos(li->a.params.get_reagent.r_pos,li->a.params.get_reagent.reagent_id,li->a.params.get_reagent.sample_volume) ){
+                    li->if_send=0;
+                    Interface::pushTestStatus(li->ptestrow,li->step,NOT_ENOUGH_REAGENT);
+                }
+            }
+            int l=li->toStream(sendbuf);
+            sendbuf[2]=getSn();
+            DP("get sn settime %d, sn %d, retry %d",settime,sn,retry);
+            l = addCheckCode(sendbuf,l);
 
-			}
-			if(0==iRet){
-			//time out
-                g_tcp_client.Connect("127.0.0.1",40000);
-                g_tcp_client.setNonBlock();
-			}
-			if(0>iRet){
-			}
-			//next:
-		}
+            toComposedMsg(sendbuf,l, msg.stream, &(msg.len));
+            currentCmd=li->a.type;
+            retry=0;
+            state=0;
+            settime=1;
+        }
+        if(started&&settime)
+        {
+            gettimeofday(&now, NULL);
+            if(span(now,e1)>=0)
+            {
+                //to do set testinstance status to 2
+                //....
+                li++;
+                settime=0;
+                DP("*****timeout settime %d, sn %d, retry %d",settime,sn,retry);
+                if(li==g_action_sequence.action_list.end())
+                {
+                    //结束
+                    command=0;
+                    started =0;
+                    settime=0;
+                }
+            }
+        }
+        FD_ZERO(&fsWrite);
+        FD_SET(g_tcp_client.clisockfd, &fsWrite);
+        FD_ZERO(&fsRead);
+        FD_SET(g_tcp_client.clisockfd, &fsRead);
+        iRet = select(1, &fsRead, &fsWrite, NULL, &tv);
+        DP("select result is %d\n",iRet);
+        if(0<iRet){
+            //read or write socket
+
+            if (FD_ISSET(g_tcp_client.clisockfd,&fsWrite))
+            {
+                gettimeofday(&now, NULL);
+                if(command!=0 && started)
+                {
+                    if(settime&&(span(now,s1)>=0)&&retry<RETRY_TIME&&li->if_send)
+                    {
+                        g_tcp_client.Send(msg.stream,msg.len);
+                        retry++;
+
+                        DP("send settime %d, sn %d, retry %d",settime,sn,retry);
+                    }
+                }
+            }
+            if (FD_ISSET(g_tcp_client.clisockfd,&fsRead))
+            {
+                int rchars=g_tcp_client.Recv(recvbuf.stream+recvbuf.size,BUFFER_SIZE-recvbuf.size);
+                DP("select result is %d  read chars %d\n",iRet,rchars);
+                recvbuf.size+=rchars;
+                while( getMsgFromBuf(state)!=0)
+                {
+                    //if(state!=0) goto next;
+                }
+                //if(state!=0) continue;
+            }
+
+        }
+        if(0==iRet){
+            //time out
+            g_tcp_client.Connect("127.0.0.1",40000);
+            g_tcp_client.setNonBlock();
+        }
+        if(0>iRet){
+        }
+        //next:
+    }
 
 
 

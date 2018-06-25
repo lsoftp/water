@@ -737,7 +737,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(170, 255, 255);</string>
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -763,9 +763,9 @@
    <zorder>frame_13</zorder>
    <zorder>frame_11</zorder>
    <zorder>frame_2</zorder>
-   <zorder>frame_4</zorder>
    <zorder>frame_3</zorder>
    <zorder>frame</zorder>
+   <zorder>frame_4</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
