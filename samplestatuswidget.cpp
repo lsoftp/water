@@ -1,5 +1,5 @@
 #include "samplestatuswidget.h"
-
+#include <QStyleOption>
 #define MY_PI 3.14159265358979323846
 const QColor SampleStatusWidget::scolor[STATE_NUM]={QColor(255,255,255),QColor(0,255,0),QColor(170,0,127),QColor(170,0,255)};
 const QColor SampleStatusWidget::tcolor[TYPE_NUM]={QColor(Qt::white),QColor(Qt::green),QColor(Qt::red),QColor(Qt::magenta), QColor(Qt::yellow),QColor(Qt::gray)};
@@ -11,24 +11,28 @@ SampleStatusWidget::SampleStatusWidget(QWidget *parent) : QWidget(parent)
         m_status[i].t=type(i%TYPE_NUM);//TYPE_NULL;
     }
     current=-1;
+    setStyleSheet("background-color: rgb(255, 255, 255);");
 }
 
 void SampleStatusWidget::paintEvent(QPaintEvent *e)
 {
-    R=width()/2-1;
+    R=width()/2-6;
 
     m_center.setX(width()/2);
     m_center.setY(height()/2);
+
+    QStyleOption o;
+    o.initFrom(this);
     QPainter paint;
 
     paint.begin(this);
-
+    style()->drawPrimitive(QStyle::PE_Widget, &o, &paint, this);
     paint.setRenderHint(QPainter::Antialiasing);
-        paint.setPen(QPen(Qt::black,2,Qt::SolidLine));
+    paint.setPen(QPen(Qt::black,2,Qt::SolidLine));
 
     paint.drawEllipse(m_center,R,R);
     paint.drawEllipse(m_center,R-50,R-50);
-   // paint.drawEllipse(m_center,R-20,R-20);
+    // paint.drawEllipse(m_center,R-20,R-20);
     int mr=getR(R-25);
     MR=R-25;
     r1=mr;
@@ -55,8 +59,8 @@ void SampleStatusWidget::paintEvent(QPaintEvent *e)
 
         cp.setX(m_center.x()+qCos(2*MY_PI/40*current)*MR);
         cp.setY(m_center.y()+qSin(2*MY_PI/40*current)*MR);
-            paint.setPen(QPen(Qt::white,3,Qt::SolidLine));
-            paint.drawEllipse(cp,r1,r1);
+        paint.setPen(QPen(Qt::white,3,Qt::SolidLine));
+        paint.drawEllipse(cp,r1,r1);
 
     }
 
@@ -101,7 +105,7 @@ void SampleStatusWidget::paintEvent(QPaintEvent *e)
     drawLegend(paint,tp,ts,"不足");
 
 
-        //paint.drawEllipse(0,0,50,60);
+    //paint.drawEllipse(0,0,50,60);
     paint.end();
 }
 
@@ -136,7 +140,8 @@ void SampleStatusWidget::mousePressEvent(QMouseEvent *e)
 
             cp.setX(m_center.x()+qCos(2*MY_PI/40*i)*MR);
             cp.setY(m_center.y()+qSin(2*MY_PI/40*i)*MR);
-            if( p2p(p1,cp)<r1) {
+            if( p2p(p1,cp)<r1)
+            {
                 current=i;
                 this->update();
                 return ;
