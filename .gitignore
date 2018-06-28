@@ -1,3 +1,13 @@
 *.o
 moc_*.cpp
 ui_*.h
+.qmake.stash
+debug/water.exe
+Makefile
+Makefile.Debug
+Makefile.Release
+object_script.water.Debug
+object_script.water.Release
+water.exe
+water.pro.user.985f712
+water.pro.user.a4522d0

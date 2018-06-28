@@ -107,6 +107,7 @@ void SampleStatusWidget::paintEvent(QPaintEvent *e)
 
     //paint.drawEllipse(0,0,50,60);
     paint.end();
+    //QWidget::paintEvent(e);
 }
 
 void SampleStatusWidget::drawLegend( QPainter &pa, const QPoint &p, const SampleStatusWidget::status &s,const QString & str)
