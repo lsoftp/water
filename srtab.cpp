@@ -27,6 +27,11 @@ void SrTab::initsabutton()
 
     for(int i=0;i<11;i++)
     {
+        cpb[i]=new ItemButton(qw);
+        cpb[i]->setGeometry(IB_LENGTH*i,qw->height()-IB_LENGTH,IB_LENGTH,IB_LENGTH);
+    }
+    for(int i=0;i<11;i++)
+    {
         pb[i]= new ItemButton(qw);
         pb[i]->setGeometry(IB_LENGTH*i,0,IB_LENGTH,IB_LENGTH);
     }
@@ -50,6 +55,11 @@ void SrTab::initsabutton()
     }
     qw=ui->frame_10;
     //qdeleteLater();
+    for(int i=0;i<11;i++)
+    {
+        cpb[i+11]=new ItemButton(qw);
+        cpb[i+11]->setGeometry(IB_LENGTH*i,qw->height()-IB_LENGTH,IB_LENGTH,IB_LENGTH);
+    }
 
     for(int i=0;i<11;i++)
     {
@@ -77,6 +87,31 @@ void SrTab::initsabutton()
 
 }
 
+int  SrTab::getfreeNo()
+{
+    QSqlQueryModel sqm;
+    db.getSampleNo(sqm, g_current_index);
+
+    int j=0,num=sqm.rowCount();
+    if(num==0)
+    {
+
+        return 1;
+    }
+    for(int i=0;i<num;i++)
+    {
+        int k=sqm.record(i).value("id").toInt();
+        int p=k-j;
+
+        if(p>1)
+        {
+
+            return j+1;
+        }
+        j=k;
+    }
+    return j+1;
+}
 
 void SrTab::SetSampleNo()
 {
@@ -169,6 +204,7 @@ void SrTab::refreshtable()
     db.getSr(sqm,::g_current_index);
     QTableWidget *tw=ui->tableWidget;
     tw->clearContents();
+    tw->setRowCount(sqm.rowCount()+1);
     for(int i=0;i<sqm.rowCount();i++)
     {
         tw->setItem(i,0,new QTableWidgetItem(sqm.record(i).value("id").toString()));
@@ -178,6 +214,10 @@ void SrTab::refreshtable()
         tw->setItem(i,2,new QTableWidgetItem(status));
 
     }
+    int c=sqm.rowCount();
+    tw->setItem(c,0,new QTableWidgetItem(QString("*%1").arg(getfreeNo())));
+    tw->setItem(c,2,new QTableWidgetItem("新"));
+    tw->selectRow(c);
 
 }
 
@@ -199,20 +239,29 @@ void SrTab::initstate()
 {
     //page 1
     ui->comboBox_4->setCurrentIndex(0);
+    //不可编辑
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    QHeaderView *header = ui->tableWidget->verticalHeader();
+    header->setHidden(true);// 隐藏行号
 
     showpage(0);
-    setYesEnable(false);
+
     this->uncheckbt();
     this->SetSampleNo();
     SetPos();
     this->refreshtable();
+    ui->lineEdit_6->setText("");
+    setYesEnable(false);
 }
 
 void SrTab::reg()
 {
     TestRegister t;
     QDateTime now=QDateTime::currentDateTime();
-
     t.id=ui->lineEdit_4->text().toInt();
     //t.tr.test_row_id=QDateTime::currentDateTime().toString()
     t.no=QString::number(t.id);
@@ -227,8 +276,11 @@ void SrTab::reg()
     t.cname="";
     t.tr.isdilute=0;
     t.tr.status=0;
+    t.combinetestname="";
     //初始化  g_current_index 在全局变量中
     //还有test_row_id ,isreplace, test_id
+
+    db.delSrbyid(g_current_index,t.no);
     int j=0;
     for(int i=0;i<g_item_num;i++)
     {
@@ -242,13 +294,13 @@ void SrTab::reg()
             t.tr.test_id=pb[i]->testid;
             db.insertSample(t);
             j++;
-            if(gi::isReplace(pb[i]->testid))
-            {
-                tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
-                t.tr.isreplace=1;
-                db.insertSample(t);
-                j++;
-            }
+//            if(gi::isReplace(pb[i]->testid))
+//            {
+//                tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+//                t.tr.isreplace=1;
+//                db.insertSample(t);
+//                j++;
+//            }
 
             //
         }
@@ -263,28 +315,148 @@ void SrTab::on_comboBox_4_currentIndexChanged(int index)
 
 void SrTab::ontoggle(bool b)
 {
-    bool isOK=false;
-    for (int i=0;i<g_item_num;i++)
-    {
-        if(pb[i]->isChecked())
-        {
-            isOK=true;
-            break;
-        }
+//    bool isOK=false;
+//    for (int i=0;i<g_item_num;i++)
+//    {
+//        if(pb[i]->isChecked())
+//        {
+//            isOK=true;
+//            break;
+//        }
 
-    }
-    if(isOK)
-    {
+//    }
+//    if(isOK)
+//    {
         setYesEnable(true);
-    }
-    else
-    {
-        setYesEnable(false);
-    }
+//    }
+//    else
+//    {
+//        setYesEnable(false);
+//    }
 }
 
 void SrTab::on_sr_yes_clicked()
 {
     reg();
     initstate();
+}
+void SrTab::readytoaddnew()
+{
+    //page 1
+    ui->comboBox_4->setCurrentIndex(0);
+    //不可编辑
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    QHeaderView *header = ui->tableWidget->verticalHeader();
+    header->setHidden(true);// 隐藏行号
+
+    showpage(0);
+
+    this->uncheckbt();
+    this->SetSampleNo();
+    SetPos();
+    //this->refreshtable();
+    ui->lineEdit_6->setText("");
+    setYesEnable(false);
+
+}
+
+void SrTab::on_tableWidget_itemSelectionChanged()
+{
+    QList<QTableWidgetItem*> items=ui->tableWidget->selectedItems();
+    if(items.size()==0) return;
+    QString no=items.at(0)->text();
+    if(no.startsWith("*"))
+    {
+        //no="123456";
+        no=no.right(no.size()-1);
+
+        }
+    ui->lineEdit_4->setText(no);
+    QSqlQueryModel sqm;
+    db.getSrbyid(sqm,::g_current_index,no);
+//    SetPos();
+//    ui->comboBox_2->insertItem(0,no);
+//    ui->comboBox_2->setCurrentIndex(0);
+    uncheckbt();
+    int num=sqm.rowCount();
+    if (num==0)
+    {
+        readytoaddnew();
+    }
+    else
+    {
+        for(int i=0;i<sqm.rowCount();i++)
+        {
+            int position=sqm.record(i).value("Pos").toInt();
+            int isP=sqm.record(i).value("isPredilute").toInt();
+            int pdt=sqm.record(i).value("Predilutetimes").toInt();
+            QString sid=sqm.record(i).value("sampleid").toString();
+            int isu=sqm.record(i).value("Isurgent").toInt();
+            int sct=sqm.record(i).value("samplecuptype").toInt();
+            int tid=sqm.record(i).value("TestID").toInt();
+            if(i==0)
+            {
+                SetPos();
+                ui->comboBox_2->insertItem(0,QString::number(position));
+                ui->comboBox_2->setCurrentIndex(0);
+
+                ui->checkBox->setChecked(isP!=0);
+                ui->lineEdit_5->setText(QString::number(pdt));
+                ui->lineEdit_6->setText(sid);
+                ui->checkBox_2->setChecked(isu==0);
+                ui->comboBox_3->setCurrentIndex(sct);
+
+            }
+            for(int j=0;j<g_item_num;j++)
+            {
+                if(pb[j]->testid==tid)
+                {
+                    pb[j]->setChecked(true);
+                    break;
+                }
+            }
+
+        }
+        //else ;
+        setYesEnable(false);
+    }
+}
+
+void SrTab::on_comboBox_2_currentIndexChanged(int index)
+{
+    setYesEnable(true);
+}
+
+void SrTab::on_checkBox_toggled(bool checked)
+{
+    setYesEnable(true);
+}
+
+void SrTab::on_lineEdit_5_textChanged(const QString &arg1)
+{
+    setYesEnable(true);
+}
+
+void SrTab::on_lineEdit_6_textChanged(const QString &arg1)
+{
+    setYesEnable(true);
+}
+
+void SrTab::on_checkBox_2_toggled(bool checked)
+{
+    setYesEnable(true);
+}
+
+void SrTab::on_comboBox_3_currentIndexChanged(int index)
+{
+    setYesEnable(true);
+}
+
+void SrTab::on_pushButton_9_clicked()
+{
+
 }

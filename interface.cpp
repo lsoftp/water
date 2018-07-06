@@ -39,10 +39,11 @@ void Interface::initTestrowArray()
         tr.isdilute=sqm.record(i).value("IsDilute").toInt();
         tr.dilutevolume=sqm.record(i).value("DiluteVolume").toInt();
         tr.dilutetime=sqm.record(i).value("Dilutetime").toInt();
-        tr.dilute_reagent=getdilutereagentid();
+        tr.dilute_reagent=sqm.record(i).value("Dilutereagent").toInt();
         tr.test_id=sqm.record(i).value("TestID").toInt();
         tr.isreplace=sqm.record(i).value("Isreplace").toInt();
         tr.status=-1;//初始状态
+        tr.step=-2;
         g_test_row_array.push(tr);
     }
 

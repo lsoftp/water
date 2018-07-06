@@ -11,3 +11,5 @@ object_script.water.Release
 water.exe
 water.pro.user.985f712
 water.pro.user.a4522d0
+debug/moc_mainwindow.cpp
+

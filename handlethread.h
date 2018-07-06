@@ -14,6 +14,7 @@ protected:
 
 public:
 	static int command;     //0 for accept command 1 test suite 2 handle actionlist
+    static int stop;  // 是否停止加样
     ~HandleThread();
 private:
 	static unsigned char  sn;

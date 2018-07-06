@@ -105,16 +105,27 @@ void MainWindow::on_toolButton_5_clicked()
 
 void MainWindow::on_toolButton_8_clicked()
 {
-    display(G_START);
-    Interface::initTestrowArray();
     if(!g_handler.command)
-    g_handler.command=1;
+    {
+        display(G_START);
+        Interface::initTestrowArray();
+        g_handler.command=1;
+    }
+    else
+    {
+        QMessageBox box(QMessageBox::Information,"提示","正在处理中，请稍候操作");
+        box.setStandardButtons (QMessageBox::Ok);
+        box.setButtonText (QMessageBox::Ok,QString("确 定"));
+        //box.setButtonText (QMessageBox::Cancel,QString("取 消"));
+        box.exec ();
+    }
 }
 
-void MainWindow::on_pushButton_9_clicked()
+void MainWindow::on_srreturnbtn_clicked()
 {
     //register return button
     display(G_HOME);
+
 }
 
 
@@ -175,7 +186,7 @@ void MainWindow::on_toolButton_9_clicked()
     ::StopSDia  dl;
     int i=dl.exec();
 
-    // QMessageBox::question(NULL, "question", QString::number(i), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+     QMessageBox::information(NULL, "注意", QString("是否停止采样?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 }
 
 void MainWindow::display_blank()

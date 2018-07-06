@@ -90,7 +90,7 @@ struct TestRow{
 	int  test_id;  //测试方法id
 	int isreplace;//是否替代
 	int status;// 0 成功，1 超时，2 试剂不够
-    int step; //-1 初始值，不等于-1，该测试已经开始。
+    int step; //-2初始值，>=0，该测试已经开始。
 	//int test_no;  //确定测试id
 
 };

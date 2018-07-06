@@ -25,6 +25,7 @@ struct  TestRegister{
     int pre_d_times;
     QString qname;
     QString cname;
+    QString combinetestname;//组合项目名称
 };
 
 class DBInterface : public QObject
@@ -47,6 +48,8 @@ public:
     void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试
     void gettestindex(QSqlQueryModel &querymodel);
 
+    void getSrbyid(QSqlQueryModel &querymodel, const QString &index, QString &id);
+    void delSrbyid( const QString &index, QString &id);
 signals:
 
 public slots:

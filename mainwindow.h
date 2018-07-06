@@ -8,6 +8,8 @@
 #include <QDateTime>
 #include "dbinterface.h"
 #include <QFrame>
+#include <QMessageBox>
+
 namespace Ui {
 class MainWindow;
 }
@@ -41,7 +43,7 @@ private slots:
 
     void on_toolButton_8_clicked();
 
-    void on_pushButton_9_clicked();
+    void on_srreturnbtn_clicked();
 
 
 

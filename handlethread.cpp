@@ -29,6 +29,7 @@ unsigned char HandleThread::sn=0;
 unsigned char HandleThread::currentCmd=0;
 unsigned char HandleThread::started=0;
 int HandleThread ::command=0;
+int HandleThread::stop=0;
 int HandleThread::settime=0;
 list<ActionRow>::iterator  HandleThread::li;
 RecvBuf HandleThread::recvbuf;
@@ -453,6 +454,23 @@ void HandleThread::run()
         {
 
             ActionRow ar= *li;
+            //正在测试时，如果停止采样
+            if(command==2 && stop)
+            {
+                if(g_test_row_array.test_array[ar.ptestrow].step<0)
+                {
+                    li++;
+                    settime=0;
+                    if(li==g_action_sequence.action_list.end())
+                    {
+                        //结束
+                        command=0;
+                        started =0;
+                        settime=0;
+                        stop=0;
+                    }
+                }
+            }
             if(g_test_row_array.test_array[li->ptestrow].status>=NOT_ENOUGH_REAGENT)
             {
                 li->if_send=0;
@@ -476,6 +494,7 @@ void HandleThread::run()
 
             toComposedMsg(sendbuf,l, msg.stream, &(msg.len));
             currentCmd=li->a.type;
+            g_test_row_array.test_array[ar.ptestrow].step=ar.step;
             retry=0;
             state=0;
             settime=1;
@@ -504,7 +523,7 @@ void HandleThread::run()
         FD_ZERO(&fsRead);
         FD_SET(g_tcp_client.clisockfd, &fsRead);
         iRet = select(1, &fsRead, &fsWrite, NULL, &tv);
-        DP("select result is %d\n",iRet);
+        //DP("select result is %d\n",iRet);
         if(0<iRet){
             //read or write socket
 

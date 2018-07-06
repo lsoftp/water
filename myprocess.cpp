@@ -198,6 +198,7 @@ void ActionSequence::insertTestRow(int i)
         ar.end_time= WASH_ALL_CUP_TIME;
         lasttime=WASH_ALL_CUP_TIME;
         ar.ptestrow=i;
+        ar.step=-1;
         arv.push_back(ar);
         this->from_time=getendtime();    // insert from endtime
         //insert last row  to clear all cups

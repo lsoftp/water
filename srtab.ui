@@ -67,7 +67,9 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(0, 85, 255);
+</string>
     </property>
     <column>
      <property name="text">
@@ -327,7 +329,7 @@
      <string>确定</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="srreturnbtn">
     <property name="geometry">
      <rect>
       <x>1010</x>
@@ -385,7 +387,7 @@
    <zorder>pushButton_10</zorder>
    <zorder>sr_del</zorder>
    <zorder>pushButton_12</zorder>
-   <zorder>pushButton_9</zorder>
+   <zorder>srreturnbtn</zorder>
   </widget>
  </widget>
  <resources/>

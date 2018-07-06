@@ -55,6 +55,8 @@ int main(int argc, char *argv[])
     bool b=g_lock.tryLock();
     if(!b) exit(0);
     //g_lock.lock();
+
+
     db.open();
     dbhandle.open1();
     QApplication a(argc, argv);

@@ -21,9 +21,26 @@ private slots:
     void ontoggle(bool b);
     void on_sr_yes_clicked();
 
+    void on_tableWidget_itemSelectionChanged();
+
+    void on_comboBox_2_currentIndexChanged(int index);
+
+    void on_checkBox_toggled(bool checked);
+
+    void on_lineEdit_5_textChanged(const QString &arg1);
+
+    void on_lineEdit_6_textChanged(const QString &arg1);
+
+    void on_checkBox_2_toggled(bool checked);
+
+    void on_comboBox_3_currentIndexChanged(int index);
+
+    void on_pushButton_9_clicked();
+
 private:
     Ui::SrTab *ui;
-    ItemButton *pb[38*2];
+    ItemButton *pb[38*2];   //测试项目按钮
+    ItemButton *cpb[11*2]; //组合项目按钮
     void initsabutton();//初始化样本登记按钮
     void SetSampleNo();
     void SetPos();
@@ -36,6 +53,8 @@ private:
     void uncheckbt();
     void refreshtable();
     void reg();
+    int getfreeNo();
+    void readytoaddnew();
 };
 
 #endif // SRTAB_H
