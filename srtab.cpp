@@ -12,6 +12,9 @@ SrTab::SrTab(QWidget *parent) :
     initsabutton();
     setbutton();
     this->initstate();
+    QRegExp regx("[1-9][0-9]+$");
+    QValidator *validator = new QRegExpValidator(regx, ui->lineEdit_4 );
+    ui->lineEdit_4->setValidator(validator);
 
 }
 
