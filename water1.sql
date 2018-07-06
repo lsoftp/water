@@ -48,15 +48,8 @@ CREATE TABLE IF NOT EXISTS `item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目信息，项目流程，项目重做';
 
 -- 数据导出被取消选择。
--- 导出  表 water.reagent 结构
-CREATE TABLE IF NOT EXISTS `reagent` (
-  `id` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 数据导出被取消选择。
--- 导出  表 water.sr 结构
-CREATE TABLE IF NOT EXISTS `sr` (
+-- 导出  表 water.raw_sr 结构
+CREATE TABLE IF NOT EXISTS `raw_sr` (
   `testsn` varchar(50) NOT NULL,
   `testpageid` varchar(50) NOT NULL,
   `no` varchar(50) NOT NULL,
@@ -70,14 +63,42 @@ CREATE TABLE IF NOT EXISTS `sr` (
   `Testtype` tinyint(4) NOT NULL,
   `Qualityname` varchar(50) NOT NULL,
   `Caname` varchar(50) NOT NULL,
+  `TestID` int(11) NOT NULL,
+  `Stage` int(11) NOT NULL,
+  `combinetestname` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='原始登记表样本测试登记，包含普通测试，定标，质控';
+
+-- 数据导出被取消选择。
+-- 导出  表 water.reagent 结构
+CREATE TABLE IF NOT EXISTS `reagent` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 数据导出被取消选择。
+-- 导出  表 water.sr 结构
+CREATE TABLE IF NOT EXISTS `sr` (
+  `testsn` varchar(50) NOT NULL COMMENT '与raw_sr对应字段联系',
+  `testno` varchar(50) NOT NULL COMMENT '唯一，标识唯一的测试流程',
+  `id` int(11) NOT NULL,
+  `sampleid` varchar(50) NOT NULL,
+  `isPredilute` tinyint(4) NOT NULL,
+  `Predilutetimes` tinyint(4) NOT NULL,
+  `Pos` int(11) NOT NULL,
+  `Samplecuptype` tinyint(4) NOT NULL,
+  `Isurgent` tinyint(4) NOT NULL,
+  `Testtype` tinyint(4) NOT NULL,
+  `Qualityname` varchar(50) NOT NULL,
+  `Caname` varchar(50) NOT NULL,
   `IsDilute` tinyint(4) NOT NULL,
   `DiluteVolume` int(11) NOT NULL,
   `Dilutetimes` int(11) NOT NULL,
   `Dilutetime` int(11) NOT NULL,
+  `Dilutereagent` int(11) NOT NULL,
   `TestID` int(11) NOT NULL,
   `Isreplace` int(11) NOT NULL,
   `Stage` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='样本测试登记';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='样本测试序列表，包含普通测试，定标，质控，此表直接导入底层处理模块，可直接支撑测试\r\n与此表对应的有读取结果表，包含临时结果。';
 
 -- 数据导出被取消选择。
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
