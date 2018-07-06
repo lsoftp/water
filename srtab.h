@@ -35,7 +35,9 @@ private slots:
 
     void on_comboBox_3_currentIndexChanged(int index);
 
-    void on_pushButton_9_clicked();
+
+
+    void on_lineEdit_4_textChanged(const QString &arg1);
 
 private:
     Ui::SrTab *ui;

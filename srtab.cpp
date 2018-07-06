@@ -122,6 +122,7 @@ void SrTab::SetSampleNo()
     db.getSampleNo(sqm, g_current_index);
 
     int j=0,num=sqm.rowCount();
+    //if(ui->lineEdit_4->text()!="") return;
     if(num==0)
     {
         ui->lineEdit_4->setText(QString::number(1));
@@ -254,9 +255,11 @@ void SrTab::initstate()
     showpage(0);
 
     this->uncheckbt();
-    this->SetSampleNo();
-    SetPos();
+
+
     this->refreshtable();
+    SetPos();
+    this->SetSampleNo();
     ui->lineEdit_6->setText("");
     setYesEnable(false);
 }
@@ -359,10 +362,16 @@ void SrTab::readytoaddnew()
     showpage(0);
 
     this->uncheckbt();
-    this->SetSampleNo();
+    //this->SetSampleNo();
+
     SetPos();
     //this->refreshtable();
+    ui->checkBox->setChecked(false);
+    ui->lineEdit_5->setText("");
     ui->lineEdit_6->setText("");
+    ui->checkBox_2->setChecked(false);
+    ui->comboBox_3->setCurrentIndex(0);
+    //ui->lineEdit_6->setText("");
     setYesEnable(false);
 
 }
@@ -459,7 +468,26 @@ void SrTab::on_comboBox_3_currentIndexChanged(int index)
     setYesEnable(true);
 }
 
-void SrTab::on_pushButton_9_clicked()
-{
 
+void SrTab::on_lineEdit_4_textChanged(const QString &arg1)
+{
+    int num=ui->tableWidget->rowCount();
+    for(int i=0;i<num;i++)
+    {
+        if(ui->tableWidget->item(i,0)->text()==ui->lineEdit_4->text())
+        {
+            ui->tableWidget->selectRow(i);
+            return ;
+        }
+    }
+   if(arg1!="")
+   {
+        ui->tableWidget->item(num-1,0)->setText(QString("*%1").arg(arg1));
+
+        ui->tableWidget->selectRow(num-1);
+    }
+    else
+   {
+
+   }
 }
