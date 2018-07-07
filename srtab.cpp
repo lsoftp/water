@@ -488,6 +488,9 @@ void SrTab::on_lineEdit_4_textChanged(const QString &arg1)
     }
     else
    {
+       ui->tableWidget->item(num-1,0)->setText(QString("*%1").arg(getfreeNo()));
+
+       //ui->tableWidget->selectRow(num-1);
 
    }
 }
