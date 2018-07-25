@@ -43,7 +43,12 @@ SOURCES += \
     qutab.cpp \
     itemframe.cpp \
     statusframe.cpp \
-    samplestatuswidget.cpp
+    samplestatuswidget.cpp \
+    cacurveframe.cpp \
+    quframe.cpp \
+    weihuframe.cpp \
+    systemframe.cpp \
+    sampleframe.cpp
 
 
 HEADERS += \
@@ -64,7 +69,12 @@ HEADERS += \
     qutab.h \
     itemframe.h \
     statusframe.h \
-    samplestatuswidget.h
+    samplestatuswidget.h \
+    cacurveframe.h \
+    quframe.h \
+    weihuframe.h \
+    systemframe.h \
+    sampleframe.h
 
 LIBS += -lws2_32
 
@@ -75,7 +85,12 @@ FORMS += \
     catab.ui \
     qutab.ui \
     itemframe.ui \
-    statusframe.ui
+    statusframe.ui \
+    cacurveframe.ui \
+    quframe.ui \
+    weihuframe.ui \
+    systemframe.ui \
+    sampleframe.ui
 
 RC_FILE += \
     water.rc

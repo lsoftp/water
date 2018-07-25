@@ -1,5 +1,6 @@
 #include "catab.h"
 #include "ui_catab.h"
+#include "mainwindow.h"
 
 CaTab::CaTab(QWidget *parent) :
     QWidget(parent),
@@ -14,6 +15,11 @@ CaTab::CaTab(QWidget *parent) :
 CaTab::~CaTab()
 {
     delete ui;
+}
+
+void CaTab::init()
+{
+    connect(ui->careturnbtn, SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
 }
 
 void CaTab::initcabutton()

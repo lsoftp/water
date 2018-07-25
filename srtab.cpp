@@ -282,7 +282,7 @@ void SrTab::reg()
     t.cname="";
     t.tr.isdilute=0;
     t.tr.status=0;
-    t.combinetestname="";
+    //t.combinetestname="";
     //初始化  g_current_index 在全局变量中
     //还有test_row_id ,isreplace, test_id
 

@@ -396,7 +396,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>540</y>
+       <y>550</y>
        <width>1221</width>
        <height>40</height>
       </rect>
@@ -746,6 +746,116 @@
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="CaCurveFrame" name="cacurve">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>69</y>
+      <width>1221</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QuFrame" name="quframe">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>69</y>
+      <width>1221</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="WeihuFrame" name="g_weihu">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>69</y>
+      <width>1221</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="SystemFrame" name="g_system">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>69</y>
+      <width>1221</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="SampleFrame" name="g_sample">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>69</y>
+      <width>1221</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 255, 255);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
    <zorder>toolButton_2</zorder>
    <zorder>toolButton_3</zorder>
    <zorder>toolButton_4</zorder>
@@ -760,12 +870,17 @@
    <zorder>toolButton_13</zorder>
    <zorder>toolButton_14</zorder>
    <zorder>toolButton</zorder>
-   <zorder>frame_13</zorder>
    <zorder>frame_11</zorder>
    <zorder>frame_3</zorder>
    <zorder>frame_4</zorder>
-   <zorder>frame</zorder>
    <zorder>frame_2</zorder>
+   <zorder>frame</zorder>
+   <zorder>frame_13</zorder>
+   <zorder>cacurve</zorder>
+   <zorder>quframe</zorder>
+   <zorder>g_weihu</zorder>
+   <zorder>g_system</zorder>
+   <zorder>g_sample</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -798,6 +913,36 @@
    <class>StatusFrame</class>
    <extends>QFrame</extends>
    <header location="global">statusframe.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CaCurveFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">cacurveframe.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QuFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">quframe.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SampleFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">sampleframe.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SystemFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">systemframe.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WeihuFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">weihuframe.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

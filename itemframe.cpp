@@ -18,7 +18,7 @@ ItemFrame::~ItemFrame()
 
 void ItemFrame::init()
 {
-    connect(ui->pushButton_5,SIGNAL(clicked()),g_w,SLOT(display_blank()));
+    connect(ui->return_btn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
     //ui->com
 }
 
@@ -47,4 +47,6 @@ void ItemFrame::display_blank()
 {
     QMessageBox::question(NULL, "question", "QString::number(i)", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 }
+
+
 

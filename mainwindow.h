@@ -22,6 +22,11 @@ enum GUIFrame{
     G_ITEM,
     G_START,
     G_STATUS,
+    G_CACURVE,
+    G_QUFRAME,
+    G_WEIHU,
+    G_SYSTEM,
+    G_SAMPLE,
     G_NUM
 
 };
@@ -75,6 +80,16 @@ private slots:
     void on_toolButton_11_clicked();
 
     void on_MainWindow_destroyed();
+
+    void on_toolButton_3_clicked();
+
+    void on_toolButton_4_clicked();
+
+    void on_toolButton_2_clicked();
+
+    void on_toolButton_6_clicked();
+
+    void on_toolButton_7_clicked();
 
 private:
     Ui::MainWindow *ui;

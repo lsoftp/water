@@ -116,7 +116,7 @@ void DBInterface::insertSample(const TestRegister & tr )
     QSqlQuery query(m_db);
     QString p;
 
-    query.prepare("insert  into raw_sr values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    query.prepare("insert  into raw_sr values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
     p=QString::fromStdString(tr.tr.test_row_id);
 
     query.bindValue(0,p);
@@ -134,7 +134,7 @@ void DBInterface::insertSample(const TestRegister & tr )
     query.bindValue(12,tr.cname);
     query.bindValue(13,tr.tr.test_id);//-1 if is a combo test
     query.bindValue(14,tr.tr.status);
-    query.bindValue(15,tr.combinetestname); //"" if just a common test
+    //query.bindValue(15,tr.combinetestname); //"" if just a common test
 
     bool success = query.exec();
            //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;

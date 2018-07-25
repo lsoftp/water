@@ -15,6 +15,10 @@ QuTab::~QuTab()
 {
     delete ui;
 }
+void QuTab::init()
+{
+    connect(ui->qureturnbtn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
+}
 
 void QuTab::initcabutton()
 {

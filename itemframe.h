@@ -27,6 +27,7 @@ private slots:
     void on_radioButton_3_toggled(bool checked);
     void display_blank();
 
+
 private:
     Ui::ItemFrame *ui;
 };

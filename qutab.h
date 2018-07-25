@@ -17,6 +17,7 @@ public:
     explicit QuTab(QWidget *parent = 0);
     ~QuTab();
 
+    void init();
 private slots:
     void on_comboBox_7_currentIndexChanged(int index);
 

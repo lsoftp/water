@@ -25,7 +25,7 @@ struct  TestRegister{
     int pre_d_times;
     QString qname;
     QString cname;
-    QString combinetestname;//组合项目名称
+    //QString combinetestname;//组合项目名称
 };
 
 class DBInterface : public QObject

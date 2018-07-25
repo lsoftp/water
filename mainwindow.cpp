@@ -46,8 +46,8 @@ void MainWindow::initGUI()
     ui->toolButton_14->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
 
-    SampleButton *sb=new SampleButton(ui->frame);
-    sb->setGeometry(0,0,50,60);
+   // SampleButton *sb=new SampleButton(ui->frame);
+    //sb->setGeometry(0,0,50,60);
 
 }
 //assign frames index
@@ -58,7 +58,12 @@ void MainWindow::initFrames()
     pf[GUIFrame::G_REGISTER]=ui->frame_2;
     pf[GUIFrame::G_ITEM]=ui->frame_3;
     pf[GUIFrame::G_START]=ui->frame_11;
+    pf[G_CACURVE]=ui->cacurve;
+    pf[G_QUFRAME]=ui->quframe;
     pf[G_STATUS]=ui->frame_4;
+    pf[G_WEIHU]=ui->g_weihu;
+    pf[G_SYSTEM]=ui->g_system;
+    pf[G_SAMPLE]=ui->g_sample;
 }
 
 void MainWindow::display(GUIFrame frame)
@@ -80,6 +85,8 @@ MainWindow::~MainWindow()
 void MainWindow::initsignal()
 {
     ui->frame_3->init();
+    ui->tab_2->init();
+    ui->tab_3->init();
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
@@ -202,4 +209,29 @@ void MainWindow::on_toolButton_11_clicked()
 void MainWindow::on_MainWindow_destroyed()
 {
 
+}
+
+void MainWindow::on_toolButton_3_clicked()
+{
+    display(G_CACURVE);
+}
+
+void MainWindow::on_toolButton_4_clicked()
+{
+    display(G_QUFRAME);
+}
+
+void MainWindow::on_toolButton_2_clicked()
+{
+    display(GUIFrame::G_SAMPLE);
+}
+
+void MainWindow::on_toolButton_6_clicked()
+{
+    display(G_WEIHU);
+}
+
+void MainWindow::on_toolButton_7_clicked()
+{
+    display(G_SYSTEM);
 }
