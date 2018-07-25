@@ -29,7 +29,6 @@ SOURCES += \
         mainwindow.cpp \
     itembutton.cpp \
     cabutton.cpp \
-    samplebutton.cpp \
     dbinterface.cpp \
     LogFile.cpp \
     debugout.cpp \
@@ -55,7 +54,6 @@ HEADERS += \
         mainwindow.h \
     itembutton.h \
     cabutton.h \
-    samplebutton.h \
     dbinterface.h \
     LogFile.h \
     debugout.h \

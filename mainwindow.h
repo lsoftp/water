@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "itembutton.h"
 #include "cabutton.h"
-#include "samplebutton.h"
+
 #include <QDateTime>
 #include "dbinterface.h"
 #include <QFrame>
