@@ -28,13 +28,12 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>ico/ttt.bmp</normaloff>
-      <normalon>ico/ttt.bmp</normalon>ico/ttt.bmp</iconset>
+      <normaloff>ico/register.ico</normaloff>ico/register.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>40</width>
-      <height>40</height>
+      <width>48</width>
+      <height>48</height>
      </size>
     </property>
    </widget>
@@ -52,8 +51,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>ico/ttt.bmp</normaloff>
-      <normalon>ico/ttt.bmp</normalon>ico/ttt.bmp</iconset>
+      <normaloff>ico/sample1.ico</normaloff>ico/sample1.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_3">
@@ -70,7 +74,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/ca.ico</normaloff>ico/ca.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_4">
@@ -87,7 +97,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/qu.ico</normaloff>ico/qu.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_5">
@@ -104,7 +120,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/app.ico</normaloff>ico/app.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_6">
@@ -121,7 +143,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/weihu.ico</normaloff>ico/weihu.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_7">
@@ -138,7 +166,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/system.ico</normaloff>ico/system.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_8">
@@ -155,7 +189,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/start.ico</normaloff>ico/start.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_9">
@@ -172,7 +212,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/pause.ico</normaloff>ico/pause.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_10">
@@ -189,7 +235,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/stop.ico</normaloff>ico/stop.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_11">
@@ -206,7 +258,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/app.ico</normaloff>ico/app.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_12">
@@ -223,7 +281,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/warn.ico</normaloff>ico/warn.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_13">
@@ -240,7 +304,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/close.ico</normaloff>ico/close.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_14">
@@ -257,7 +327,13 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Pictures/ttt.bmp</normaloff>../Pictures/ttt.bmp</iconset>
+      <normaloff>ico/about.ico</normaloff>ico/about.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
     </property>
    </widget>
    <widget class="QFrame" name="frame">
@@ -273,7 +349,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -453,7 +529,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -537,7 +613,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -715,7 +791,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -737,7 +813,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -759,7 +835,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -781,7 +857,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -803,7 +879,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -825,7 +901,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -847,7 +923,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 255, 255);</string>
+     <string notr="true">background-color: rgb(170, 255, 255);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
