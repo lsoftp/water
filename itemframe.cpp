@@ -22,6 +22,17 @@ void ItemFrame::init()
     //ui->com
 }
 
+void ItemFrame::setDbstatus(int s)
+{
+
+    dbstatus=s;
+    switch(dbstatus){
+    case 0:ui->pushButton_4->setEnabled(false);break;
+    case 1:ui->pushButton_4->setEnabled(true);break; //new
+    case 2:ui->pushButton_4->setEnabled(true);break; //modify
+    }
+}
+
 void ItemFrame::on_radioButton_2_toggled(bool checked)
 {
     if (!checked) return;

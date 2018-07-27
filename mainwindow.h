@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "itembutton.h"
+#include <QToolButton>
 #include "cabutton.h"
 
 #include <QDateTime>
@@ -96,6 +96,7 @@ private:
 
 
     QFrame *pf[G_NUM];
+    QToolButton *ptb[G_NUM];
     void initGUI();
     void initFrames();
 

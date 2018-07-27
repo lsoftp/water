@@ -16,6 +16,7 @@ public:
     explicit ItemFrame(QWidget *parent = 0);
     ~ItemFrame();
     void init();
+    void setDbstatus(int s);
 
 public slots:
 
@@ -30,6 +31,7 @@ private slots:
 
 private:
     Ui::ItemFrame *ui;
+    int dbstatus;
 };
 
 #endif // ITEMFRAME_H

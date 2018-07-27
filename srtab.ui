@@ -122,6 +122,9 @@ selection-background-color: rgb(0, 85, 255);
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
@@ -144,6 +147,9 @@ selection-background-color: rgb(0, 85, 255);
       <width>69</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="checkBox">
@@ -168,6 +174,9 @@ selection-background-color: rgb(0, 85, 255);
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
@@ -190,6 +199,9 @@ selection-background-color: rgb(0, 85, 255);
       <width>191</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="checkBox_2">
@@ -227,6 +239,9 @@ selection-background-color: rgb(0, 85, 255);
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
     <item>
      <property name="text">
       <string>样品管</string>
@@ -259,6 +274,9 @@ selection-background-color: rgb(0, 85, 255);
       <width>69</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <item>
      <property name="text">

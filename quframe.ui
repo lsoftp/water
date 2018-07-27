@@ -141,6 +141,9 @@
        <height>451</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
      <column>
       <property name="text">
        <string>序号</string>
@@ -183,6 +186,9 @@
        <width>511</width>
        <height>451</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <column>
       <property name="text">

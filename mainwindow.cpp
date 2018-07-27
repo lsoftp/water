@@ -64,14 +64,36 @@ void MainWindow::initFrames()
     pf[G_WEIHU]=ui->g_weihu;
     pf[G_SYSTEM]=ui->g_system;
     pf[G_SAMPLE]=ui->g_sample;
+
+    ptb[GUIFrame::G_BLANK]=NULL;
+    ptb[GUIFrame::G_HOME]=NULL;
+    ptb[GUIFrame::G_REGISTER]=ui->toolButton;
+    ptb[GUIFrame::G_ITEM]=ui->toolButton_5;
+    ptb[GUIFrame::G_START]=ui->toolButton_8;
+    ptb[G_CACURVE]=ui->toolButton_3;
+    ptb[G_QUFRAME]=ui->toolButton_4;
+    ptb[G_STATUS]=ui->toolButton_11;
+    ptb[G_WEIHU]=ui->toolButton_6;
+    ptb[G_SYSTEM]=ui->toolButton_7;
+    ptb[G_SAMPLE]=ui->toolButton_2;
+    //ptb[GUIFrame::G_REGISTER]->setStyleSheet("background-color: rgb(214, 214, 214);");//setStyleSheet("background-color: rgb(85, 255, 255);");
 }
 
 void MainWindow::display(GUIFrame frame)
 {
     for(int i=0;i<GUIFrame::G_NUM;i++)
     {
-        if(i!=frame) pf[i]->hide();
-        else pf[frame]->show();
+        if(i!=frame)
+        {
+            pf[i]->hide();
+            //if(ptb[i]) ptb[i]->setStyleSheet("background-color: rgb(214, 214, 214);");
+        }
+        else
+        {
+            pf[i]->show();
+            //if(ptb[i]) ptb[i]->setStyleSheet("background-color: rgb(85, 255, 255);");
+
+        }
     }
 
 }
