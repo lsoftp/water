@@ -28,6 +28,47 @@ struct  TestRegister{
     //QString combinetestname;//组合项目名称
 };
 
+struct Item{
+    TestConfig tc;
+    QString name;
+    QString fullname;
+    QString digitnum;
+    QString unit;
+    QString checkmethod;
+    QString limitlow;
+    QString limitlowjudge;
+    QString limithigh;
+    QString limithighjudge;
+    QString linearlow;
+    QString linearhigh;
+    QString correctA;
+    QString correctB;
+    int xgdlimit;
+    QString xgdlimitvalue;
+    int kbxgd;
+    QString kbxgd1;
+    QString kbxgd2;
+    int  xxd;
+    QString xxdvalue;
+
+    int redodiluteid;
+    QString redoxxfflow;
+    QString redoxxffhigh;
+    QString redoxxfftimes;
+    QString redodilute1low;
+    QString redodilute1high;
+    QString redodilute1times;
+    QString redodilute2low;
+    QString redodilute2high;
+    QString redodilute2times;
+    QString redootherlow;
+    QString redootherhigh;
+    QString redoothertimes;
+};
+
+
+
+
 class DBInterface : public QObject
 {
     Q_OBJECT
@@ -45,6 +86,7 @@ public:
     void getSampleId(QSqlQueryModel &querymodel,const QString &index);//获取已用样品Id
     void getSr(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
     void insertSample(const TestRegister & tr );
+    void insertItem(const Item &it);//添加项目
     void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试
     void gettestindex(QSqlQueryModel &querymodel);
 

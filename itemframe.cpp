@@ -16,6 +16,19 @@ ItemFrame::~ItemFrame()
     delete ui;
 }
 
+void ItemFrame::add()
+{
+    QObjectList list =ui->tab_4-> children();
+        foreach (QObject *obj, list) {
+            QString nnn=obj->metaObject()->className();
+            if ( nnn== "QLineEdit"){
+                QLineEdit *ql=qobject_cast<QLineEdit*>(obj);
+                ql->setText("");
+
+            }
+        }
+}
+
 void ItemFrame::init()
 {
     connect(ui->return_btn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
@@ -61,3 +74,8 @@ void ItemFrame::display_blank()
 
 
 
+
+void ItemFrame::on_pushButton_2_clicked()
+{
+    add();
+}

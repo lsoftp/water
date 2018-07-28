@@ -50,13 +50,25 @@ void testinit()
 DBInterface db;
 DBInterface dbhandle;
     MainWindow *g_w;
+//class AAA{
+//public:
+//    int i;
+//    AAA(){i=-1;}
+//    AAA(int t){i=t;}
+//};
+
 int main(int argc, char *argv[])
 {
     bool b=g_lock.tryLock();
     if(!b) exit(0);
     //g_lock.lock();
 
-
+    QMap<int,QString> mm;
+    mm[1]="AAA(1)";
+    mm[2]="AAA(2)";
+    QString pp=mm[0];
+    qDebug("mm[0] is %s",pp);
+    qDebug()<<pp;
     db.open();
     dbhandle.open1();
     QApplication a(argc, argv);

@@ -18,6 +18,7 @@ public:
     void init();
     void setDbstatus(int s);
 
+    void add();
 public slots:
 
 private slots:
@@ -28,6 +29,8 @@ private slots:
     void on_radioButton_3_toggled(bool checked);
     void display_blank();
 
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::ItemFrame *ui;

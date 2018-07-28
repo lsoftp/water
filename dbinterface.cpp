@@ -149,3 +149,89 @@ void DBInterface::insertSample(const TestRegister & tr )
     }
 
 }
+
+void DBInterface::insertItem(const Item &it)
+{
+    QSqlQuery query(m_db);
+    QString p;
+
+    query.prepare("insert  into item values("
+                  "?,?,?,?,?,?,?,?,?,?"
+                  "?,?,?,?,?,?,?,?,?,?"
+                  "?,?,?,?,?,?,?,?,?,?"
+                  "?,?,?,?,?,?,?,?,?,?"
+                  "?,?,?,?,?,?,?,?,?,?"
+                  ",?,?,?,?,?,?,?,?,?)");
+    query.bindValue(0,it.tc.test_id);
+    query.bindValue(1,it.name);
+    query.bindValue(2,it.fullname);
+    query.bindValue(3,it.tc.reagent0);
+    query.bindValue(4,it.tc.time0);
+    query.bindValue(5,it.tc.v0);
+    query.bindValue(6,it.tc.reagent1);
+    query.bindValue(7,it.tc.time1);
+    query.bindValue(8,it.tc.v1);
+    query.bindValue(9,it.tc.reagent2);
+    query.bindValue(10,it.tc.time2);
+    query.bindValue(11,it.tc.v2);
+    query.bindValue(12,it.tc.reagent3);
+    query.bindValue(13,it.tc.time3);
+
+    query.bindValue(14,it.tc.v3);
+    query.bindValue(15,it.tc.reagent4);
+    query.bindValue(16,it.tc.time4);
+    query.bindValue(17,it.tc.v4);
+
+    query.bindValue(18,it.tc.priority);
+    query.bindValue(19,it.tc.isreplace);
+    query.bindValue(20,it.tc.repalcereagentid);
+    query.bindValue(21,it.tc.method);
+    query.bindValue(22,it.tc.readstep);
+    query.bindValue(23,it.tc.readinterval);
+    query.bindValue(24,it.tc.readtimes);
+    query.bindValue(25,it.tc.wavenum);
+    query.bindValue(26,it.tc.wl0);
+    query.bindValue(27,it.tc.wl1);
+    query.bindValue(28,it.digitnum);
+    query.bindValue(29,it.unit);
+    query.bindValue(30,it.checkmethod);
+    query.bindValue(31,it.limitlow);
+    query.bindValue(32,it.limitlowjudge);
+    query.bindValue(33,it.limithigh);
+    query.bindValue(34,it.limithighjudge);
+    query.bindValue(35,it.linearlow);
+    query.bindValue(36,it.linearhigh);
+    query.bindValue(37,it.correctA);
+    query.bindValue(38,it.correctB);
+    query.bindValue(39,it.xgdlimit);
+    query.bindValue(40,it.xgdlimitvalue);
+    query.bindValue(41,it.kbxgd);
+    query.bindValue(42,it.kbxgd1);
+    query.bindValue(43,it.kbxgd2);
+    query.bindValue(44,it.xxd);
+    query.bindValue(45,it.xxdvalue);
+    query.bindValue(46,it.redodiluteid);
+    query.bindValue(47,it.redoxxfflow);
+    query.bindValue(48,it.redoxxffhigh);
+    query.bindValue(49,it.redoxxfftimes);
+    query.bindValue(50,it.redodilute1low);
+    query.bindValue(51,it.redodilute1high);
+    query.bindValue(52,it.redodilute1times);
+    query.bindValue(53,it.redodilute2low);
+    query.bindValue(54,it.redodilute2high);
+    query.bindValue(55,it.redodilute2times);
+    query.bindValue(56,it.redootherlow);
+    query.bindValue(57,it.redootherhigh);
+    query.bindValue(58,it.redoothertimes);
+    bool success = query.exec();
+           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        //qDebug() << a1 << a2<< a3;
+        //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
+
+        return;
+    }
+}

@@ -556,8 +556,8 @@ void HandleThread::run()
         }
         if(0==iRet){
             //time out
-            g_tcp_client.Connect("127.0.0.1",40000);
-            g_tcp_client.setNonBlock();
+            //g_tcp_client.Connect("127.0.0.1",40000);
+            //g_tcp_client.setNonBlock();
         }
         if(0>iRet){
         }
