@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QWidget>
+#include "dbinterface.h"
 
 namespace Ui {
 class ItemFrame;
@@ -19,6 +20,10 @@ public:
     void setDbstatus(int s);
 
     void add();
+    void load(Item &it);
+    void refreshtable();
+    void initCombo();
+    int getfreeNo();
 public slots:
 
 private slots:
@@ -31,6 +36,10 @@ private slots:
 
 
     void on_pushButton_2_clicked();
+
+    void on_tableWidget1_itemSelectionChanged();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::ItemFrame *ui;

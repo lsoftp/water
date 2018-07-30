@@ -26,7 +26,7 @@
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_4">
     <property name="styleSheet">
@@ -1063,6 +1063,11 @@
       </property>
      </widget>
     </widget>
+    <zorder>groupBox_11</zorder>
+    <zorder>splitter</zorder>
+    <zorder>groupBox_8</zorder>
+    <zorder>groupBox_9</zorder>
+    <zorder>groupBox_10</zorder>
    </widget>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">

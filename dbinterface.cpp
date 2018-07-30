@@ -67,6 +67,12 @@ void DBInterface::getSampleNo(QSqlQueryModel &querymodel,const QString &index)//
     QString sql=QString("SELECT id  FROM raw_sr where testpageid='%1' order by id").arg(index);
     querymodel.setQuery(sql,m_db);
 }
+
+void DBInterface::getItemNo(QSqlQueryModel &querymodel)//获取已用测试项目号
+{
+    QString sql=QString("SELECT TestID  FROM item  order by TestID");
+    querymodel.setQuery(sql,m_db);
+}
 void DBInterface::getSampleId(QSqlQueryModel &querymodel,const QString &index)//获取已用样品Id
 {
     querymodel.setQuery(QString("SELECT sampleid  FROM raw_sr where testpageid='%1' order by sampleid").arg(index),m_db);
@@ -156,10 +162,10 @@ void DBInterface::insertItem(const Item &it)
     QString p;
 
     query.prepare("insert  into item values("
-                  "?,?,?,?,?,?,?,?,?,?"
-                  "?,?,?,?,?,?,?,?,?,?"
-                  "?,?,?,?,?,?,?,?,?,?"
-                  "?,?,?,?,?,?,?,?,?,?"
+                  "?,?,?,?,?,?,?,?,?,?,"
+                  "?,?,?,?,?,?,?,?,?,?,"
+                  "?,?,?,?,?,?,?,?,?,?,"
+                  "?,?,?,?,?,?,?,?,?,?,"
                   "?,?,?,?,?,?,?,?,?,?"
                   ",?,?,?,?,?,?,?,?,?)");
     query.bindValue(0,it.tc.test_id);
@@ -223,6 +229,7 @@ void DBInterface::insertItem(const Item &it)
     query.bindValue(56,it.redootherlow);
     query.bindValue(57,it.redootherhigh);
     query.bindValue(58,it.redoothertimes);
+    qDebug()<<query.lastQuery();
     bool success = query.exec();
            //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
   //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
@@ -230,8 +237,41 @@ void DBInterface::insertItem(const Item &it)
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
         //qDebug() << a1 << a2<< a3;
+        qDebug()<<query.lastQuery();
         //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
 
         return;
     }
+}
+
+void DBInterface::getItem(QSqlQueryModel &querymodel)
+{
+    querymodel.setQuery(QString("SELECT name  FROM item order by name"),m_db);
+}
+
+void DBInterface::getItembyname(QSqlQueryModel &querymodel, QString &name)
+{
+    querymodel.setQuery(QString("SELECT *  FROM item where name='%1'").arg(name),m_db);
+}
+
+void DBInterface::delItembyName(const QString &name)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("DELETE  from item where name='%1'  ").arg(name));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::getReagent(QSqlQueryModel &querymodel)
+{
+     querymodel.setQuery(QString("SELECT *  FROM reagent where id>=-3 order by id"),m_db);
 }

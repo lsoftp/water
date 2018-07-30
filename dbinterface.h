@@ -87,11 +87,16 @@ public:
     void getSr(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
     void insertSample(const TestRegister & tr );
     void insertItem(const Item &it);//添加项目
+    void getItem(QSqlQueryModel &querymodel);
+    void getItembyname(QSqlQueryModel &querymodel,QString &name);
     void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试
     void gettestindex(QSqlQueryModel &querymodel);
 
     void getSrbyid(QSqlQueryModel &querymodel, const QString &index, QString &id);
     void delSrbyid( const QString &index, QString &id);
+    void delItembyName(const QString &name);
+    void getReagent(QSqlQueryModel &querymodel);
+    void getItemNo(QSqlQueryModel &querymodel);
 signals:
 
 public slots:
