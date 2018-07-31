@@ -66,7 +66,47 @@ struct Item{
     QString redoothertimes;
 };
 
-
+struct Cadetail
+{
+    int TestID;
+    QString name;
+    QString type;
+    int num;
+    QString kvalue;
+    QString testtimes;
+    QString caname0;
+    QString con0;
+    QString dilute0;
+    QString con01;
+    QString caname1;
+    QString con1;
+    QString dilute1;
+    QString con11;
+    QString caname2;
+    QString con2;
+    QString dilute2;
+    QString con21;
+    QString caname3;
+    QString con3;
+    QString dilute3;
+    QString con31;
+    QString caname4;
+    QString con4;
+    QString dilute4;
+    QString con41;
+    QString caname5;
+    QString con5;
+    QString dilute5;
+    QString con51;
+    QString caname6;
+    QString con6;
+    QString dilute6;
+    QString con61;
+    QString caname7;
+    QString con7;
+    QString dilute7;
+    QString con71;
+};
 
 
 class DBInterface : public QObject
@@ -87,6 +127,7 @@ public:
     void getSr(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
     void insertSample(const TestRegister & tr );
     void insertItem(const Item &it);//添加项目
+    void insertCadetail(const Cadetail & ca);
     void getItem(QSqlQueryModel &querymodel);
     void getItembyname(QSqlQueryModel &querymodel,QString &name);
     void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试

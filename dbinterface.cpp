@@ -244,6 +244,73 @@ void DBInterface::insertItem(const Item &it)
     }
 }
 
+void DBInterface::insertCadetail(const Cadetail &ca)
+{
+    QSqlQuery query(m_db);
+    QString p;
+
+    query.prepare("insert  into cadetail values("
+                  "?,?,?,?,?,?,?,?,?,?,"
+                  "?,?,?,?,?,?,?,?,?,?,"
+                  "?,?,?,?,?,?,?,?,?,?,"
+                  "?,?,?,?,?,?,?,?");
+    query.bindValue(0,ca.TestID);
+    query.bindValue(1,ca.name);
+    query.bindValue(2,ca.type);
+    query.bindValue(3,ca.num);
+    query.bindValue(4,ca.kvalue);
+    query.bindValue(5,ca.testtimes);
+    query.bindValue(6,ca.caname0);
+    query.bindValue(7,ca.con0);
+    query.bindValue(8,ca.dilute0);
+    query.bindValue(9,ca.con01);
+    query.bindValue(10,ca.caname1);
+    query.bindValue(11,ca.con1);
+    query.bindValue(12,ca.dilute1);
+    query.bindValue(13,ca.con11);
+
+    query.bindValue(14,ca.caname2);
+    query.bindValue(15,ca.con2);
+    query.bindValue(16,ca.dilute2);
+    query.bindValue(17,ca.con21);
+
+    query.bindValue(18,ca.caname3);
+    query.bindValue(19,ca.con3);
+    query.bindValue(20,ca.dilute3);
+    query.bindValue(21,ca.con31);
+    query.bindValue(22,ca.caname4);
+    query.bindValue(23,ca.con4);
+    query.bindValue(24,ca.dilute4);
+    query.bindValue(25,ca.con41);
+    query.bindValue(26,ca.caname5);
+    query.bindValue(27,ca.con5);
+    query.bindValue(28,ca.dilute5);
+    query.bindValue(29,ca.con51);
+    query.bindValue(30,ca.caname6);
+    query.bindValue(31,ca.con6);
+    query.bindValue(32,ca.dilute6);
+    query.bindValue(33,ca.con61);
+    query.bindValue(34,ca.caname7);
+    query.bindValue(35,ca.con7);
+    query.bindValue(36,ca.dilute7);
+    query.bindValue(37,ca.con71);
+
+    qDebug()<<query.lastQuery();
+    bool success = query.exec();
+           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        //qDebug() << a1 << a2<< a3;
+        qDebug()<<query.lastQuery();
+        //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
+
+        return;
+    }
+
+}
+
 void DBInterface::getItem(QSqlQueryModel &querymodel)
 {
     querymodel.setQuery(QString("SELECT name  FROM item order by name"),m_db);

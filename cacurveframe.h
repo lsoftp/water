@@ -15,6 +15,12 @@ public:
     explicit CaCurveFrame(QWidget *parent = 0);
     ~CaCurveFrame();
 
+    void refreshtable();
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::CaCurveFrame *ui;
 };

@@ -429,6 +429,7 @@ void ItemFrame::on_pushButton_4_clicked()
     db.delItembyName(ui->lineEdit_9->text());
     load(it);
     it.tc.test_id=getfreeNo();
+    it.tc.priority=it.tc.test_id;
     db.insertItem(it);
     refreshtable();
 }

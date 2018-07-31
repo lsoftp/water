@@ -47,7 +47,9 @@ SOURCES += \
     quframe.cpp \
     weihuframe.cpp \
     systemframe.cpp \
-    sampleframe.cpp
+    sampleframe.cpp \
+    cadlg.cpp \
+    testdlg.cpp
 
 
 HEADERS += \
@@ -72,7 +74,9 @@ HEADERS += \
     quframe.h \
     weihuframe.h \
     systemframe.h \
-    sampleframe.h
+    sampleframe.h \
+    cadlg.h \
+    testdlg.h
 
 LIBS += -lws2_32
 
@@ -88,7 +92,9 @@ FORMS += \
     quframe.ui \
     weihuframe.ui \
     systemframe.ui \
-    sampleframe.ui
+    sampleframe.ui \
+    cadlg.ui \
+    testdlg.ui
 
 RC_FILE += \
     water.rc
