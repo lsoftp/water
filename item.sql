@@ -16,10 +16,88 @@
 CREATE DATABASE IF NOT EXISTS `water` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `water`;
 
+-- 导出  表 water.biaozhunye 结构
+CREATE TABLE IF NOT EXISTS `biaozhunye` (
+  `name` varchar(50) DEFAULT NULL,
+  `no` varchar(50) DEFAULT NULL,
+  `valid` varchar(50) DEFAULT NULL,
+  KEY `Index 1` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  water.biaozhunye 的数据：~1 rows (大约)
+/*!40000 ALTER TABLE `biaozhunye` DISABLE KEYS */;
+INSERT INTO `biaozhunye` (`name`, `no`, `valid`) VALUES
+	('3', NULL, NULL);
+/*!40000 ALTER TABLE `biaozhunye` ENABLE KEYS */;
+
+-- 导出  表 water.biaozhunye1 结构
+CREATE TABLE IF NOT EXISTS `biaozhunye1` (
+  `name` varchar(50) DEFAULT NULL,
+  `TestID` int(11) DEFAULT NULL,
+  `TestName` varchar(50) DEFAULT NULL,
+  `con` varchar(50) DEFAULT NULL COMMENT '浓度',
+  `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  KEY `Index 1` (`name`),
+  CONSTRAINT `FK_biaozhunye1_biaozhunye` FOREIGN KEY (`name`) REFERENCES `biaozhunye` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='标准液对应的项目浓度';
+
+-- 正在导出表  water.biaozhunye1 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `biaozhunye1` DISABLE KEYS */;
+INSERT INTO `biaozhunye1` (`name`, `TestID`, `TestName`, `con`, `unit`) VALUES
+	('3', NULL, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `biaozhunye1` ENABLE KEYS */;
+
+-- 导出  表 water.cadetail 结构
+CREATE TABLE IF NOT EXISTS `cadetail` (
+  `TestID` int(11) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `num` tinyint(4) DEFAULT NULL,
+  `kvalue` varchar(50) DEFAULT NULL,
+  `testtimes` varchar(50) DEFAULT NULL,
+  `caname0` varchar(50) DEFAULT NULL,
+  `con0` varchar(50) DEFAULT NULL,
+  `dilute0` varchar(50) DEFAULT NULL,
+  `con01` varchar(50) DEFAULT NULL,
+  `caname1` varchar(50) DEFAULT NULL,
+  `con1` varchar(50) DEFAULT NULL,
+  `dilute1` varchar(50) DEFAULT NULL,
+  `con11` varchar(50) DEFAULT NULL,
+  `caname2` varchar(50) DEFAULT NULL,
+  `con2` varchar(50) DEFAULT NULL,
+  `dilute2` varchar(50) DEFAULT NULL,
+  `con21` varchar(50) DEFAULT NULL,
+  `caname3` varchar(50) DEFAULT NULL,
+  `con3` varchar(50) DEFAULT NULL,
+  `dilute3` varchar(50) DEFAULT NULL,
+  `con31` varchar(50) DEFAULT NULL,
+  `caname4` varchar(50) DEFAULT NULL,
+  `con4` varchar(50) DEFAULT NULL,
+  `dilute4` varchar(50) DEFAULT NULL,
+  `con41` varchar(50) DEFAULT NULL,
+  `caname5` varchar(50) DEFAULT NULL,
+  `con5` varchar(50) DEFAULT NULL,
+  `dilute5` varchar(50) DEFAULT NULL,
+  `con51` varchar(50) DEFAULT NULL,
+  `caname6` varchar(50) DEFAULT NULL,
+  `con6` varchar(50) DEFAULT NULL,
+  `dilute6` varchar(50) DEFAULT NULL,
+  `con61` varchar(50) DEFAULT NULL,
+  `caname7` varchar(50) DEFAULT NULL,
+  `con7` varchar(50) DEFAULT NULL,
+  `dilute7` varchar(50) DEFAULT NULL,
+  `con71` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定标方法明细表';
+
+-- 正在导出表  water.cadetail 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `cadetail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cadetail` ENABLE KEYS */;
+
 -- 导出  表 water.item 结构
 CREATE TABLE IF NOT EXISTS `item` (
   `TestID` int(11) DEFAULT NULL,
   `Name` varchar(50) DEFAULT NULL,
+  `Fullname` varchar(50) DEFAULT NULL,
   `Reagent0` int(11) DEFAULT NULL,
   `Time0` int(11) DEFAULT NULL,
   `Volume0` int(11) DEFAULT NULL,
@@ -44,16 +122,50 @@ CREATE TABLE IF NOT EXISTS `item` (
   `readtimes` int(11) DEFAULT NULL,
   `wavenum` int(11) DEFAULT NULL,
   `wl0` int(11) DEFAULT NULL,
-  `wl1` int(11) DEFAULT NULL
+  `wl1` int(11) DEFAULT NULL,
+  `digitnum` varchar(50) DEFAULT NULL COMMENT '小数位数',
+  `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  `checkmethod` varchar(50) DEFAULT NULL COMMENT '检测方法',
+  `limitlow` varchar(50) DEFAULT NULL,
+  `limitlowjudge` varchar(50) DEFAULT NULL,
+  `limithigh` varchar(50) DEFAULT NULL,
+  `limithighjudge` varchar(50) DEFAULT NULL,
+  `linearlow` varchar(50) DEFAULT NULL,
+  `linearhigh` varchar(50) DEFAULT NULL,
+  `correctA` varchar(50) DEFAULT NULL,
+  `correctB` varchar(50) DEFAULT NULL,
+  `xgdlimit` tinyint(4) DEFAULT NULL COMMENT '吸光度限值',
+  `xgdlimitvalue` varchar(50) DEFAULT NULL,
+  `kbxgd` tinyint(4) DEFAULT NULL COMMENT '空白吸光度',
+  `kbxgd1` varchar(50) DEFAULT NULL,
+  `kbxgd2` varchar(50) DEFAULT NULL,
+  `xxd` tinyint(4) DEFAULT NULL COMMENT '线性度',
+  `xxdvalue` varchar(50) DEFAULT NULL,
+  `redodiluteid` int(11) DEFAULT NULL COMMENT '重做稀释液id',
+  `redoxxfflow` varchar(50) DEFAULT NULL COMMENT '重做线性范围',
+  `redoxxffhigh` varchar(50) DEFAULT NULL,
+  `redoxxfftimes` varchar(50) DEFAULT NULL COMMENT '倍数',
+  `redodilute1low` varchar(50) DEFAULT NULL,
+  `redodilute1high` varchar(50) DEFAULT NULL,
+  `redodilute1times` varchar(50) DEFAULT NULL,
+  `redodilute2low` varchar(50) DEFAULT NULL,
+  `redodilute2high` varchar(50) DEFAULT NULL,
+  `redodilute2times` varchar(50) DEFAULT NULL,
+  `redootherlow` varchar(50) DEFAULT NULL,
+  `redootherhigh` varchar(50) DEFAULT NULL,
+  `redoothertimes` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目信息，项目流程，项目重做';
 
--- 正在导出表  water.item 的数据：~4 rows (大约)
+-- 正在导出表  water.item 的数据：~7 rows (大约)
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` (`TestID`, `Name`, `Reagent0`, `Time0`, `Volume0`, `Reagent1`, `Time1`, `Volume1`, `Reagent2`, `Time2`, `Volume2`, `Reagent3`, `Time3`, `Volume3`, `Reagent4`, `Time4`, `Volume4`, `Priority`, `zsypkb`, `ReplaceReagent`, `method`, `readstep`, `readInterval`, `readtimes`, `wavenum`, `wl0`, `wl1`) VALUES
-	(0, 'NO2', 0, 10, 10, -2, 20, 20, 1, 30, 30, 2, 40, 40, 4, 40, 40, 0, 0, -1, 1, NULL, NULL, NULL, 2, 10, 11),
-	(1, 'CL', -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 1, 1, -1, 2, 2, NULL, NULL, 1, 12, 13),
-	(2, 'Fe', -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 2, 1, -1, 2, 2, NULL, NULL, 1, 12, 13),
-	(3, 'TEST', -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 2, 1, -1, 2, 2, NULL, NULL, 1, 12, 13);
+INSERT INTO `item` (`TestID`, `Name`, `Fullname`, `Reagent0`, `Time0`, `Volume0`, `Reagent1`, `Time1`, `Volume1`, `Reagent2`, `Time2`, `Volume2`, `Reagent3`, `Time3`, `Volume3`, `Reagent4`, `Time4`, `Volume4`, `Priority`, `zsypkb`, `ReplaceReagent`, `method`, `readstep`, `readInterval`, `readtimes`, `wavenum`, `wl0`, `wl1`, `digitnum`, `unit`, `checkmethod`, `limitlow`, `limitlowjudge`, `limithigh`, `limithighjudge`, `linearlow`, `linearhigh`, `correctA`, `correctB`, `xgdlimit`, `xgdlimitvalue`, `kbxgd`, `kbxgd1`, `kbxgd2`, `xxd`, `xxdvalue`, `redodiluteid`, `redoxxfflow`, `redoxxffhigh`, `redoxxfftimes`, `redodilute1low`, `redodilute1high`, `redodilute1times`, `redodilute2low`, `redodilute2high`, `redodilute2times`, `redootherlow`, `redootherhigh`, `redoothertimes`) VALUES
+	(0, 'NO2', NULL, 0, 10, 10, -2, 20, 20, 1, 30, 30, 2, 40, 40, 4, 40, 40, 0, 0, -1, 1, NULL, NULL, NULL, 2, 10, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1, 'CL', NULL, -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 1, 1, -1, 2, 2, NULL, NULL, 1, 12, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(3, 'TEST', NULL, -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 2, 1, -1, 2, 2, NULL, NULL, 1, 12, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(7, 'AAA', 'ZZZZ', -2, 11, 11, 1, 21, 21, 2, 22, 22, 0, 33, 33, 0, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, '2', 'ug/l', NULL, '', NULL, '', NULL, '', '', '', '', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
+	(2, 'BBB', 'ZZZZ', -2, 11, 11, 1, 21, 21, 2, 22, 22, 0, 33, 33, 0, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, '2', 'ug/l', NULL, '胜多负少的', NULL, '', NULL, '', '', '', '', 1, '', 1, '', '', 1, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
+	(4, 'vv', '', -2, 11, 11, 0, 21, 21, 0, 22, 22, 0, 33, 33, 0, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, NULL, NULL, NULL, '', NULL, '', NULL, '', '', '', '', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
+	(5, 'CL1', '', -2, 11, 11, 0, 21, 21, 1, 22, 22, -3, 33, 33, -3, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, '3', 'ug/l', NULL, '', 'k', '', NULL, '', '', '1', '2', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', '');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 -- 导出  表 water.raw_sr 结构
@@ -75,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `raw_sr` (
   `Stage` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='原始登记表样本测试登记，包含普通测试，定标，质控';
 
--- 正在导出表  water.raw_sr 的数据：~18 rows (大约)
+-- 正在导出表  water.raw_sr 的数据：~25 rows (大约)
 /*!40000 ALTER TABLE `raw_sr` DISABLE KEYS */;
 INSERT INTO `raw_sr` (`testsn`, `testpageid`, `no`, `id`, `sampleid`, `isPredilute`, `Predilutetimes`, `Pos`, `Samplecuptype`, `Isurgent`, `Testtype`, `Qualityname`, `Caname`, `TestID`, `Stage`) VALUES
 	('20180706103302000', '2018-07-06', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 1, 0),
@@ -96,21 +208,32 @@ INSERT INTO `raw_sr` (`testsn`, `testpageid`, `no`, `id`, `sampleid`, `isPredilu
 	('20180725104332000', '2018-07-25', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 1, 0),
 	('20180725104332001', '2018-07-25', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 2, 0),
 	('20180725104340000', '2018-07-25', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 0, 0),
-	('20180725130650000', '2018-07-25', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 3, 0);
+	('20180725130650000', '2018-07-25', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 3, 0),
+	('20180726162046000', '2018-07-26', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 2, 0),
+	('20180726162050000', '2018-07-26', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 3, 0),
+	('20180727084102000', '2018-07-27', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 2, 0),
+	('20180727084105000', '2018-07-27', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 2, 0),
+	('20180730090118000', '2018-07-30', '0', 0, '', 0, 0, 1, 0, 1, 4, '', '', 2, 0),
+	('20180730113837000', '2018-07-30', '1', 1, '', 0, 0, 2, 0, 1, 4, '', '', 3, 0);
 /*!40000 ALTER TABLE `raw_sr` ENABLE KEYS */;
 
 -- 导出  表 water.reagent 结构
 CREATE TABLE IF NOT EXISTS `reagent` (
-  `id` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) DEFAULT NULL COMMENT '从0开始',
+  `name` varchar(50) DEFAULT NULL,
+  `fordilute` tinyint(4) DEFAULT NULL COMMENT '是否为稀释试剂',
+  `forreplace` tinyint(4) DEFAULT NULL COMMENT '是否为替代试剂'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='试剂位取值，可以为-1为系统水 -2为样本，-3 为无试剂，》=0为试剂id';
 
--- 正在导出表  water.reagent 的数据：~2 rows (大约)
+-- 正在导出表  water.reagent 的数据：~5 rows (大约)
 /*!40000 ALTER TABLE `reagent` DISABLE KEYS */;
-INSERT INTO `reagent` (`id`, `name`) VALUES
-	(0, 'A'),
-	(1, 'B'),
-	(2, 'C');
+INSERT INTO `reagent` (`id`, `name`, `fordilute`, `forreplace`) VALUES
+	(0, 'A', 0, 0),
+	(1, 'B', 0, 0),
+	(2, 'C', 0, 0),
+	(-3, '', 0, 0),
+	(-2, '样本', 0, 0),
+	(-1, '系统水', 0, 1);
 /*!40000 ALTER TABLE `reagent` ENABLE KEYS */;
 
 -- 导出  表 water.sr 结构
@@ -702,6 +825,33 @@ INSERT INTO `sr` (`testsn`, `testno`, `id`, `sampleid`, `isPredilute`, `Predilut
 	('20180705154730000', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 0, 1997293550, 1, 4, 12, 3, 0, 0),
 	('20180705173803000', '3', 3, '', 0, 0, 4, 0, 1, 4, '', '', 0, 1997293550, 1, 4, 12, 1, 0, 0);
 /*!40000 ALTER TABLE `sr` ENABLE KEYS */;
+
+-- 导出  表 water.zhikongye 结构
+CREATE TABLE IF NOT EXISTS `zhikongye` (
+  `name` varchar(50) DEFAULT NULL,
+  `no` varchar(50) DEFAULT NULL,
+  `valid` varchar(50) DEFAULT NULL,
+  KEY `Index 1` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- 正在导出表  water.zhikongye 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `zhikongye` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zhikongye` ENABLE KEYS */;
+
+-- 导出  表 water.zhikongye1 结构
+CREATE TABLE IF NOT EXISTS `zhikongye1` (
+  `name` varchar(50) DEFAULT NULL,
+  `TestID` int(11) DEFAULT NULL,
+  `TestName` varchar(50) DEFAULT NULL,
+  `con` varchar(50) DEFAULT NULL COMMENT '浓度',
+  `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  KEY `Index 1` (`name`),
+  CONSTRAINT `zhikongye1_ibfk_1` FOREIGN KEY (`name`) REFERENCES `zhikongye` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='质控液对应的项目浓度';
+
+-- 正在导出表  water.zhikongye1 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `zhikongye1` DISABLE KEYS */;
+/*!40000 ALTER TABLE `zhikongye1` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
