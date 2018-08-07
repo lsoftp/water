@@ -73,6 +73,68 @@ void DBInterface::getItemNo(QSqlQueryModel &querymodel)//获取已用测试项�
     QString sql=QString("SELECT TestID  FROM item  order by TestID");
     querymodel.setQuery(sql,m_db);
 }
+
+void DBInterface::getCaye(QSqlQueryModel &querymodel)
+{
+    QString sql=QString("SELECT *  FROM biaozhunye  order by name");
+    querymodel.setQuery(sql,m_db);
+}
+//添加标准液
+void DBInterface::insertCaye(CaDlg &cd)
+{
+    QSqlQuery query(m_db);
+    //QString p;
+
+    query.prepare("insert  into biaozhunye values(?,?,?)");
+
+
+    query.bindValue(0,cd.name);
+    query.bindValue(1,cd.no);
+    query.bindValue(2,cd.valid);
+    //query.bindValue(15,tr.combinetestname); //"" if just a common test
+
+    bool success = query.exec();
+           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        //qDebug() << a1 << a2<< a3;
+        //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
+
+        return;
+    }
+
+
+}
+
+void DBInterface::insertzhikongye(QuDlg &cd)
+{
+    QSqlQuery query(m_db);
+    //QString p;
+
+    query.prepare("insert  into biaozhunye values(?,?,?)");
+
+
+    query.bindValue(0,cd.name);
+    query.bindValue(1,cd.no);
+    query.bindValue(2,cd.valid);
+    //query.bindValue(15,tr.combinetestname); //"" if just a common test
+
+    bool success = query.exec();
+           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        //qDebug() << a1 << a2<< a3;
+        //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
+
+        return;
+    }
+
+
+}
 void DBInterface::getSampleId(QSqlQueryModel &querymodel,const QString &index)//获取已用样品Id
 {
     querymodel.setQuery(QString("SELECT sampleid  FROM raw_sr where testpageid='%1' order by sampleid").arg(index),m_db);

@@ -19,6 +19,8 @@ public:
     QString no;
     QString valid;
 
+
+
 private slots:
     void on_pushButton_clicked();
 

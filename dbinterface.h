@@ -15,6 +15,9 @@
 #include <QByteArray>
 #include <QThread>
 #include <QString>
+#include "cadlg.h"
+#include "qudlg.h"
+
 
 struct  TestRegister{
     TestRow tr;
@@ -138,6 +141,10 @@ public:
     void delItembyName(const QString &name);
     void getReagent(QSqlQueryModel &querymodel);
     void getItemNo(QSqlQueryModel &querymodel);
+    void getCaye(QSqlQueryModel &querymodel);
+
+    void insertCaye(CaDlg & cd);//添加定标液
+    void insertzhikongye(QuDlg &cd);
 signals:
 
 public slots:

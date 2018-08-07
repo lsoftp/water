@@ -30,3 +30,4 @@ void CaDlg::on_pushButton_clicked()
     no=ui->lineEdit->text();
     valid=ui->dateEdit->text();
 }
+
