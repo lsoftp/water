@@ -29,7 +29,7 @@ CaCurveFrame::CaCurveFrame(QWidget *parent) :
     //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
     header = ui->tableWidget_2 ->verticalHeader();
     header->setHidden(true);// 隐藏行号
-ui->graphicsView->setScene(&scene);
+    ui->graphicsView->setScene(&scene);
     refreshtable();
 }
 
@@ -293,4 +293,47 @@ void CaCurveFrame::on_pushButton_12_clicked()
 
        scene.addItem(chart);
 
+}
+
+void CaCurveFrame::load(Cadetail &cd)
+{
+    cd.name=ui->comboBox_12->currentText();
+    cd.type=ui->comboBox->currentText();
+    cd.num=ui->comboBox_2->currentText().toInt();
+    cd.kvalue=ui->lineEdit_2->text();
+    cd.testtimes=ui->comboBox_3->currentText();
+    cd.caname0=ui->comboBox_4->currentText();
+    cd.caname1=ui->comboBox_5->currentText();
+    cd.caname2=ui->comboBox_6->currentText();
+    cd.caname3=ui->comboBox_7->currentText();
+    cd.caname4=ui->comboBox_8->currentText();
+    cd.caname5=ui->comboBox_9->currentText();
+    cd.caname6=ui->comboBox_10->currentText();
+    cd.caname7=ui->comboBox_11->currentText();
+    cd.con0=ui->lineEdit_3->text();
+    cd.con1=ui->lineEdit_7->text();
+    cd.con2=ui->lineEdit_10->text();
+    cd.con3=ui->lineEdit_13->text();
+    cd.con4=ui->lineEdit_16->text();
+    cd.con5=ui->lineEdit_19->text();
+    cd.con6=ui->lineEdit_22->text();
+    cd.con7=ui->lineEdit_25->text();
+
+    cd.dilute0=ui->lineEdit_5->text();
+    cd.dilute1=ui->lineEdit_8->text();
+    cd.dilute2=ui->lineEdit_11->text();
+    cd.dilute3=ui->lineEdit_14->text();
+    cd.dilute4=ui->lineEdit_17->text();
+    cd.dilute5=ui->lineEdit_20->text();
+    cd.dilute6=ui->lineEdit_23->text();
+    cd.dilute7=ui->lineEdit_26->text();
+
+    cd.con01=ui->lineEdit_4->text();
+    cd.con11=ui->lineEdit_6->text();
+    cd.con21=ui->lineEdit_9->text();
+    cd.con31=ui->lineEdit_12->text();
+    cd.con41=ui->lineEdit_15->text();
+    cd.con51=ui->lineEdit_18->text();
+    cd.con61=ui->lineEdit_21->text();
+    cd.con71=ui->lineEdit_24->text();
 }

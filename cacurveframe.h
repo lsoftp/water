@@ -3,6 +3,8 @@
 
 #include <QFrame>
 #include <QGraphicsScene>
+#include "dbinterface.h"
+
 namespace Ui {
 class CaCurveFrame;
 }
@@ -48,6 +50,8 @@ private:
     QString selCaname;
     QString selTestname;
     QGraphicsScene scene;
+
+    void load(Cadetail & cd);
 };
 
 #endif // CACURVEFRAME_H
