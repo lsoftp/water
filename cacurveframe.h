@@ -2,7 +2,7 @@
 #define CACURVEFRAME_H
 
 #include <QFrame>
-
+#include <QGraphicsScene>
 namespace Ui {
 class CaCurveFrame;
 }
@@ -35,10 +35,19 @@ private slots:
 
     void on_tableWidget_itemSelectionChanged();
 
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_12_clicked();
+
 private:
     Ui::CaCurveFrame *ui;
     QString selCaname;
     QString selTestname;
+    QGraphicsScene scene;
 };
 
 #endif // CACURVEFRAME_H

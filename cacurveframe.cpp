@@ -5,6 +5,10 @@
 #include <QDebug>
 #include "dbinterface.h"
 #include <QMessageBox>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+
+QT_CHARTS_USE_NAMESPACE
 
 CaCurveFrame::CaCurveFrame(QWidget *parent) :
     QFrame(parent),
@@ -25,7 +29,7 @@ CaCurveFrame::CaCurveFrame(QWidget *parent) :
     //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
     header = ui->tableWidget_2 ->verticalHeader();
     header->setHidden(true);// 隐藏行号
-
+ui->graphicsView->setScene(&scene);
     refreshtable();
 }
 
@@ -245,4 +249,48 @@ void CaCurveFrame::on_tableWidget_itemSelectionChanged()
     {
         refreshtable1(selCaname);
     }
+}
+
+void CaCurveFrame::on_pushButton_4_clicked()
+{
+    // 标准曲线添加
+    QList<QLineEdit *> ls = ui->tab_2->findChildren<QLineEdit *>();
+    foreach(QLineEdit *le,ls)
+    {
+        le->clear();
+    }
+}
+
+void CaCurveFrame::on_pushButton_6_clicked()
+{
+    //save curve
+}
+
+void CaCurveFrame::on_pushButton_5_clicked()
+{
+    //delete curve
+}
+
+void CaCurveFrame::on_pushButton_12_clicked()
+{
+    //print
+    QLineSeries *series = new QLineSeries();
+    QLineSeries series1 ;
+       series->append(0, 6);
+       series->append(2, 4);
+       series->append(3, 8);
+       series->append(7, 4);
+       series->append(10, 5);
+       series1 << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) << QPointF(20, 2);
+
+       QChart *chart = new QChart();
+       chart->legend()->hide();
+       chart->addSeries(series);
+       chart->addSeries(&series1);//not ok
+       chart->createDefaultAxes();
+       chart->setTitle("Simple line chart example");
+       chart->setGeometry(0,0,500,300);
+
+       scene.addItem(chart);
+
 }

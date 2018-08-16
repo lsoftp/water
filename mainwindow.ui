@@ -433,6 +433,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="editable">
        <bool>true</bool>
       </property>
@@ -446,6 +449,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
@@ -456,6 +462,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="geometry">
@@ -465,6 +474,9 @@
         <width>113</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
@@ -621,117 +633,6 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QGroupBox" name="groupBox_12">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>100</y>
-       <width>351</width>
-       <height>201</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(85, 0, 255);</string>
-     </property>
-     <property name="title">
-      <string>系统状态</string>
-     </property>
-     <widget class="QLabel" name="label_38">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>26</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>数据索引：</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_39">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>65</y>
-        <width>131</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>反应杯温度：</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_40">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>105</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>去离子水：</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_41">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>146</y>
-        <width>61</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>废水：</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_18">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>20</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="editable">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_18">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>60</y>
-        <width>113</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_19">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>100</y>
-        <width>113</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_20">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>140</y>
-        <width>113</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
     <widget class="QFrame" name="frame_12">
      <property name="geometry">
       <rect>
@@ -775,6 +676,288 @@
       <property name="text">
        <string>取消</string>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>80</y>
+       <width>401</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 170, 255);</string>
+     </property>
+     <widget class="QGroupBox" name="groupBox_12">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>351</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="title">
+       <string>系统状态</string>
+      </property>
+      <widget class="QLabel" name="label_38">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>26</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>数据索引：</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_39">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>65</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>反应杯温度：</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_40">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>105</y>
+         <width>101</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>去离子水：</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_41">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>146</y>
+         <width>61</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>废水：</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_18">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>20</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_18">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>60</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_19">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>100</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_20">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>140</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>220</y>
+        <width>351</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="title">
+       <string>系统状态</string>
+      </property>
+      <widget class="QLabel" name="label_46">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>26</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>所有样本数量</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_47">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>空白测试数量</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_48">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>74</y>
+         <width>101</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>定标测试数量</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_49">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>100</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>质控测试数量</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_24">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>22</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_25">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>47</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_26">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>72</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_50">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>125</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>常规测试数量</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_27">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>96</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_28">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>120</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -946,17 +1129,17 @@
    <zorder>toolButton_13</zorder>
    <zorder>toolButton_14</zorder>
    <zorder>toolButton</zorder>
-   <zorder>frame_11</zorder>
    <zorder>frame_3</zorder>
    <zorder>frame_4</zorder>
    <zorder>frame_2</zorder>
-   <zorder>frame</zorder>
    <zorder>frame_13</zorder>
    <zorder>cacurve</zorder>
    <zorder>quframe</zorder>
    <zorder>g_weihu</zorder>
    <zorder>g_system</zorder>
    <zorder>g_sample</zorder>
+   <zorder>frame</zorder>
+   <zorder>frame_11</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
