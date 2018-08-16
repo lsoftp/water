@@ -132,6 +132,7 @@ public:
     void insertItem(const Item &it);//添加项目
     void insertCadetail(const Cadetail & ca);
     void getItem(QSqlQueryModel &querymodel);
+    //void getItemInfo()
     void getItembyname(QSqlQueryModel &querymodel,QString &name);
     void getalltest(QSqlQueryModel &querymodel,const QString &index);//获取所有登记的测试
     void gettestindex(QSqlQueryModel &querymodel);
@@ -142,9 +143,28 @@ public:
     void getReagent(QSqlQueryModel &querymodel);
     void getItemNo(QSqlQueryModel &querymodel);
     void getCaye(QSqlQueryModel &querymodel);
+    void delCayebyName(QString name);
+    void updateCayeByName(QString name ,QString n1,QString no,QString valid);
 
     void insertCaye(CaDlg & cd);//添加定标液
-    void insertzhikongye(QuDlg &cd);
+    //void insertzhikongye(QuDlg &cd);//添加质控液
+
+    void insertCayeItem(QString name,QString testname,QString con, QString unit);
+    void getCayeItem(QSqlQueryModel &querymodel,QString name);
+    void updateCayeItemByName(QString name,QString n1,QString n2,QString con,QString unit);
+    void delCayeItem(QString name, QString n1);
+
+    void getzhikong(QSqlQueryModel &querymodel);
+    void delzhikongbyName(QString name);
+    void updatezhikongByName(QString name ,QString n1,QString no,QString valid);
+
+
+    void insertzhikongye(QuDlg &cd);//添加质控液
+
+    void insertzhikongItem(QString name,QString testname,QString con, QString unit);
+    void getzhikongItem(QSqlQueryModel &querymodel,QString name);
+    void updatezhikongItemByName(QString name,QString n1,QString n2,QString con,QString unit);
+    void delzhikongItem(QString name, QString n1);
 signals:
 
 public slots:

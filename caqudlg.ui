@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CaDlg</class>
- <widget class="QDialog" name="CaDlg">
+ <class>CaQuDlg</class>
+ <widget class="QDialog" name="CaQuDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>262</height>
+    <width>320</width>
+    <height>240</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,97 +19,92 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>50</x>
      <y>50</y>
-     <width>71</width>
-     <height>16</height>
+     <width>54</width>
+     <height>12</height>
     </rect>
    </property>
    <property name="text">
-    <string>标准液名称</string>
+    <string>测试名称</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>50</x>
      <y>90</y>
-     <width>71</width>
-     <height>16</height>
+     <width>54</width>
+     <height>12</height>
     </rect>
    </property>
    <property name="text">
-    <string>批号</string>
+    <string>浓度</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>50</x>
      <y>130</y>
-     <width>71</width>
-     <height>16</height>
+     <width>54</width>
+     <height>12</height>
     </rect>
    </property>
    <property name="text">
-    <string>有效期</string>
+    <string>单位</string>
    </property>
   </widget>
-  <widget class="QDateEdit" name="dateEdit">
+  <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>130</y>
-     <width>110</width>
+     <x>120</x>
+     <y>46</y>
+     <width>69</width>
      <height>22</height>
     </rect>
-   </property>
-   <property name="dateTime">
-    <datetime>
-     <hour>0</hour>
-     <minute>0</minute>
-     <second>0</second>
-     <year>2001</year>
-     <month>1</month>
-     <day>1</day>
-    </datetime>
-   </property>
-   <property name="calendarPopup">
-    <bool>true</bool>
-   </property>
-   <property name="date">
-    <date>
-     <year>2001</year>
-     <month>1</month>
-     <day>1</day>
-    </date>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>90</y>
+     <x>119</x>
+     <y>88</y>
      <width>113</width>
      <height>20</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QComboBox" name="comboBox_2">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>50</y>
-     <width>113</width>
-     <height>20</height>
+     <x>119</x>
+     <y>128</y>
+     <width>69</width>
+     <height>22</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>g/l</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>mg/l</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ug/l</string>
+    </property>
+   </item>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>200</y>
+     <x>70</x>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -121,8 +116,8 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>200</y>
+     <x>170</x>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -137,32 +132,32 @@
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>CaDlg</receiver>
+   <receiver>CaQuDlg</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
-     <y>205</y>
+     <x>116</x>
+     <y>199</y>
     </hint>
     <hint type="destinationlabel">
-     <x>126</x>
-     <y>267</y>
+     <x>115</x>
+     <y>215</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
-   <receiver>CaDlg</receiver>
+   <receiver>CaQuDlg</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>219</x>
-     <y>210</y>
+     <x>204</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
-     <x>222</x>
-     <y>264</y>
+     <x>203</x>
+     <y>223</y>
     </hint>
    </hints>
   </connection>

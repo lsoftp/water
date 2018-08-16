@@ -14,9 +14,13 @@ class QuDlg : public QDialog
 public:
     explicit QuDlg(QWidget *parent = 0);
     ~QuDlg();
+    explicit QuDlg(QString a,QString b,QString c);
     QString name;
     QString no;
     QString valid;
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::QuDlg *ui;

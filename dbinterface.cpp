@@ -25,9 +25,9 @@ void DBInterface::open1()
     m_db.setConnectOptions("MYSQL_OPT_RECONNECT=1");
     bool b =m_db.open();
     qDebug("&&&&&&&&&&&&&&&&&&&%d\n",b);
-     qs =m_db.lastError().text();
+    qs =m_db.lastError().text();
     if(!b) qDebug(qs.toLatin1().data());
-   // qtimer = new QTimer(this);
+    // qtimer = new QTimer(this);
 }
 void DBInterface::open()
 {
@@ -41,20 +41,20 @@ void DBInterface::open()
     m_db.setConnectOptions("MYSQL_OPT_RECONNECT=1");
     bool b =m_db.open();
     qDebug("&&&&&&&&&&&&&&&&&&&%d\n",b);
-     qs =m_db.lastError().text();
+    qs =m_db.lastError().text();
     if(!b) qDebug(qs.toLatin1().data());
-   // qtimer = new QTimer(this);
+    // qtimer = new QTimer(this);
 }
 
 void DBInterface::getTestItem(QSqlQueryModel &querymodel)
 {
     //QSqlQueryModel querymodel;
-    querymodel.setQuery("SELECT * FROM item ",m_db);
+    querymodel.setQuery("SELECT * FROM item order by name",m_db);
 
 
 
 
- qDebug()<<"&&&&&&&& threadid "<<QThread::currentThreadId()<<  endl;
+    qDebug()<<"&&&&&&&& threadid "<<QThread::currentThreadId()<<  endl;
 }
 
 
@@ -79,6 +79,37 @@ void DBInterface::getCaye(QSqlQueryModel &querymodel)
     QString sql=QString("SELECT *  FROM biaozhunye  order by name");
     querymodel.setQuery(sql,m_db);
 }
+
+void DBInterface::delCayebyName(QString name)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from biaozhunye where name='%1'  ").arg(name));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::updateCayeByName(QString name, QString n1, QString no, QString valid)
+{
+
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `biaozhunye` SET `name`='%1' ,`no`='%2',`valid`='%3' WHERE  `name`='%4'").arg(n1).arg(no).arg(valid).arg(name));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+
+}
 //添加标准液
 void DBInterface::insertCaye(CaDlg &cd)
 {
@@ -94,8 +125,8 @@ void DBInterface::insertCaye(CaDlg &cd)
     //query.bindValue(15,tr.combinetestname); //"" if just a common test
 
     bool success = query.exec();
-           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
-  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
     if(!success){
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
@@ -113,7 +144,7 @@ void DBInterface::insertzhikongye(QuDlg &cd)
     QSqlQuery query(m_db);
     //QString p;
 
-    query.prepare("insert  into biaozhunye values(?,?,?)");
+    query.prepare("insert  into zhikongye values(?,?,?)");
 
 
     query.bindValue(0,cd.name);
@@ -122,8 +153,8 @@ void DBInterface::insertzhikongye(QuDlg &cd)
     //query.bindValue(15,tr.combinetestname); //"" if just a common test
 
     bool success = query.exec();
-           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
-  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
     if(!success){
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
@@ -135,6 +166,155 @@ void DBInterface::insertzhikongye(QuDlg &cd)
 
 
 }
+
+void DBInterface::insertzhikongItem(QString name, QString testname, QString con, QString unit)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("insert  into zhikongye1 values(?,NULL,?,?,?)");
+
+
+    query.bindValue(0,name);
+    query.bindValue(1,testname);
+    query.bindValue(2,con);
+    query.bindValue(3,unit);
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+
+        return;
+    }
+
+
+}
+
+void DBInterface::getzhikongItem(QSqlQueryModel &querymodel, QString name)
+{
+     querymodel.setQuery(QString("SELECT *  FROM zhikongye1 where name='%1' order by TestName").arg(name),m_db);
+}
+
+void DBInterface::updatezhikongItemByName(QString name, QString n1, QString n2, QString con, QString unit)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `zhikongye1` SET `TestName`='%1' ,`con`='%2',`unit`='%3' WHERE  `name`='%4' AND `TestName`='%5'").arg(n2).arg(con).arg(unit).arg(name).arg(n1));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::delzhikongItem(QString name, QString n1)
+{
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from zhikongye1 where name='%1' and TestName='%2' ").arg(name).arg(n1));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }}
+
+void DBInterface::insertCayeItem(QString name, QString testname, QString con, QString unit)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("insert  into biaozhunye1 values(?,NULL,?,?,?)");
+
+
+    query.bindValue(0,name);
+    query.bindValue(1,testname);
+    query.bindValue(2,con);
+    query.bindValue(3,unit);
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+
+        return;
+    }
+
+}
+
+void DBInterface::getCayeItem(QSqlQueryModel &querymodel,QString name)
+{
+    querymodel.setQuery(QString("SELECT *  FROM biaozhunye1 where name='%1' order by TestName").arg(name),m_db);
+}
+
+void DBInterface::updateCayeItemByName(QString name, QString n1, QString n2, QString con, QString unit)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `biaozhunye1` SET `TestName`='%1' ,`con`='%2',`unit`='%3' WHERE  `name`='%4' AND `TestName`='%5'").arg(n2).arg(con).arg(unit).arg(name).arg(n1));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::delCayeItem(QString name, QString n1)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from biaozhunye1 where name='%1' and TestName='%2' ").arg(name).arg(n1));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::getzhikong(QSqlQueryModel &querymodel)
+{
+    QString sql=QString("SELECT *  FROM zhikongye  order by name");
+    querymodel.setQuery(sql,m_db);
+}
+
+void DBInterface::delzhikongbyName(QString name)
+{
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from zhikongye where name='%1'  ").arg(name));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::updatezhikongByName(QString name, QString n1, QString no, QString valid)
+{
+
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `zhikongye` SET `name`='%1' ,`no`='%2',`valid`='%3' WHERE  `name`='%4'").arg(n1).arg(no).arg(valid).arg(name));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+
+}
+
+
 void DBInterface::getSampleId(QSqlQueryModel &querymodel,const QString &index)//获取已用样品Id
 {
     querymodel.setQuery(QString("SELECT sampleid  FROM raw_sr where testpageid='%1' order by sampleid").arg(index),m_db);
@@ -205,8 +385,8 @@ void DBInterface::insertSample(const TestRegister & tr )
     //query.bindValue(15,tr.combinetestname); //"" if just a common test
 
     bool success = query.exec();
-           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
-  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
     if(!success){
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
@@ -293,8 +473,8 @@ void DBInterface::insertItem(const Item &it)
     query.bindValue(58,it.redoothertimes);
     qDebug()<<query.lastQuery();
     bool success = query.exec();
-           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
-  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
     if(!success){
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
@@ -359,8 +539,8 @@ void DBInterface::insertCadetail(const Cadetail &ca)
 
     qDebug()<<query.lastQuery();
     bool success = query.exec();
-           //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
-  //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
     if(!success){
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
@@ -402,5 +582,5 @@ void DBInterface::delItembyName(const QString &name)
 
 void DBInterface::getReagent(QSqlQueryModel &querymodel)
 {
-     querymodel.setQuery(QString("SELECT *  FROM reagent where id>=-3 order by id"),m_db);
+    querymodel.setQuery(QString("SELECT *  FROM reagent where id>=-3 order by id"),m_db);
 }

@@ -6,6 +6,8 @@ CaDlg::CaDlg(QWidget *parent) :
     ui(new Ui::CaDlg)
 {
     ui->setupUi(this);
+    //ui->dateEdit->setCalendarPopup(true);
+    ui->dateEdit->setDate(QDate::currentDate());
     //setWindowFlags(windowFlags()&~Qt::WindowCloseButtonHint&~Qt::WindowContextHelpButtonHint);
 }
 

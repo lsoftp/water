@@ -24,10 +24,11 @@ CREATE TABLE IF NOT EXISTS `biaozhunye` (
   KEY `Index 1` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  water.biaozhunye 的数据：~1 rows (大约)
+-- 正在导出表  water.biaozhunye 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `biaozhunye` DISABLE KEYS */;
 INSERT INTO `biaozhunye` (`name`, `no`, `valid`) VALUES
-	('3', NULL, NULL);
+	('ww', '2', '2018/5/15'),
+	('ee', '12312', '2018/8/16');
 /*!40000 ALTER TABLE `biaozhunye` ENABLE KEYS */;
 
 -- 导出  表 water.biaozhunye1 结构
@@ -37,14 +38,18 @@ CREATE TABLE IF NOT EXISTS `biaozhunye1` (
   `TestName` varchar(50) DEFAULT NULL,
   `con` varchar(50) DEFAULT NULL COMMENT '浓度',
   `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  UNIQUE KEY `Index 2` (`name`,`TestName`),
   KEY `Index 1` (`name`),
   CONSTRAINT `FK_biaozhunye1_biaozhunye` FOREIGN KEY (`name`) REFERENCES `biaozhunye` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='标准液对应的项目浓度';
 
--- 正在导出表  water.biaozhunye1 的数据：~0 rows (大约)
+-- 正在导出表  water.biaozhunye1 的数据：~4 rows (大约)
 /*!40000 ALTER TABLE `biaozhunye1` DISABLE KEYS */;
 INSERT INTO `biaozhunye1` (`name`, `TestID`, `TestName`, `con`, `unit`) VALUES
-	('3', NULL, NULL, NULL, NULL);
+	('ww', NULL, 'AAA', '1', 'g/l'),
+	('ww', NULL, 'BBB', '1', 'g/l'),
+	('ee', NULL, 'AAA', '1', 'g/l'),
+	('ee', NULL, 'NO2', '1', 'g/l');
 /*!40000 ALTER TABLE `biaozhunye1` ENABLE KEYS */;
 
 -- 导出  表 water.cadetail 结构
@@ -153,10 +158,12 @@ CREATE TABLE IF NOT EXISTS `item` (
   `redodilute2times` varchar(50) DEFAULT NULL,
   `redootherlow` varchar(50) DEFAULT NULL,
   `redootherhigh` varchar(50) DEFAULT NULL,
-  `redoothertimes` varchar(50) DEFAULT NULL
+  `redoothertimes` varchar(50) DEFAULT NULL,
+  UNIQUE KEY `Index 1` (`TestID`),
+  UNIQUE KEY `Index 2` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目信息，项目流程，项目重做';
 
--- 正在导出表  water.item 的数据：~7 rows (大约)
+-- 正在导出表  water.item 的数据：~6 rows (大约)
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 INSERT INTO `item` (`TestID`, `Name`, `Fullname`, `Reagent0`, `Time0`, `Volume0`, `Reagent1`, `Time1`, `Volume1`, `Reagent2`, `Time2`, `Volume2`, `Reagent3`, `Time3`, `Volume3`, `Reagent4`, `Time4`, `Volume4`, `Priority`, `zsypkb`, `ReplaceReagent`, `method`, `readstep`, `readInterval`, `readtimes`, `wavenum`, `wl0`, `wl1`, `digitnum`, `unit`, `checkmethod`, `limitlow`, `limitlowjudge`, `limithigh`, `limithighjudge`, `linearlow`, `linearhigh`, `correctA`, `correctB`, `xgdlimit`, `xgdlimitvalue`, `kbxgd`, `kbxgd1`, `kbxgd2`, `xxd`, `xxdvalue`, `redodiluteid`, `redoxxfflow`, `redoxxffhigh`, `redoxxfftimes`, `redodilute1low`, `redodilute1high`, `redodilute1times`, `redodilute2low`, `redodilute2high`, `redodilute2times`, `redootherlow`, `redootherhigh`, `redoothertimes`) VALUES
 	(0, 'NO2', NULL, 0, 10, 10, -2, 20, 20, 1, 30, 30, 2, 40, 40, 4, 40, 40, 0, 0, -1, 1, NULL, NULL, NULL, 2, 10, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -187,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `raw_sr` (
   `Stage` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='原始登记表样本测试登记，包含普通测试，定标，质控';
 
--- 正在导出表  water.raw_sr 的数据：~25 rows (大约)
+-- 正在导出表  water.raw_sr 的数据：~23 rows (大约)
 /*!40000 ALTER TABLE `raw_sr` DISABLE KEYS */;
 INSERT INTO `raw_sr` (`testsn`, `testpageid`, `no`, `id`, `sampleid`, `isPredilute`, `Predilutetimes`, `Pos`, `Samplecuptype`, `Isurgent`, `Testtype`, `Qualityname`, `Caname`, `TestID`, `Stage`) VALUES
 	('20180706103302000', '2018-07-06', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 1, 0),
@@ -214,7 +221,8 @@ INSERT INTO `raw_sr` (`testsn`, `testpageid`, `no`, `id`, `sampleid`, `isPredilu
 	('20180727084102000', '2018-07-27', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 2, 0),
 	('20180727084105000', '2018-07-27', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 2, 0),
 	('20180730090118000', '2018-07-30', '0', 0, '', 0, 0, 1, 0, 1, 4, '', '', 2, 0),
-	('20180730113837000', '2018-07-30', '1', 1, '', 0, 0, 2, 0, 1, 4, '', '', 3, 0);
+	('20180730113837000', '2018-07-30', '1', 1, '', 0, 0, 2, 0, 1, 4, '', '', 3, 0),
+	('20180815160355000', '2018-08-15', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 7, 0);
 /*!40000 ALTER TABLE `raw_sr` ENABLE KEYS */;
 
 -- 导出  表 water.reagent 结构
@@ -834,8 +842,11 @@ CREATE TABLE IF NOT EXISTS `zhikongye` (
   KEY `Index 1` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- 正在导出表  water.zhikongye 的数据：~0 rows (大约)
+-- 正在导出表  water.zhikongye 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `zhikongye` DISABLE KEYS */;
+INSERT INTO `zhikongye` (`name`, `no`, `valid`) VALUES
+	('a', '123', '2000/1/1'),
+	('b', '3', '2018/8/16');
 /*!40000 ALTER TABLE `zhikongye` ENABLE KEYS */;
 
 -- 导出  表 water.zhikongye1 结构
@@ -845,12 +856,16 @@ CREATE TABLE IF NOT EXISTS `zhikongye1` (
   `TestName` varchar(50) DEFAULT NULL,
   `con` varchar(50) DEFAULT NULL COMMENT '浓度',
   `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  UNIQUE KEY `Index 2` (`name`,`TestName`),
   KEY `Index 1` (`name`),
   CONSTRAINT `zhikongye1_ibfk_1` FOREIGN KEY (`name`) REFERENCES `zhikongye` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='质控液对应的项目浓度';
 
 -- 正在导出表  water.zhikongye1 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `zhikongye1` DISABLE KEYS */;
+INSERT INTO `zhikongye1` (`name`, `TestID`, `TestName`, `con`, `unit`) VALUES
+	('a', NULL, 'AAA', '9', 'g/l'),
+	('b', NULL, 'BBB', '23', 'g/l');
 /*!40000 ALTER TABLE `zhikongye1` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

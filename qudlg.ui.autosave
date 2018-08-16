@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CaDlg</class>
- <widget class="QDialog" name="CaDlg">
+ <class>QuDlg</class>
+ <widget class="QDialog" name="QuDlg">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>262</height>
+    <width>320</width>
+    <height>240</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,21 +19,21 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
+     <x>50</x>
+     <y>40</y>
      <width>71</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>标准液名称</string>
+    <string>质控液名称</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>90</y>
+     <x>50</x>
+     <y>80</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -42,74 +42,34 @@
     <string>批号</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>130</y>
-     <width>71</width>
-     <height>16</height>
+     <x>120</x>
+     <y>80</y>
+     <width>113</width>
+     <height>20</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>有效期</string>
    </property>
   </widget>
   <widget class="QDateEdit" name="dateEdit">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>130</y>
+     <x>120</x>
+     <y>120</y>
      <width>110</width>
      <height>22</height>
     </rect>
    </property>
-   <property name="dateTime">
-    <datetime>
-     <hour>0</hour>
-     <minute>0</minute>
-     <second>0</second>
-     <year>2001</year>
-     <month>1</month>
-     <day>1</day>
-    </datetime>
-   </property>
    <property name="calendarPopup">
     <bool>true</bool>
-   </property>
-   <property name="date">
-    <date>
-     <year>2001</year>
-     <month>1</month>
-     <day>1</day>
-    </date>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>90</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>50</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>200</y>
+     <x>90</x>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -118,11 +78,34 @@
     <string>确定</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>120</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>有效期</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>40</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>200</y>
+     <x>190</x>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -137,32 +120,32 @@
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>CaDlg</receiver>
+   <receiver>QuDlg</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
+     <x>126</x>
      <y>205</y>
     </hint>
     <hint type="destinationlabel">
-     <x>126</x>
-     <y>267</y>
+     <x>127</x>
+     <y>222</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
-   <receiver>CaDlg</receiver>
+   <receiver>QuDlg</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>219</x>
-     <y>210</y>
+     <x>233</x>
+     <y>205</y>
     </hint>
     <hint type="destinationlabel">
-     <x>222</x>
-     <y>264</y>
+     <x>232</x>
+     <y>228</y>
     </hint>
    </hints>
   </connection>

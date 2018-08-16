@@ -50,7 +50,8 @@ SOURCES += \
     sampleframe.cpp \
     cadlg.cpp \
     testdlg.cpp \
-    qudlg.cpp
+    qudlg.cpp \
+    caqudlg.cpp
 
 
 HEADERS += \
@@ -78,7 +79,8 @@ HEADERS += \
     sampleframe.h \
     cadlg.h \
     testdlg.h \
-    qudlg.h
+    qudlg.h \
+    caqudlg.h
 
 LIBS += -lws2_32
 
@@ -97,7 +99,8 @@ FORMS += \
     sampleframe.ui \
     cadlg.ui \
     testdlg.ui \
-    qudlg.ui
+    qudlg.ui \
+    caqudlg.ui
 
 RC_FILE += \
     water.rc
