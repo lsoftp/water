@@ -9,6 +9,10 @@ QuTab::QuTab(QWidget *parent) :
     initcabutton();
     setbutton();
     showpage(0);
+    QRegExp regx("^Q[1-9][0-9]*$");
+    QValidator *validator = new QRegExpValidator(regx, ui->lineEdit_7 );
+    ui->lineEdit_7->setValidator(validator);
+    updatezhikongyelist();
 }
 
 QuTab::~QuTab()
@@ -117,5 +121,17 @@ void QuTab::showpage(int i)
 
 void QuTab::on_comboBox_7_currentIndexChanged(int index)
 {
-        showpage(index);
+    showpage(index);
+}
+
+void QuTab::updatezhikongyelist()
+{
+    QSqlQueryModel sqm;
+    db.getzhikong(sqm);
+    ui->comboBox_5->clear();
+    for(int i=0; i<sqm.rowCount();i++)
+    {
+
+        ui->comboBox_5->addItem(sqm.record(i).value("name").toString());
+    }
 }

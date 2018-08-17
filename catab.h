@@ -20,6 +20,7 @@ public:
 private slots:
     void on_comboBox_7_currentIndexChanged(int index);
 
+    void updateCayelist();
 private:
     Ui::CaTab *ui;
     CaButton *pb1[38*2];

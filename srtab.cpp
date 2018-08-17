@@ -12,9 +12,29 @@ SrTab::SrTab(QWidget *parent) :
     initsabutton();
     setbutton();
     this->initstate();
-    QRegExp regx("[1-9][0-9]+$");
+    QRegExp regx("^[1-9][0-9]*$");
     QValidator *validator = new QRegExpValidator(regx, ui->lineEdit_4 );
     ui->lineEdit_4->setValidator(validator);
+
+
+
+}
+bool SrTab::isValid()
+{
+    const QValidator* v=ui->lineEdit_4->validator();
+    int i;
+    QString s=ui->lineEdit_4->text();
+    if(QValidator::Acceptable==v->validate(s,i))
+    {
+        //v->validate(s,i);
+        //QMessageBox::information(0,QString::number(i),QString::number(v->validate(s,i)));
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 
 }
 
@@ -266,6 +286,11 @@ void SrTab::initstate()
 
 void SrTab::reg()
 {
+    if(!isValid())
+    {
+        QMessageBox::information(0,"错误","请输入正确的样本号！");
+        return;
+    }
     TestRegister t;
     QDateTime now=QDateTime::currentDateTime();
     t.id=ui->lineEdit_4->text().toInt();
@@ -300,13 +325,13 @@ void SrTab::reg()
             t.tr.test_id=pb[i]->testid;
             db.insertSample(t);
             j++;
-//            if(gi::isReplace(pb[i]->testid))
-//            {
-//                tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
-//                t.tr.isreplace=1;
-//                db.insertSample(t);
-//                j++;
-//            }
+            //            if(gi::isReplace(pb[i]->testid))
+            //            {
+            //                tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+            //                t.tr.isreplace=1;
+            //                db.insertSample(t);
+            //                j++;
+            //            }
 
             //
         }
@@ -321,24 +346,24 @@ void SrTab::on_comboBox_4_currentIndexChanged(int index)
 
 void SrTab::ontoggle(bool b)
 {
-//    bool isOK=false;
-//    for (int i=0;i<g_item_num;i++)
-//    {
-//        if(pb[i]->isChecked())
-//        {
-//            isOK=true;
-//            break;
-//        }
+    //    bool isOK=false;
+    //    for (int i=0;i<g_item_num;i++)
+    //    {
+    //        if(pb[i]->isChecked())
+    //        {
+    //            isOK=true;
+    //            break;
+    //        }
 
-//    }
-//    if(isOK)
-//    {
-        setYesEnable(true);
-//    }
-//    else
-//    {
-//        setYesEnable(false);
-//    }
+    //    }
+    //    if(isOK)
+    //    {
+    setYesEnable(true);
+    //    }
+    //    else
+    //    {
+    //        setYesEnable(false);
+    //    }
 }
 
 void SrTab::on_sr_yes_clicked()
@@ -386,13 +411,13 @@ void SrTab::on_tableWidget_itemSelectionChanged()
         //no="123456";
         no=no.right(no.size()-1);
 
-        }
+    }
     ui->lineEdit_4->setText(no);
     QSqlQueryModel sqm;
     db.getSrbyid(sqm,::g_current_index,no);
-//    SetPos();
-//    ui->comboBox_2->insertItem(0,no);
-//    ui->comboBox_2->setCurrentIndex(0);
+    //    SetPos();
+    //    ui->comboBox_2->insertItem(0,no);
+    //    ui->comboBox_2->setCurrentIndex(0);
     uncheckbt();
     int num=sqm.rowCount();
     if (num==0)
@@ -480,17 +505,28 @@ void SrTab::on_lineEdit_4_textChanged(const QString &arg1)
             return ;
         }
     }
-   if(arg1!="")
-   {
+    if(arg1!="")
+    {
         ui->tableWidget->item(num-1,0)->setText(QString("*%1").arg(arg1));
 
         ui->tableWidget->selectRow(num-1);
     }
     else
-   {
-       ui->tableWidget->item(num-1,0)->setText(QString("*%1").arg(getfreeNo()));
+    {
+        ui->tableWidget->item(num-1,0)->setText(QString("*%1").arg(getfreeNo()));
 
-       //ui->tableWidget->selectRow(num-1);
+        //ui->tableWidget->selectRow(num-1);
 
-   }
+    }
+}
+
+void SrTab::on_sr_del_clicked()
+{
+    isValid();
+}
+
+void SrTab::on_lineEdit_4_editingFinished()
+{
+
+
 }

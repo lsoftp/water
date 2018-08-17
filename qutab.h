@@ -20,7 +20,7 @@ public:
     void init();
 private slots:
     void on_comboBox_7_currentIndexChanged(int index);
-
+    void updatezhikongyelist();
 private:
     Ui::QuTab *ui;
     void initcabutton();

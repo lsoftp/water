@@ -39,6 +39,10 @@ private slots:
 
     void on_lineEdit_4_textChanged(const QString &arg1);
 
+    void on_sr_del_clicked();
+
+    void on_lineEdit_4_editingFinished();
+
 private:
     Ui::SrTab *ui;
     ItemButton *pb[38*2];   //测试项目按钮
@@ -57,6 +61,7 @@ private:
     void reg();
     int getfreeNo();
     void readytoaddnew();
+    bool isValid();
 };
 
 #endif // SRTAB_H

@@ -10,6 +10,10 @@ CaTab::CaTab(QWidget *parent) :
     initcabutton();
     setbutton();
     showpage(0);
+    QRegExp regx("^C[1-9][0-9]*$");
+    QValidator *validator = new QRegExpValidator(regx, ui->lineEdit_7 );
+    ui->lineEdit_7->setValidator(validator);
+    updateCayelist();
 }
 
 CaTab::~CaTab()
@@ -117,4 +121,16 @@ void CaTab::showpage(int i)
 void CaTab::on_comboBox_7_currentIndexChanged(int index)
 {
     showpage(index);
+}
+
+void CaTab::updateCayelist()
+{
+    QSqlQueryModel sqm;
+    db.getCaye(sqm);
+    ui->comboBox_5->clear();
+    for(int i=0; i<sqm.rowCount();i++)
+    {
+
+        ui->comboBox_5->addItem(sqm.record(i).value("name").toString());
+    }
 }

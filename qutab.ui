@@ -16,9 +16,9 @@
   <widget class="QFrame" name="frame_5">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>170</x>
      <y>220</y>
-     <width>701</width>
+     <width>631</width>
      <height>291</height>
     </rect>
    </property>
@@ -32,9 +32,9 @@
   <widget class="QFrame" name="frame_6">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>170</x>
      <y>220</y>
-     <width>701</width>
+     <width>631</width>
      <height>291</height>
     </rect>
    </property>
@@ -48,7 +48,7 @@
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>120</x>
      <y>20</y>
      <width>671</width>
      <height>151</height>
@@ -79,6 +79,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
@@ -101,6 +104,9 @@
       <width>69</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="editable">
      <bool>false</bool>
@@ -130,6 +136,9 @@
       <width>101</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <item>
      <property name="text">
@@ -164,6 +173,9 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
     <item>
      <property name="text">
       <string>一</string>
@@ -183,6 +195,9 @@
       <width>69</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -219,6 +234,9 @@
       <width>281</width>
       <height>431</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <column>
      <property name="text">
