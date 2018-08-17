@@ -165,6 +165,11 @@ public:
     void getzhikongItem(QSqlQueryModel &querymodel,QString name);
     void updatezhikongItemByName(QString name,QString n1,QString n2,QString con,QString unit);
     void delzhikongItem(QString name, QString n1);
+
+
+    void getCacurveSetting(QSqlQueryModel &querymodel); //获取ca curve 设置名称
+    void getCadetailbyname(QSqlQueryModel &querymodel, QString &name);
+    void delCadetailbyName(const QString &name);
 signals:
 
 public slots:

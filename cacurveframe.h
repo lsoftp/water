@@ -22,6 +22,7 @@ public:
 
     void refreshtable();//刷新标准列表
     void refreshtable1(QString sel);//刷新选择标准液的测试
+    void refreshtable2();//刷新标准曲线设置列表
 private slots:
     void on_pushButton_clicked();
 
@@ -45,6 +46,8 @@ private slots:
 
     void on_pushButton_12_clicked();
 
+    void on_tableWidget_5_itemSelectionChanged();
+
 private:
     Ui::CaCurveFrame *ui;
     QString selCaname;
@@ -52,6 +55,8 @@ private:
     QGraphicsScene scene;
 
     void load(Cadetail & cd);
+    void initTestList();
+    void initCayeList();
 };
 
 #endif // CACURVEFRAME_H

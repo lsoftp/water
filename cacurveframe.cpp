@@ -22,6 +22,7 @@ CaCurveFrame::CaCurveFrame(QWidget *parent) :
     //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
     QHeaderView *header = ui->tableWidget ->verticalHeader();
     header->setHidden(true);// 隐藏行号
+
     ui->tableWidget_2 ->setEditTriggers(QAbstractItemView::NoEditTriggers);
     //一次选择一行
     ui->tableWidget_2 ->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -29,8 +30,20 @@ CaCurveFrame::CaCurveFrame(QWidget *parent) :
     //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
     header = ui->tableWidget_2 ->verticalHeader();
     header->setHidden(true);// 隐藏行号
+
+    ui->tableWidget_5 ->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget_5 ->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_5 ->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
+    header = ui->tableWidget_5 ->verticalHeader();
+    header->setHidden(true);// 隐藏行号
+
     ui->graphicsView->setScene(&scene);
     refreshtable();
+    initTestList();
+    initCayeList();
+    refreshtable2();
 }
 
 CaCurveFrame::~CaCurveFrame()
@@ -168,6 +181,21 @@ void CaCurveFrame::refreshtable1(QString sel)
 
 }
 
+void CaCurveFrame::refreshtable2()
+{
+    QSqlQueryModel sqm;
+    db.getCacurveSetting(sqm);
+    QTableWidget *tw=ui->tableWidget_5;
+    tw->clearContents();
+    tw->setRowCount(sqm.rowCount());
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+        tw->setItem(i,0,new QTableWidgetItem(QString::number(i+1)));
+        tw->setItem(i,1,new QTableWidgetItem(sqm.record(i).value("name").toString()));
+
+    }
+}
+
 void CaCurveFrame::on_pushButton_3_clicked()
 {
     QList<QTableWidgetItem*> items=ui->tableWidget->selectedItems();
@@ -259,16 +287,45 @@ void CaCurveFrame::on_pushButton_4_clicked()
     {
         le->clear();
     }
+    ui->tableWidget_5->clearSelection();
 }
 
 void CaCurveFrame::on_pushButton_6_clicked()
 {
     //save curve
+    Cadetail cd;
+    load(cd);
+    QList<QTableWidgetItem*> items=ui->tableWidget_5->selectedItems();
+    if(items.size()!=0)
+    {
+        //如果有当前的配置，就为update
+        QString name=items.at(1)->text();
+        db.delCadetailbyName(name);
+
+    }
+    db.insertCadetail(cd);
+
+    refreshtable2();
 }
 
 void CaCurveFrame::on_pushButton_5_clicked()
 {
     //delete curve
+    QList<QTableWidgetItem*> items=ui->tableWidget_5->selectedItems();
+    if(items.size()==0) return;
+    QString name=items.at(1)->text();
+    QMessageBox box(QMessageBox::Information,"提示","是否删除曲线设置?");
+    box.setStandardButtons (QMessageBox::Ok|QMessageBox::Cancel);
+    //box.setStandardButtons ();
+    box.setButtonText (QMessageBox::Ok,QString("确 定"));
+    box.setButtonText (QMessageBox::Cancel,QString("取 消"));
+
+    if(QMessageBox::Ok==box.exec ())
+    {
+        db.delCadetailbyName(name);
+        refreshtable2();
+    }
+
 }
 
 void CaCurveFrame::on_pushButton_12_clicked()
@@ -336,4 +393,149 @@ void CaCurveFrame::load(Cadetail &cd)
     cd.con51=ui->lineEdit_18->text();
     cd.con61=ui->lineEdit_21->text();
     cd.con71=ui->lineEdit_24->text();
+}
+
+void CaCurveFrame::initTestList()
+{
+    QSqlQueryModel sqm;
+    db.getTestItem(sqm);
+    for(int i=0; i<sqm.rowCount();i++)
+    {
+        ui->comboBox_12->addItem(sqm.record(i).value("name").toString(),sqm.record(i).value("TestID").toInt());
+    }
+
+}
+
+void CaCurveFrame::initCayeList()
+{
+    QSqlQueryModel sqm;
+    db.getCaye(sqm);
+    for(int i=0; i<sqm.rowCount();i++)
+    {
+        ui->comboBox_4->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_5->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_6->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_7->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_8->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_9->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_10->addItem(sqm.record(i).value("name").toString());
+        ui->comboBox_11->addItem(sqm.record(i).value("name").toString());
+    }
+
+}
+
+void CaCurveFrame::on_tableWidget_5_itemSelectionChanged()
+{
+    QList<QTableWidgetItem*> items=ui->tableWidget_5->selectedItems();
+    if(items.size()==0) return;
+    QString name=items.at(1)->text();
+    QSqlQueryModel sqm;
+    db.getCadetailbyname(sqm,name);
+    int i=0;
+    Cadetail ca;
+#define ITEM_I(p,q) q=sqm.record(i).value(p).toInt()
+#define ITEM_C(p,q) q=sqm.record(i).value(p).toString()
+    ITEM_I(0,ca.TestID);
+    ITEM_C(1,ca.name);
+    ITEM_C(2,ca.type);
+    ITEM_I(3,ca.num);
+    ITEM_C(4,ca.kvalue);
+    ITEM_C(5,ca.testtimes);
+    ITEM_C(6,ca.caname0);
+    ITEM_C(7,ca.con0);
+    ITEM_C(8,ca.dilute0);
+    ITEM_C(9,ca.con01);
+    ITEM_C(10,ca.caname1);
+    ITEM_C(11,ca.con1);
+    ITEM_C(12,ca.dilute1);
+    ITEM_C(13,ca.con11);
+
+    ITEM_C(14,ca.caname2);
+    ITEM_C(15,ca.con2);
+    ITEM_C(16,ca.dilute2);
+    ITEM_C(17,ca.con21);
+
+    ITEM_C(18,ca.caname3);
+    ITEM_C(19,ca.con3);
+    ITEM_C(20,ca.dilute3);
+    ITEM_C(21,ca.con31);
+    ITEM_C(22,ca.caname4);
+    ITEM_C(23,ca.con4);
+    ITEM_C(24,ca.dilute4);
+    ITEM_C(25,ca.con41);
+    ITEM_C(26,ca.caname5);
+    ITEM_C(27,ca.con5);
+    ITEM_C(28,ca.dilute5);
+    ITEM_C(29,ca.con51);
+    ITEM_C(30,ca.caname6);
+    ITEM_C(31,ca.con6);
+    ITEM_C(32,ca.dilute6);
+    ITEM_C(33,ca.con61);
+    ITEM_C(34,ca.caname7);
+    ITEM_C(35,ca.con7);
+    ITEM_C(36,ca.dilute7);
+    ITEM_C(37,ca.con71);
+
+    //cd.name=ui->comboBox_12->currentText();
+    i=ui->comboBox_12->findText(ca.name);
+    ui->comboBox_12->setCurrentIndex(i);
+
+    i=ui->comboBox->findText(ca.type);
+    ui->comboBox->setCurrentIndex(i);
+
+    i=ui->comboBox_2->findText(QString::number(ca.num));
+    ui->comboBox_2->setCurrentIndex(i);
+    ui->lineEdit_2->setText(ca.kvalue);
+    //cd.testtimes=ui->comboBox_3->currentText();
+    i=ui->comboBox_3->findText(ca.testtimes);
+    ui->comboBox_3->setCurrentIndex(i);
+
+    //cd.caname0=ui->comboBox_4->currentText();
+    i=ui->comboBox_4->findText(ca.caname0);
+    ui->comboBox_4->setCurrentIndex(i);
+    i=ui->comboBox_5->findText(ca.caname1);
+    ui->comboBox_5->setCurrentIndex(i);
+    i=ui->comboBox_6->findText(ca.caname2);
+    ui->comboBox_6->setCurrentIndex(i);
+    i=ui->comboBox_7->findText(ca.caname3);
+    ui->comboBox_7->setCurrentIndex(i);
+    i=ui->comboBox_8->findText(ca.caname4);
+    ui->comboBox_8->setCurrentIndex(i);
+    i=ui->comboBox_9->findText(ca.caname5);
+    ui->comboBox_9->setCurrentIndex(i);
+    i=ui->comboBox_10->findText(ca.caname6);
+    ui->comboBox_10->setCurrentIndex(i);
+    i=ui->comboBox_11->findText(ca.caname7);
+    ui->comboBox_11->setCurrentIndex(i);
+
+     ui->lineEdit_3->setText(ca.con0);
+     ui->lineEdit_7->setText(ca.con1);
+     ui->lineEdit_10->setText(ca.con2);
+     ui->lineEdit_13->setText(ca.con3);
+     ui->lineEdit_16->setText(ca.con4);
+     ui->lineEdit_19->setText(ca.con5);
+     ui->lineEdit_22->setText(ca.con6);
+     ui->lineEdit_25->setText(ca.con7);
+
+     ui->lineEdit_5->setText(ca.dilute0);
+     ui->lineEdit_8->setText(ca.dilute1);
+     ui->lineEdit_11->setText(ca.dilute2);
+     ui->lineEdit_14->setText(ca.dilute3);
+     ui->lineEdit_17->setText(ca.dilute4);
+     ui->lineEdit_20->setText(ca.dilute5);
+     ui->lineEdit_23->setText(ca.dilute6);
+     ui->lineEdit_26->setText(ca.dilute7);
+
+     ui->lineEdit_4->setText(ca.con01);
+     ui->lineEdit_6->setText(ca.con11);
+     ui->lineEdit_9->setText(ca.con21);
+     ui->lineEdit_12->setText(ca.con31);
+     ui->lineEdit_15->setText(ca.con41);
+     ui->lineEdit_18->setText(ca.con51);
+     ui->lineEdit_21->setText(ca.con61);
+     ui->lineEdit_24->setText(ca.con71);
+
+
+
+
 }

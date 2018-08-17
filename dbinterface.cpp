@@ -222,6 +222,11 @@ void DBInterface::delzhikongItem(QString name, QString n1)
         return;
     }}
 
+void DBInterface::getCacurveSetting(QSqlQueryModel &querymodel)
+{
+    querymodel.setQuery(QString("SELECT name  FROM cadetail   order by name"),m_db);
+}
+
 void DBInterface::insertCayeItem(QString name, QString testname, QString con, QString unit)
 {
     QSqlQuery query(m_db);
@@ -495,7 +500,7 @@ void DBInterface::insertCadetail(const Cadetail &ca)
                   "?,?,?,?,?,?,?,?,?,?,"
                   "?,?,?,?,?,?,?,?,?,?,"
                   "?,?,?,?,?,?,?,?,?,?,"
-                  "?,?,?,?,?,?,?,?");
+                  "?,?,?,?,?,?,?,?)");
     query.bindValue(0,ca.TestID);
     query.bindValue(1,ca.name);
     query.bindValue(2,ca.type);
@@ -563,12 +568,34 @@ void DBInterface::getItembyname(QSqlQueryModel &querymodel, QString &name)
     querymodel.setQuery(QString("SELECT *  FROM item where name='%1'").arg(name),m_db);
 }
 
+void DBInterface::getCadetailbyname(QSqlQueryModel &querymodel, QString &name)
+{
+    querymodel.setQuery(QString("SELECT *  FROM cadetail where name='%1'").arg(name),m_db);
+}
+
 void DBInterface::delItembyName(const QString &name)
 {
     //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
     QSqlQuery query(m_db);
     // 插入数据user
     query.prepare(QString("DELETE  from item where name='%1'  ").arg(name));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::delCadetailbyName(const QString &name)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("DELETE  from cadetail where name='%1'  ").arg(name));
 
 
 
