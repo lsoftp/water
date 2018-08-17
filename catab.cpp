@@ -134,3 +134,78 @@ void CaTab::updateCayelist()
         ui->comboBox_5->addItem(sqm.record(i).value("name").toString());
     }
 }
+
+void CaTab::reg()
+{
+    if(!isValid())
+    {
+        QMessageBox::information(0,"错误","请输入正确的样本号！");
+        return;
+    }
+    TestRegister t;
+    QDateTime now=QDateTime::currentDateTime();
+
+    //t.tr.test_row_id=QDateTime::currentDateTime().toString()
+    t.no=ui->lineEdit_7->text();
+    t.id=t.no.right(t.no.size()-1).toInt();
+    //t.sampleid=ui->lineEdit_6->text();
+    //t.pre_dilute=ui->checkBox->isChecked();
+    //t.pre_d_times=ui->lineEdit_5->text().toInt();
+    //t.tr.position=ui->comboBox_2->currentText().toInt();
+    t.tr.sample_cup_type=ui->comboBox_6->currentIndex();
+    //t.tr.priority=!(ui->checkBox_2->isChecked());
+    t.tr.test_type=1; //to be determined
+    t.qname="";
+    t.cname=ui->comboBox_5->currentText();
+    t.tr.isdilute=0;
+    t.tr.status=0;
+    //t.combinetestname="";
+    //初始化  g_current_index 在全局变量中
+    //还有test_row_id ,isreplace, test_id
+
+    db.delSrbyid(g_current_index,t.no);
+    int j=0;
+    for(int i=0;i<g_item_num;i++)
+    {
+        if(this->pb1[i]->isChecked())
+        {
+            //insert
+            QString tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+            //if test_id isreplace add two rows
+            t.tr.test_row_id=tempid.toStdString();
+            t.tr.isreplace=0;
+            t.tr.test_id=pb1[i]->testid;
+            db.insertSample(t);
+            j++;
+            //            if(gi::isReplace(pb[i]->testid))
+            //            {
+            //                tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+            //                t.tr.isreplace=1;
+            //                db.insertSample(t);
+            //                j++;
+            //            }
+
+            //
+        }
+    }
+
+}
+
+bool CaTab::isValid()
+{
+    const QValidator* v=ui->lineEdit_7->validator();
+    int i;
+    QString s=ui->lineEdit_7->text();
+    if(QValidator::Acceptable==v->validate(s,i))
+    {
+        //v->validate(s,i);
+        //QMessageBox::information(0,QString::number(i),QString::number(v->validate(s,i)));
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+
+}

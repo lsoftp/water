@@ -27,6 +27,8 @@ private:
     void initcabutton();//初始化定标定标按钮
     void setbutton();
     void showpage(int i);
+    void reg();
+    bool isValid();
 };
 
 #endif // CATAB_H
