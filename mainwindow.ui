@@ -258,7 +258,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>ico/app.ico</normaloff>ico/app.ico</iconset>
+      <normaloff>ico/status.ico</normaloff>ico/status.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -1129,16 +1129,16 @@
    <zorder>toolButton_13</zorder>
    <zorder>toolButton_14</zorder>
    <zorder>toolButton</zorder>
-   <zorder>frame_3</zorder>
-   <zorder>frame_4</zorder>
    <zorder>frame_13</zorder>
    <zorder>cacurve</zorder>
    <zorder>quframe</zorder>
    <zorder>g_weihu</zorder>
    <zorder>g_system</zorder>
-   <zorder>g_sample</zorder>
    <zorder>frame</zorder>
    <zorder>frame_11</zorder>
+   <zorder>frame_4</zorder>
+   <zorder>frame_3</zorder>
+   <zorder>g_sample</zorder>
    <zorder>frame_2</zorder>
   </widget>
  </widget>
@@ -1206,5 +1206,25 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slot1(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>278</x>
+     <y>144</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>163</x>
+     <y>41</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slot1(int)</slot>
+ </slots>
 </ui>

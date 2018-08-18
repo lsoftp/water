@@ -263,3 +263,37 @@ void MainWindow::on_toolButton_7_clicked()
 {
     display(G_SYSTEM);
 }
+
+void MainWindow::on_tabWidget_tabBarClicked(int index)
+{
+    if(index==0)
+    {
+        ui->tab->initstate();
+    }
+    else if(1==index)
+    {
+        ui->tab_2->initstate();
+    }
+    else
+        ui->tab_3->initstate();
+
+}
+
+void MainWindow::on_toolButton_14_clicked()
+{
+    QMessageBox::information(0,QString::number(ui->tabWidget->currentIndex()),"");
+}
+
+void MainWindow::slot1(int index)
+{
+    if(index==0)
+    {
+        ui->tab->initstate();
+    }
+    else if(1==index)
+    {
+        ui->tab_2->initstate();
+    }
+    else
+        ui->tab_3->initstate();
+}

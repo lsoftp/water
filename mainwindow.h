@@ -91,6 +91,12 @@ private slots:
 
     void on_toolButton_7_clicked();
 
+    void on_tabWidget_tabBarClicked(int index);
+
+    void on_toolButton_14_clicked();
+
+    void slot1(int index);
+
 private:
     Ui::MainWindow *ui;
 

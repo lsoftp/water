@@ -15,6 +15,9 @@ public:
     explicit StatusFrame(QWidget *parent = 0);
     ~StatusFrame();
 
+private slots:
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::StatusFrame *ui;
 };

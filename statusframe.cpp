@@ -12,3 +12,9 @@ StatusFrame::~StatusFrame()
 {
     delete ui;
 }
+
+void StatusFrame::on_tabWidget_currentChanged(int index)
+{
+    int i=index;
+    i++;
+}
