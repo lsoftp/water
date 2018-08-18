@@ -28,7 +28,6 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <zorder>frame_6</zorder>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
@@ -202,10 +201,10 @@
   <widget class="QGroupBox" name="groupBox_5">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>30</y>
-     <width>341</width>
-     <height>481</height>
+     <x>810</x>
+     <y>10</y>
+     <width>401</width>
+     <height>501</height>
     </rect>
    </property>
    <property name="title">
@@ -214,10 +213,10 @@
    <widget class="QTableWidget" name="tableWidget_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>281</width>
-      <height>431</height>
+      <x>20</x>
+      <y>20</y>
+      <width>371</width>
+      <height>461</height>
      </rect>
     </property>
     <property name="styleSheet">

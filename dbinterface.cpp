@@ -64,7 +64,18 @@ void DBInterface::getPos(QSqlQueryModel &querymodel,const QString &index)//获�
 }
 void DBInterface::getSampleNo(QSqlQueryModel &querymodel,const QString &index)//获取已用样本号
 {
-    QString sql=QString("SELECT id  FROM raw_sr where testpageid='%1' order by id").arg(index);
+    QString sql=QString("SELECT id  FROM raw_sr where testpageid='%1' and Testtype=4  order by id").arg(index);
+    querymodel.setQuery(sql,m_db);
+}
+void DBInterface::getCaNo(QSqlQueryModel &querymodel,const QString &index)//获取已用定标样本号
+{
+    QString sql=QString("SELECT id  FROM raw_sr where testpageid='%1' and Testtype<3  order by id").arg(index);
+    querymodel.setQuery(sql,m_db);
+}
+
+void DBInterface::getQuNo(QSqlQueryModel &querymodel,const QString &index)//获取已用指控样本号
+{
+    QString sql=QString("SELECT id  FROM raw_sr where testpageid='%1' and Testtype=3  order by id").arg(index);
     querymodel.setQuery(sql,m_db);
 }
 
@@ -339,20 +350,37 @@ void DBInterface::gettestindex(QSqlQueryModel &querymodel)
 
 void DBInterface::getSr(QSqlQueryModel &querymodel,const QString &index)
 {
-    querymodel.setQuery(QString("SELECT distinct id,Pos,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) order by id").arg(index),m_db);
+    querymodel.setQuery(QString("SELECT distinct id,Pos,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) and Testtype=4 order by id").arg(index),m_db);
 }
 
+void DBInterface::getCa(QSqlQueryModel &querymodel,const QString &index)
+{
+    querymodel.setQuery(QString("SELECT distinct no, id,Pos,Caname,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) and Testtype<3 order by id").arg(index),m_db);
+}
+
+void DBInterface::getQu(QSqlQueryModel &querymodel,const QString &index)
+{
+    querymodel.setQuery(QString("SELECT distinct no, id,Pos, Qualityname,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) and Testtype=3 order by id").arg(index),m_db);
+}
 void DBInterface::getSrbyid(QSqlQueryModel &querymodel,const QString &index,QString &id)
 {
-    querymodel.setQuery(QString("SELECT * from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    querymodel.setQuery(QString("SELECT * from raw_sr where id=%1 and Testtype=4 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+}
+void DBInterface::getCabyid(QSqlQueryModel &querymodel,const QString &index,QString &id)
+{
+    querymodel.setQuery(QString("SELECT * from raw_sr where no='%1' and Testtype<3 and testpageid='%2'  ").arg(id).arg(index));
 }
 
+void DBInterface::getQubyid(QSqlQueryModel &querymodel,const QString &index,QString &id)
+{
+    querymodel.setQuery(QString("SELECT * from raw_sr where no='%1' and Testtype=3 and testpageid='%2'  ").arg(id).arg(index));
+}
 void DBInterface::delSrbyid(const QString &index, QString &id)
 {
-    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2' and Testtype=4 ").arg(id.toInt()).arg(index));
     QSqlQuery query(m_db);
     // 插入数据user
-    query.prepare(QString("DELETE  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    query.prepare(QString("DELETE  from raw_sr where id=%1 and testpageid='%2'  and Testtype=4 ").arg(id.toInt()).arg(index));
 
 
 
@@ -363,6 +391,41 @@ void DBInterface::delSrbyid(const QString &index, QString &id)
         return;
     }
 }
+
+void DBInterface::delCabyid(const QString &index, QString &id)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2' and Testtype=4 ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("DELETE  from raw_sr where no='%1' and testpageid='%2'  and Testtype<3 ").arg(id).arg(index));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+void DBInterface::delQubyid(const QString &index, QString &id)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2' and Testtype=4 ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("DELETE  from raw_sr where no='%1' and testpageid='%2'  and Testtype=3 ").arg(id.toInt()).arg(index));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+
 
 void DBInterface::insertSample(const TestRegister & tr )
 {

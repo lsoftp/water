@@ -166,6 +166,12 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     {
         ui->tab->initstate();
     }
+    else if(1==index)
+    {
+        ui->tab_2->initstate();
+    }
+    else
+        ui->tab_3->initstate();
 }
 
 void MainWindow::on_toolButton_13_clicked()

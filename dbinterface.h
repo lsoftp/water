@@ -170,6 +170,14 @@ public:
     void getCacurveSetting(QSqlQueryModel &querymodel); //获取ca curve 设置名称
     void getCadetailbyname(QSqlQueryModel &querymodel, QString &name);
     void delCadetailbyName(const QString &name);
+    void getCaNo(QSqlQueryModel &querymodel, const QString &index);
+    void getQuNo(QSqlQueryModel &querymodel, const QString &index);
+    void getCa(QSqlQueryModel &querymodel, const QString &index);
+    void getQu(QSqlQueryModel &querymodel, const QString &index);
+    void delCabyid(const QString &index, QString &id);
+    void delQubyid(const QString &index, QString &id);
+    void getCabyid(QSqlQueryModel &querymodel, const QString &index, QString &id);
+    void getQubyid(QSqlQueryModel &querymodel, const QString &index, QString &id);
 signals:
 
 public slots:
