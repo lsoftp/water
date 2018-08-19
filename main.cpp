@@ -8,6 +8,7 @@
 #include "debugout.h"
 #include "LogFile.h"
 #include <QLockFile>
+#include <QFile>
 
 
 QLockFile g_lock("water.txt");
@@ -63,16 +64,22 @@ int main(int argc, char *argv[])
     if(!b) exit(0);
     //g_lock.lock();
 
-    QMap<int,QString> mm;
-    mm[1]="AAA(1)";
-    mm[2]="AAA(2)";
-    QString pp=mm[0];
-    qDebug("mm[0] is %s",pp);
-    qDebug()<<pp;
+//    QMap<int,QString> mm;
+//    mm[1]="AAA(1)";
+//    mm[2]="AAA(2)";
+//    QString pp=mm[0];
+//    qDebug("mm[0] is %s",pp);
+//    qDebug()<<pp;
     db.open();
     dbhandle.open1();
     QApplication a(argc, argv);
+    QFile styleFile(":/water.qss");
+        qDebug()<<"openfile"<<styleFile.open(QIODevice::ReadOnly);
+        QString setStyleSheet(styleFile.readAll());;
+        a.setStyleSheet(setStyleSheet);
+
     g_w=new MainWindow ;
+    g_w->setStyleSheet("QLineEdit { background-color: yellow }");
     g_w->initsignal();
 
     g_w->show();
@@ -80,6 +87,9 @@ int main(int argc, char *argv[])
     testinit();
     g_handler.start();
     fflush(stdout);
+
+
+
     return a.exec();
 
 }

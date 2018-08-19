@@ -514,11 +514,26 @@ selection-background-color: rgb(0, 85, 255);</string>
       <rect>
        <x>394</x>
        <y>191</y>
-       <width>641</width>
-       <height>222</height>
+       <width>661</width>
+       <height>309</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
+     <layout class="QGridLayout" name="gridLayout" columnstretch="2,3,5,5,5">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="rightMargin">
+       <number>15</number>
+      </property>
+      <property name="bottomMargin">
+       <number>18</number>
+      </property>
+      <property name="horizontalSpacing">
+       <number>18</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>14</number>
+      </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
@@ -549,33 +564,10 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>稀释倍数</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>浓度</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_11">
-        <property name="text">
-         <string>0(空白)</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+      <item row="5" column="2">
+       <widget class="QLineEdit" name="lineEdit_16">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
@@ -586,15 +578,15 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QLineEdit" name="lineEdit_3">
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEdit_4">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="lineEdit_4">
+      <item row="2" column="4">
+       <widget class="QLineEdit" name="lineEdit_8">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -617,76 +609,10 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="comboBox_5">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLineEdit" name="lineEdit_7">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QLineEdit" name="lineEdit_6">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="4">
-       <widget class="QLineEdit" name="lineEdit_8">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_13">
         <property name="text">
          <string>2(标准)</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="comboBox_6">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="QLineEdit" name="lineEdit_10">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3">
-       <widget class="QLineEdit" name="lineEdit_9">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="4">
-       <widget class="QLineEdit" name="lineEdit_11">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_14">
-        <property name="text">
-         <string>3(标准)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -700,15 +626,8 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="2">
-       <widget class="QLineEdit" name="lineEdit_13">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="QLineEdit" name="lineEdit_12">
+      <item row="3" column="3">
+       <widget class="QLineEdit" name="lineEdit_9">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -716,30 +635,6 @@ selection-background-color: rgb(0, 85, 255);</string>
       </item>
       <item row="4" column="4">
        <widget class="QLineEdit" name="lineEdit_14">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_15">
-        <property name="text">
-         <string>4(标准)</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QComboBox" name="comboBox_8">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="2">
-       <widget class="QLineEdit" name="lineEdit_16">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -769,15 +664,25 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QComboBox" name="comboBox_9">
+      <item row="4" column="2">
+       <widget class="QLineEdit" name="lineEdit_13">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="2">
-       <widget class="QLineEdit" name="lineEdit_19">
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>稀释倍数</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="comboBox_6">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -790,6 +695,13 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
+      <item row="2" column="3">
+       <widget class="QLineEdit" name="lineEdit_6">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
       <item row="6" column="4">
        <widget class="QLineEdit" name="lineEdit_20">
         <property name="styleSheet">
@@ -797,27 +709,106 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_17">
+      <item row="6" column="2">
+       <widget class="QLineEdit" name="lineEdit_19">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLineEdit" name="lineEdit_11">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="comboBox_9">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_14">
         <property name="text">
-         <string>6(标准)</string>
+         <string>3(标准)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="7" column="1">
-       <widget class="QComboBox" name="comboBox_10">
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBox_5">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="2">
-       <widget class="QLineEdit" name="lineEdit_22">
+      <item row="4" column="3">
+       <widget class="QLineEdit" name="lineEdit_12">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="comboBox_8">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_11">
+        <property name="text">
+         <string>0(空白)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLineEdit" name="lineEdit_7">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLineEdit" name="lineEdit_10">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_15">
+        <property name="text">
+         <string>4(标准)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>浓度</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -835,6 +826,13 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
+      <item row="8" column="1">
+       <widget class="QComboBox" name="comboBox_11">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
       <item row="8" column="0">
        <widget class="QLabel" name="label_18">
         <property name="text">
@@ -845,15 +843,15 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QComboBox" name="comboBox_11">
+      <item row="8" column="2">
+       <widget class="QLineEdit" name="lineEdit_25">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="2">
-       <widget class="QLineEdit" name="lineEdit_25">
+      <item row="8" column="4">
+       <widget class="QLineEdit" name="lineEdit_26">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -866,10 +864,27 @@ selection-background-color: rgb(0, 85, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="4">
-       <widget class="QLineEdit" name="lineEdit_26">
+      <item row="7" column="2">
+       <widget class="QLineEdit" name="lineEdit_22">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QComboBox" name="comboBox_10">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_17">
+        <property name="text">
+         <string>6(标准)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -941,12 +956,380 @@ selection-background-color: rgb(0, 85, 255);</string>
     <widget class="QGraphicsView" name="graphicsView">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>30</y>
-       <width>701</width>
-       <height>421</height>
+       <x>400</x>
+       <y>118</y>
+       <width>791</width>
+       <height>311</height>
       </rect>
      </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>256</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <column>
+      <property name="text">
+       <string>序号</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>测试项目</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>15</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>定标类型</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>10</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_39">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>15</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>相关系数</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_53">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>10</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_40">
+     <property name="geometry">
+      <rect>
+       <x>443</x>
+       <y>38</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>S1 Abs.</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_54">
+     <property name="geometry">
+      <rect>
+       <x>403</x>
+       <y>58</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_41">
+     <property name="geometry">
+      <rect>
+       <x>603</x>
+       <y>38</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>K值</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_55">
+     <property name="geometry">
+      <rect>
+       <x>563</x>
+       <y>58</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_56">
+     <property name="geometry">
+      <rect>
+       <x>723</x>
+       <y>58</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_42">
+     <property name="geometry">
+      <rect>
+       <x>763</x>
+       <y>38</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>A</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_57">
+     <property name="geometry">
+      <rect>
+       <x>863</x>
+       <y>58</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_43">
+     <property name="geometry">
+      <rect>
+       <x>903</x>
+       <y>38</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>B</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_58">
+     <property name="geometry">
+      <rect>
+       <x>1013</x>
+       <y>58</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_44">
+     <property name="geometry">
+      <rect>
+       <x>1053</x>
+       <y>38</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>C</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_45">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>95</y>
+       <width>54</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>测试日期</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_59">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>90</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>440</y>
+       <width>801</width>
+       <height>66</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_46">
+        <property name="text">
+         <string>标准</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_49">
+        <property name="text">
+         <string>(0)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_50">
+        <property name="text">
+         <string>(1)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_51">
+        <property name="text">
+         <string>(2)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_52">
+        <property name="text">
+         <string>(3)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="label_85">
+        <property name="text">
+         <string>(4)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="label_86">
+        <property name="text">
+         <string>(5)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="label_87">
+        <property name="text">
+         <string>(6)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QLabel" name="label_88">
+        <property name="text">
+         <string>(7)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_47">
+        <property name="text">
+         <string>浓度</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_60"/>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLineEdit" name="lineEdit_63"/>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="lineEdit_65"/>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLineEdit" name="lineEdit_67"/>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLineEdit" name="lineEdit_108"/>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLineEdit" name="lineEdit_110"/>
+      </item>
+      <item row="1" column="7">
+       <widget class="QLineEdit" name="lineEdit_112"/>
+      </item>
+      <item row="1" column="8">
+       <widget class="QLineEdit" name="lineEdit_114"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_48">
+        <property name="text">
+         <string>吸光度</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_61"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLineEdit" name="lineEdit_62"/>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLineEdit" name="lineEdit_64"/>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLineEdit" name="lineEdit_66"/>
+      </item>
+      <item row="2" column="5">
+       <widget class="QLineEdit" name="lineEdit_107"/>
+      </item>
+      <item row="2" column="6">
+       <widget class="QLineEdit" name="lineEdit_109"/>
+      </item>
+      <item row="2" column="7">
+       <widget class="QLineEdit" name="lineEdit_111"/>
+      </item>
+      <item row="2" column="8">
+       <widget class="QLineEdit" name="lineEdit_113"/>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>

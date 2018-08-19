@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>water.qss</file>
+        <file>ico/about.ico</file>
+        <file>ico/app.ico</file>
+        <file>ico/ca.ico</file>
+        <file>ico/close.ico</file>
+        <file>ico/pause.ico</file>
+        <file>ico/qu.ico</file>
+        <file>ico/register.ico</file>
+        <file>ico/sample1.ico</file>
+        <file>ico/start.ico</file>
+        <file>ico/status.ico</file>
+        <file>ico/stop.ico</file>
+        <file>ico/system.ico</file>
+        <file>ico/warn.ico</file>
+        <file>ico/weihu.ico</file>
+        <file>ico/zhikong.ico</file>
+    </qresource>
+</RCC>

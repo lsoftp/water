@@ -27,8 +27,8 @@
      <string>登记</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/register.ico</normaloff>ico/register.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/register.ico</normaloff>:/ico/register.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -50,8 +50,8 @@
      <string>样本</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/sample1.ico</normaloff>ico/sample1.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/sample1.ico</normaloff>:/ico/sample1.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -73,8 +73,8 @@
      <string>标准曲线</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/ca.ico</normaloff>ico/ca.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/ca.ico</normaloff>:/ico/ca.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -96,8 +96,8 @@
      <string>质控</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/qu.ico</normaloff>ico/qu.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/qu.ico</normaloff>:/ico/qu.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -119,8 +119,8 @@
      <string>测试项目</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/app.ico</normaloff>ico/app.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/app.ico</normaloff>:/ico/app.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -142,8 +142,8 @@
      <string>维护保养</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/weihu.ico</normaloff>ico/weihu.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/weihu.ico</normaloff>:/ico/weihu.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -165,8 +165,8 @@
      <string>系统设置</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/system.ico</normaloff>ico/system.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/system.ico</normaloff>:/ico/system.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -188,8 +188,8 @@
      <string>开始条件</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/start.ico</normaloff>ico/start.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/start.ico</normaloff>:/ico/start.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -211,8 +211,8 @@
      <string>停止加样</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/pause.ico</normaloff>ico/pause.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/pause.ico</normaloff>:/ico/pause.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -234,8 +234,8 @@
      <string>停止</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/stop.ico</normaloff>ico/stop.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/stop.ico</normaloff>:/ico/stop.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -257,8 +257,8 @@
      <string>仪器状态</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/status.ico</normaloff>ico/status.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/status.ico</normaloff>:/ico/status.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -280,8 +280,8 @@
      <string>报警</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/warn.ico</normaloff>ico/warn.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/warn.ico</normaloff>:/ico/warn.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -303,8 +303,8 @@
      <string>关闭</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/close.ico</normaloff>ico/close.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/close.ico</normaloff>:/ico/close.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -326,8 +326,8 @@
      <string>关于</string>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>ico/about.ico</normaloff>ico/about.ico</iconset>
+     <iconset resource="my.qrc">
+      <normaloff>:/ico/about.ico</normaloff>:/ico/about.ico</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -1205,7 +1205,9 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="my.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>tabWidget</sender>

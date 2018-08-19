@@ -104,3 +104,9 @@ FORMS += \
 
 RC_FILE += \
     water.rc
+
+DISTFILES += \
+    water.qss
+
+RESOURCES += \
+    my.qrc

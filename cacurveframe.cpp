@@ -44,6 +44,7 @@ CaCurveFrame::CaCurveFrame(QWidget *parent) :
     initTestList();
     initCayeList();
     refreshtable2();
+    ui->tabWidget->setStyleSheet("QLineEdit { background-color: white }");
 }
 
 CaCurveFrame::~CaCurveFrame()
