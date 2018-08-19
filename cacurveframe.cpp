@@ -346,8 +346,10 @@ void CaCurveFrame::on_pushButton_12_clicked()
        chart->addSeries(series);
        chart->addSeries(&series1);//not ok
        chart->createDefaultAxes();
+       chart->axisY()->setTitleText("吸光度");
+       chart->axisX()->setTitleText("浓度");
        chart->setTitle("Simple line chart example");
-       chart->setGeometry(0,0,500,300);
+       chart->setGeometry(0,0,780,300);
 
        scene.addItem(chart);
 

@@ -318,7 +318,7 @@ void SrTab::reg()
         if(pb[i]->isChecked())
         {
             //insert
-            QString tempid =now.toString("yyyyMMddhhmmss")+QString("%1").arg(j,3,10,QChar('0'));
+            QString tempid =now.toString("yyyyMMddhhmmsszzz")+QString("%1").arg(j,3,10,QChar('0'));
             //if test_id isreplace add two rows
             t.tr.test_row_id=tempid.toStdString();
             t.tr.isreplace=0;
