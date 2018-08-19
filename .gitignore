@@ -33,3 +33,5 @@ sampleframe.ui
 systemframe.ui
 water.pro.user
 weihuframe.ui
+debug/qrc_my.cpp
+water.pro.user
