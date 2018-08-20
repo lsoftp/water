@@ -208,11 +208,18 @@ void MainWindow::on_toolButton_13_clicked()
     int i=dl.exec();
     if(QDialog::Rejected==i)
     {
-        this->close();
+
     }
     if(QDialog::Accepted==i)
     {
-        //washing machine cup or other
+        if(dl.i)
+        {
+            this->close();
+        }
+        else
+        {
+            //washing machine cup or other then close
+        }
     }
 }
 

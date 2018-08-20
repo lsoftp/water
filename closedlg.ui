@@ -30,7 +30,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>20</x>
      <y>130</y>
      <width>75</width>
      <height>23</height>
@@ -43,7 +43,7 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>150</x>
      <y>130</y>
      <width>75</width>
      <height>23</height>
@@ -51,6 +51,19 @@
    </property>
    <property name="text">
     <string>直接关机</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>130</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
    </property>
   </widget>
  </widget>
@@ -76,7 +89,7 @@
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
    <receiver>Dialog</receiver>
-   <slot>reject()</slot>
+   <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>332</x>
