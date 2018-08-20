@@ -7,13 +7,13 @@ namespace Ui {
 class Dialog;
 }
 
-class StopSDia : public QDialog
+class CloseDlg : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit StopSDia(QWidget *parent = 0);
-    ~StopSDia();
+    explicit CloseDlg(QWidget *parent = 0);
+    ~CloseDlg();
 
 private:
     Ui::Dialog *ui;

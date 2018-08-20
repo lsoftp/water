@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 
     testinit();
     g_handler.start();
+    dbhandle.moveToThread(&g_handler);
     fflush(stdout);
 
 

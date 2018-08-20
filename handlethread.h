@@ -10,6 +10,7 @@
 //---------------------------------------------------------------------------
 class HandleThread : public QThread
 {
+    Q_OBJECT
 protected:
 
 public:

@@ -542,3 +542,18 @@ void CaCurveFrame::on_tableWidget_5_itemSelectionChanged()
 
 
 }
+
+void CaCurveFrame::on_careturnbtn_clicked()
+{
+    emit back();
+}
+
+void CaCurveFrame::on_return_btn_clicked()
+{
+        emit back();
+}
+
+void CaCurveFrame::on_return_btn_2_clicked()
+{
+        emit back();
+}

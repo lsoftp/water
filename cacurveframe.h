@@ -48,6 +48,12 @@ private slots:
 
     void on_tableWidget_5_itemSelectionChanged();
 
+    void on_careturnbtn_clicked();
+
+    void on_return_btn_clicked();
+
+    void on_return_btn_2_clicked();
+
 private:
     Ui::CaCurveFrame *ui;
     QString selCaname;
@@ -57,6 +63,8 @@ private:
     void load(Cadetail & cd);
     void initTestList();
     void initCayeList();
+signals:
+    void back();
 };
 
 #endif // CACURVEFRAME_H

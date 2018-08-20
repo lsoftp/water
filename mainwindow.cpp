@@ -3,7 +3,7 @@
 #include "handlethread.h"
 
 #include "interface.h"
-#include "stopsampledia.h"
+#include "closedlg.h"
 //按钮的宽度
 
 
@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initGUI();
     this->initFrames();
+    warnInittable();
     display(G_HOME);
     initsignal();
     //ui->frame_3->init();
@@ -47,14 +48,14 @@ void MainWindow::initGUI()
     ui->toolButton_14->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
 
-   // SampleButton *sb=new SampleButton(ui->frame);
+    // SampleButton *sb=new SampleButton(ui->frame);
     //sb->setGeometry(0,0,50,60);
 
 }
 //assign frames index
 void MainWindow::initFrames()
 {
-    pf[GUIFrame::G_BLANK]=ui->frame_13;
+    pf[GUIFrame::G_WARN]=ui->frame_13;
     pf[GUIFrame::G_HOME]=ui->frame;
     pf[GUIFrame::G_REGISTER]=ui->frame_2;
     pf[GUIFrame::G_ITEM]=ui->frame_3;
@@ -66,7 +67,7 @@ void MainWindow::initFrames()
     pf[G_SYSTEM]=ui->g_system;
     pf[G_SAMPLE]=ui->g_sample;
 
-    ptb[GUIFrame::G_BLANK]=NULL;
+    ptb[GUIFrame::G_WARN]=NULL;
     ptb[GUIFrame::G_HOME]=NULL;
     ptb[GUIFrame::G_REGISTER]=ui->toolButton;
     ptb[GUIFrame::G_ITEM]=ui->toolButton_5;
@@ -99,6 +100,20 @@ void MainWindow::display(GUIFrame frame)
 
 }
 
+void MainWindow::warnInittable()
+{
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget ->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget ->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
+    QHeaderView *header = ui->tableWidget ->verticalHeader();
+    header->setHidden(true);// 隐藏行号
+    ui->tableWidget->setColumnWidth(0,100);
+    ui->tableWidget->setColumnWidth(1,600);
+    ui->tableWidget->setColumnWidth(2,149);
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -112,12 +127,14 @@ void MainWindow::initsignal()
     connect(ui->tab_2,SIGNAL(back()),this,SLOT(displayHome()));
     connect(ui->tab_3,SIGNAL(back()),this,SLOT(displayHome()));
     connect(ui->frame_3,SIGNAL(back()),this,SLOT(displayHome()));
+
+    connect(pf[G_CACURVE],SIGNAL(back()),this,SLOT(displayHome()));
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {
-//    g_handler.terminate();
-//    g_handler.wait();
+    //    g_handler.terminate();
+    //    g_handler.wait();
 }
 
 
@@ -137,20 +154,20 @@ void MainWindow::on_toolButton_5_clicked()
 
 void MainWindow::on_toolButton_8_clicked()
 {
-//    if(!g_handler.command)
-//    {
-//        display(G_START);
-//        Interface::initTestrowArray();
-//        g_handler.command=1;
-//    }
-//    else
-//    {
-//        QMessageBox box(QMessageBox::Information,"提示","正在处理中，请稍候操作");
-//        box.setStandardButtons (QMessageBox::Ok);
-//        box.setButtonText (QMessageBox::Ok,QString("确 定"));
-//        //box.setButtonText (QMessageBox::Cancel,QString("取 消"));
-//        box.exec ();
-//    }
+    //    if(!g_handler.command)
+    //    {
+    //        display(G_START);
+    //        Interface::initTestrowArray();
+    //        g_handler.command=1;
+    //    }
+    //    else
+    //    {
+    //        QMessageBox box(QMessageBox::Information,"提示","正在处理中，请稍候操作");
+    //        box.setStandardButtons (QMessageBox::Ok);
+    //        box.setButtonText (QMessageBox::Ok,QString("确 定"));
+    //        //box.setButtonText (QMessageBox::Cancel,QString("取 消"));
+    //        box.exec ();
+    //    }
     display(G_START);
     ui->lineEdit_24->setText(QString::number(db.getSampleCount(g_current_index)));
     ui->lineEdit_25->setText(QString::number(db.getKBCount(g_current_index)));
@@ -171,7 +188,7 @@ void MainWindow::on_srreturnbtn_clicked()
 
 
 
-void MainWindow::on_tabWidget_currentChanged(int index)
+void MainWindow::on_srtabWidget_currentChanged(int index)
 {
     if(index==0)
     {
@@ -187,12 +204,21 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_toolButton_13_clicked()
 {
-    this->close();
+    ::CloseDlg  dl;
+    int i=dl.exec();
+    if(QDialog::Rejected==i)
+    {
+        this->close();
+    }
+    if(QDialog::Accepted==i)
+    {
+        //washing machine cup or other
+    }
 }
 
 void MainWindow::on_pushButton_14_clicked()
 {
-    display(G_BLANK);
+    display(G_WARN);
 }
 
 void MainWindow::on_pushButton_6_clicked()
@@ -225,25 +251,27 @@ void MainWindow::on_pushButton_15_clicked()
 
 void MainWindow::on_pushButton_16_clicked()
 {
-    display(G_BLANK);
+    display(G_WARN);
 }
 
 void MainWindow::on_pushButton_13_clicked()
 {
-    display(G_BLANK);
+    display(G_WARN);
 }
 //stop sample button
 void MainWindow::on_toolButton_9_clicked()
 {
-    ::StopSDia  dl;
-    int i=dl.exec();
 
-     QMessageBox::information(NULL, "注意", QString("是否停止采样?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    QMessageBox::StandardButton sb=QMessageBox::information(NULL, "注意", QString("是否停止采样?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    if(sb==QMessageBox::Yes)
+    {
+        g_handler.stop=1;
+    }
 }
 
 void MainWindow::display_blank()
 {
-    display(G_BLANK);
+    display(G_WARN);
 }
 
 void MainWindow::on_toolButton_11_clicked()
@@ -281,39 +309,22 @@ void MainWindow::on_toolButton_7_clicked()
     display(G_SYSTEM);
 }
 
-void MainWindow::on_tabWidget_tabBarClicked(int index)
-{
-    if(index==0)
-    {
-        ui->tab->initstate();
-    }
-    else if(1==index)
-    {
-        ui->tab_2->initstate();
-    }
-    else
-        ui->tab_3->initstate();
 
-}
+#include <QPixmap>
 
 void MainWindow::on_toolButton_14_clicked()
 {
-    QMessageBox::information(0,QString::number(ui->tabWidget->currentIndex()),"");
+    //QMessageBox::information(0,QString("关于"),"水质分析仪\n版本：1.0\nCopyright 2018-2020");
+    QMessageBox box(QMessageBox::Information,"关于","水质分析仪\n\n\n版本：1.0\n\nCopyright 2018-2020 The Skysoft Company Ltd. All rights reserved.");
+    box.setStandardButtons (QMessageBox::Ok);
+    //box.setStandardButtons ();
+    QPixmap g_pm(":/ico/app.ico");
+    box.setIconPixmap(g_pm);
+    box.setButtonText (QMessageBox::Ok,QString("确 定"));
+    box.exec();
 }
 
-void MainWindow::slot1(int index)
-{
-    if(index==0)
-    {
-        ui->tab->initstate();
-    }
-    else if(1==index)
-    {
-        ui->tab_2->initstate();
-    }
-    else
-        ui->tab_3->initstate();
-}
+
 /**********************************
  * convert rawsr to temp sr so
  * that to get ready for starting test
@@ -326,4 +337,31 @@ void MainWindow::fromRawtoSr()
 void MainWindow::displayHome()
 {
     display(G_HOME);
+}
+
+void MainWindow::on_toolButton_10_clicked()
+{
+    //stop
+    QMessageBox box(QMessageBox::Information,"提示","是否停止测试?");
+    box.setStandardButtons (QMessageBox::Ok|QMessageBox::Cancel);
+    //box.setStandardButtons ();
+
+    box.setButtonText (QMessageBox::Ok,QString("确 定"));
+    box.setButtonText (QMessageBox::Cancel,QString("取 消"));
+
+    if(QMessageBox::Ok==box.exec ())
+    {
+        ::g_handler.command=0;
+    }
+}
+
+void MainWindow::on_toolButton_12_clicked()
+{
+    //warning
+    display_blank();
+}
+
+void MainWindow::on_warn_back_btn_clicked()
+{
+    displayHome();
 }

@@ -16,7 +16,7 @@ class MainWindow;
 
 
 enum GUIFrame{
-    G_BLANK,
+    G_WARN,
     G_HOME,
     G_REGISTER,
     G_ITEM,
@@ -54,7 +54,7 @@ private slots:
 
     //void on_pushButton_11_clicked();
 
-    void on_tabWidget_currentChanged(int index);
+    void on_srtabWidget_currentChanged(int index);
 
     void on_toolButton_13_clicked();
 
@@ -91,13 +91,19 @@ private slots:
 
     void on_toolButton_7_clicked();
 
-    void on_tabWidget_tabBarClicked(int index);
+
 
     void on_toolButton_14_clicked();
 
-    void slot1(int index);
+    //void slot1(int index);
 
     void displayHome();
+    void on_toolButton_10_clicked();
+
+    void on_toolButton_12_clicked();
+
+    void on_warn_back_btn_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -108,7 +114,7 @@ private:
     void initFrames();
 
     void display(GUIFrame frame);
-
+    void warnInittable();
 
     void fromRawtoSr();
 };

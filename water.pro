@@ -36,7 +36,6 @@ SOURCES += \
     myprocess.cpp \
     handlethread.cpp \
     interface.cpp \
-    stopsampledia.cpp \
     srtab.cpp \
     catab.cpp \
     qutab.cpp \
@@ -51,7 +50,8 @@ SOURCES += \
     cadlg.cpp \
     testdlg.cpp \
     qudlg.cpp \
-    caqudlg.cpp
+    caqudlg.cpp \
+    closedlg.cpp
 
 
 HEADERS += \
@@ -65,7 +65,6 @@ HEADERS += \
     myprocess.h \
     handlethread.h \
     interface.h \
-    stopsampledia.h \
     srtab.h \
     catab.h \
     qutab.h \
@@ -80,14 +79,14 @@ HEADERS += \
     cadlg.h \
     testdlg.h \
     qudlg.h \
-    caqudlg.h
+    caqudlg.h \
+    closedlg.h
 
 LIBS += -lws2_32
 
 FORMS += \
         mainwindow.ui \
     srtab.ui \
-    stopsampledlg.ui \
     catab.ui \
     qutab.ui \
     itemframe.ui \
@@ -100,7 +99,8 @@ FORMS += \
     cadlg.ui \
     testdlg.ui \
     qudlg.ui \
-    caqudlg.ui
+    caqudlg.ui \
+    closedlg.ui
 
 RC_FILE += \
     water.rc
