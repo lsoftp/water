@@ -251,7 +251,7 @@ void MainWindow::on_pushButton_15_clicked()
 
 void MainWindow::on_pushButton_16_clicked()
 {
-    display(G_WARN);
+    display(G_HOME);
 }
 
 void MainWindow::on_pushButton_13_clicked()

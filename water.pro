@@ -51,7 +51,9 @@ SOURCES += \
     testdlg.cpp \
     qudlg.cpp \
     caqudlg.cpp \
-    closedlg.cpp
+    closedlg.cpp \
+    comboitem.cpp \
+    comboitem1.cpp
 
 
 HEADERS += \
@@ -80,7 +82,9 @@ HEADERS += \
     testdlg.h \
     qudlg.h \
     caqudlg.h \
-    closedlg.h
+    closedlg.h \
+    comboitem.h \
+    comboitem1.h
 
 LIBS += -lws2_32
 
@@ -100,7 +104,9 @@ FORMS += \
     testdlg.ui \
     qudlg.ui \
     caqudlg.ui \
-    closedlg.ui
+    closedlg.ui \
+    comboitem.ui \
+    comboitem1.ui
 
 RC_FILE += \
     water.rc
