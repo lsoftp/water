@@ -19,12 +19,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->lineEdit->setText("hahahah");
+    //ui->lineEdit->setText("hahahah");
     ui->lineEdit->setReadOnly(true);
 
     initGUI();
     this->initFrames();
     display(G_HOME);
+    initsignal();
     //ui->frame_3->init();
 }
 //初始化界面
@@ -106,9 +107,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::initsignal()
 {
-    ui->frame_3->init();
-    ui->tab_2->init();
-    ui->tab_3->init();
+
+    connect(ui->tab,SIGNAL(back()),this,SLOT(displayHome()));
+    connect(ui->tab_2,SIGNAL(back()),this,SLOT(displayHome()));
+    connect(ui->tab_3,SIGNAL(back()),this,SLOT(displayHome()));
+    connect(ui->frame_3,SIGNAL(back()),this,SLOT(displayHome()));
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
@@ -134,26 +137,34 @@ void MainWindow::on_toolButton_5_clicked()
 
 void MainWindow::on_toolButton_8_clicked()
 {
-    if(!g_handler.command)
-    {
-        display(G_START);
-        Interface::initTestrowArray();
-        g_handler.command=1;
-    }
-    else
-    {
-        QMessageBox box(QMessageBox::Information,"提示","正在处理中，请稍候操作");
-        box.setStandardButtons (QMessageBox::Ok);
-        box.setButtonText (QMessageBox::Ok,QString("确 定"));
-        //box.setButtonText (QMessageBox::Cancel,QString("取 消"));
-        box.exec ();
-    }
+//    if(!g_handler.command)
+//    {
+//        display(G_START);
+//        Interface::initTestrowArray();
+//        g_handler.command=1;
+//    }
+//    else
+//    {
+//        QMessageBox box(QMessageBox::Information,"提示","正在处理中，请稍候操作");
+//        box.setStandardButtons (QMessageBox::Ok);
+//        box.setButtonText (QMessageBox::Ok,QString("确 定"));
+//        //box.setButtonText (QMessageBox::Cancel,QString("取 消"));
+//        box.exec ();
+//    }
+    display(G_START);
+    ui->lineEdit_24->setText(QString::number(db.getSampleCount(g_current_index)));
+    ui->lineEdit_25->setText(QString::number(db.getKBCount(g_current_index)));
+    ui->lineEdit_26->setText(QString::number(db.getCaCount(g_current_index)));
+    ui->lineEdit_27->setText(QString::number(db.getQuCount(g_current_index)));
+    ui->lineEdit_28->setText(QString::number(db.getNormalCount(g_current_index)));
+
+
 }
 
 void MainWindow::on_srreturnbtn_clicked()
 {
     //register return button
-    display(G_HOME);
+    //display(G_HOME);
 
 }
 
@@ -199,11 +210,17 @@ void MainWindow::on_pushButton_6_toggled(bool checked)
 
 }
 
-
+/**************************************************
+ * import test item from ram_sr to sr
+ * push sr to g_test_array rearrange  start
+ *
+ *
+ * ***************************************************/
 
 void MainWindow::on_pushButton_15_clicked()
 {
-    display(G_BLANK);
+    //start test
+
 }
 
 void MainWindow::on_pushButton_16_clicked()
@@ -296,4 +313,17 @@ void MainWindow::slot1(int index)
     }
     else
         ui->tab_3->initstate();
+}
+/**********************************
+ * convert rawsr to temp sr so
+ * that to get ready for starting test
+ * ***************************/
+void MainWindow::fromRawtoSr()
+{
+    //getSr getCa getQu so that to compose sr
+}
+
+void MainWindow::displayHome()
+{
+    display(G_HOME);
 }

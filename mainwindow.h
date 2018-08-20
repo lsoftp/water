@@ -97,6 +97,7 @@ private slots:
 
     void slot1(int index);
 
+    void displayHome();
 private:
     Ui::MainWindow *ui;
 
@@ -109,9 +110,10 @@ private:
     void display(GUIFrame frame);
 
 
+    void fromRawtoSr();
 };
 #define IB_LENGTH 50
-extern MainWindow *g_w;
+//extern MainWindow *g_w;
 extern QString g_current_index;
 extern int g_item_num;
 #endif // MAINWINDOW_H

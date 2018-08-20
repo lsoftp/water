@@ -128,6 +128,11 @@ public:
     void getSampleNo(QSqlQueryModel &querymodel,const QString &index);//获取已用样本号
     void getSampleId(QSqlQueryModel &querymodel,const QString &index);//获取已用样品Id
     void getSr(QSqlQueryModel &querymodel,const QString &index);//获取最后登记进去的样本号
+    int  getSampleCount(const QString &index);//获取总样本数量
+    int  getKBCount(const QString &index);//获取空白数量
+    int  getCaCount(const QString &index);//获取定标数量
+    int  getQuCount(const QString &index);//获取质控数量
+    int  getNormalCount(const QString &index);//获取常规数量
     void insertSample(const TestRegister & tr );
     void insertItem(const Item &it);//添加项目
     void insertCadetail(const Cadetail & ca);

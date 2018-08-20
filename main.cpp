@@ -78,11 +78,11 @@ int main(int argc, char *argv[])
         QString setStyleSheet(styleFile.readAll());;
         a.setStyleSheet(setStyleSheet);
 
-    g_w=new MainWindow ;
-    g_w->setStyleSheet("QLineEdit { background-color: yellow }");
-    g_w->initsignal();
+    MainWindow mw;
+    //g_w->setStyleSheet("QLineEdit { background-color: yellow }");
+    //g_w->initsignal();
 
-    g_w->show();
+    mw.show();
 
     testinit();
     g_handler.start();

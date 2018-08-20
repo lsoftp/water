@@ -33,7 +33,7 @@ QuTab::~QuTab()
 }
 void QuTab::init()
 {
-    connect(ui->qureturnbtn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
+   // connect(ui->qureturnbtn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
 }
 
 void QuTab::initcabutton()
@@ -497,3 +497,8 @@ void QuTab::on_sr_del_clicked()
 
 
 
+
+void QuTab::on_qureturnbtn_clicked()
+{
+    emit back();
+}

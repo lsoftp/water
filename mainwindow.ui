@@ -562,7 +562,7 @@
       <string notr="true">background-color: rgb(170, 255, 255);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="SrTab" name="tab">
       <property name="styleSheet">
@@ -637,7 +637,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>540</y>
+       <y>550</y>
        <width>1221</width>
        <height>40</height>
       </rect>
@@ -892,6 +892,9 @@
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_25">
        <property name="geometry">
@@ -905,6 +908,9 @@
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_26">
        <property name="geometry">
@@ -917,6 +923,9 @@
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_50">
@@ -944,6 +953,9 @@
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_28">
        <property name="geometry">
@@ -956,6 +968,9 @@
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -1129,17 +1144,17 @@
    <zorder>toolButton_13</zorder>
    <zorder>toolButton_14</zorder>
    <zorder>toolButton</zorder>
-   <zorder>frame_13</zorder>
    <zorder>cacurve</zorder>
    <zorder>quframe</zorder>
    <zorder>g_weihu</zorder>
    <zorder>g_system</zorder>
    <zorder>frame</zorder>
-   <zorder>frame_11</zorder>
    <zorder>frame_4</zorder>
    <zorder>frame_3</zorder>
    <zorder>g_sample</zorder>
    <zorder>frame_2</zorder>
+   <zorder>frame_11</zorder>
+   <zorder>frame_13</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

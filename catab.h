@@ -39,6 +39,8 @@ private slots:
 
     void on_sr_del_clicked();
 
+    void on_careturnbtn_clicked();
+
 private:
     Ui::CaTab *ui;
     CaButton *pb1[38*2];
@@ -53,6 +55,8 @@ private:
     void refreshtable();
 
     void readytoaddnew();
+signals:
+    void back();
 };
 
 #endif // CATAB_H

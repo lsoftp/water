@@ -530,3 +530,10 @@ void SrTab::on_lineEdit_4_editingFinished()
 
 
 }
+
+
+void SrTab::on_srreturnbtn_clicked()
+{
+    emit back();
+
+}

@@ -173,7 +173,7 @@ void ItemFrame::add()
 
 void ItemFrame::init()
 {
-    connect(ui->return_btn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
+    //connect(ui->return_btn,SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
     //ui->com
 }
 
@@ -432,4 +432,9 @@ void ItemFrame::on_pushButton_4_clicked()
     it.tc.priority=it.tc.test_id;
     db.insertItem(it);
     refreshtable();
+}
+
+void ItemFrame::on_return_btn_clicked()
+{
+    emit back();
 }

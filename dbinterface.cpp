@@ -203,7 +203,7 @@ void DBInterface::insertzhikongItem(QString name, QString testname, QString con,
 
 void DBInterface::getzhikongItem(QSqlQueryModel &querymodel, QString name)
 {
-     querymodel.setQuery(QString("SELECT *  FROM zhikongye1 where name='%1' order by TestName").arg(name),m_db);
+    querymodel.setQuery(QString("SELECT *  FROM zhikongye1 where name='%1' order by TestName").arg(name),m_db);
 }
 
 void DBInterface::updatezhikongItemByName(QString name, QString n1, QString n2, QString con, QString unit)
@@ -350,17 +350,18 @@ void DBInterface::gettestindex(QSqlQueryModel &querymodel)
 
 void DBInterface::getSr(QSqlQueryModel &querymodel,const QString &index)
 {
-    querymodel.setQuery(QString("SELECT distinct id,Pos,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) and Testtype=4 order by id").arg(index),m_db);
+    querymodel.setQuery(QString("SELECT distinct id,Pos,Stage  FROM raw_sr where testpageid='%1' AND (Stage= 0 ) and Testtype=4 order by id").arg(index),m_db);
 }
+
 
 void DBInterface::getCa(QSqlQueryModel &querymodel,const QString &index)
 {
-    querymodel.setQuery(QString("SELECT distinct no, id,Pos,Caname,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) and Testtype<3 order by id").arg(index),m_db);
+    querymodel.setQuery(QString("SELECT distinct no, id,Pos,Caname,Stage  FROM raw_sr where testpageid='%1' AND (Stage= 0 ) and Testtype<3 order by id").arg(index),m_db);
 }
 
 void DBInterface::getQu(QSqlQueryModel &querymodel,const QString &index)
 {
-    querymodel.setQuery(QString("SELECT distinct no, id,Pos, Qualityname,Stage  FROM raw_sr where testpageid='%1' AND (Stage!=1 ) and Testtype=3 order by id").arg(index),m_db);
+    querymodel.setQuery(QString("SELECT distinct no, id,Pos, Qualityname,Stage  FROM raw_sr where testpageid='%1' AND (Stage= 0 ) and Testtype=3 order by id").arg(index),m_db);
 }
 void DBInterface::getSrbyid(QSqlQueryModel &querymodel,const QString &index,QString &id)
 {
@@ -673,4 +674,120 @@ void DBInterface::delCadetailbyName(const QString &name)
 void DBInterface::getReagent(QSqlQueryModel &querymodel)
 {
     querymodel.setQuery(QString("SELECT *  FROM reagent where id>=-3 order by id"),m_db);
+}
+
+int  DBInterface::getSampleCount( const QString &index)//获取总样本数量
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("SELECT count( DISTINCT no) as i from raw_sr where testpageid='%1'and Stage=0 ").arg(index));
+
+
+
+    bool success = query.exec();
+
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return -1;
+    }
+    else
+    {
+        query.first();
+        return query.value(0).toInt();
+    }
+
+
+}
+
+int  DBInterface::getKBCount( const QString &index)//获取空白数量
+{
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("SELECT count( DISTINCT no,TestID) as i from raw_sr where testpageid='%1' and Testtype<3 and Stage=0").arg(index));
+
+
+
+    bool success = query.exec();
+
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return -1;
+    }
+    else
+    {
+        query.first();
+        return query.value(0).toInt();
+    }
+
+}
+
+int  DBInterface::getCaCount(const QString &index)//获取定标数量
+{
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("SELECT count( DISTINCT no,TestID) as i from raw_sr where testpageid='%1' and Testtype=2 and Stage=0").arg(index));
+
+
+
+    bool success = query.exec();
+
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return -1;
+    }
+    else
+    {
+        query.first();
+        return query.value(0).toInt();
+    }
+
+}
+int DBInterface::getQuCount(const QString &index)
+{
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("SELECT count( DISTINCT no,TestID) as i from raw_sr where testpageid='%1' and Testtype=3 and Stage=0").arg(index));
+
+
+
+    bool success = query.exec();
+
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return -1;
+    }
+    else
+    {
+        query.first();
+        return query.value(0).toInt();
+    }
+}
+
+
+int  DBInterface::getNormalCount( const QString &index)//获取常规数量
+{
+    QSqlQuery query(m_db);
+    // 插入数据user
+    query.prepare(QString("SELECT count( DISTINCT no,TestID) as i from raw_sr where testpageid='%1' and Testtype=4 and Stage=0").arg(index));
+
+
+
+    bool success = query.exec();
+
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return -1;
+    }
+    else
+    {
+        query.first();
+        return query.value(0).toInt();
+    }
+
 }

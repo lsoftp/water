@@ -41,9 +41,13 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_return_btn_clicked();
+
 private:
     Ui::ItemFrame *ui;
     int dbstatus;
+signals:
+    void back();
 };
 
 #endif // ITEMFRAME_H

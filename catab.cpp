@@ -33,7 +33,7 @@ CaTab::~CaTab()
 
 void CaTab::init()
 {
-    connect(ui->careturnbtn, SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
+   // connect(ui->careturnbtn, SIGNAL(clicked()),g_w,SLOT(on_srreturnbtn_clicked()));
 }
 
 void CaTab::initcabutton()
@@ -480,4 +480,9 @@ void CaTab::on_sr_del_clicked()
         refreshtable();
     }
 
+}
+
+void CaTab::on_careturnbtn_clicked()
+{
+    emit back();
 }

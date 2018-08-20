@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::QuDlg *ui;
+
 };
 
 #endif // QUDLG_H

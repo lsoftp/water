@@ -38,6 +38,8 @@ private slots:
 
     void on_lineEdit_7_textChanged(const QString &arg1);
 
+    void on_qureturnbtn_clicked();
+
 private:
     Ui::QuTab *ui;
     void initcabutton();
@@ -52,6 +54,8 @@ private:
     void clearBtn();
     void refreshtable();
     void readytoaddnew();
+signals:
+    void back();
 };
 
 #endif // QUTAB_H
