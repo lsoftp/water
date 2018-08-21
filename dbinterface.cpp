@@ -533,7 +533,7 @@ void DBInterface::delQubyid(const QString &index, QString &id)
     //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2' and Testtype=4 ").arg(id.toInt()).arg(index));
     QSqlQuery query(m_db);
     // 插入数据user
-    query.prepare(QString("DELETE  from raw_sr where no='%1' and testpageid='%2'  and Testtype=3 ").arg(id.toInt()).arg(index));
+    query.prepare(QString("DELETE  from raw_sr where no='%1' and testpageid='%2'  and Testtype=3 ").arg(id).arg(index));
 
 
 
