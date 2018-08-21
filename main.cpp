@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 
     MainWindow mw;
     mw.setWindowFlags(mw.windowFlags()&~Qt::WindowCloseButtonHint&~Qt::WindowMaximizeButtonHint);
-    mw.move((w-mw.width())/2,(h-mw.height())/2);
+    mw.move((w-mw.width())/2,(h-mw.height())/8);
     //g_w->setStyleSheet("QLineEdit { background-color: yellow }");
     //g_w->initsignal();
 

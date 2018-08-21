@@ -244,6 +244,8 @@ void SrTab::uncheckbt()
     {
         pb[i]->setChecked(false);
     }
+    for(int k=0;k<22;k++)
+        cpb[k]->setChecked(false);
 }
 
 void SrTab::setbutton()
