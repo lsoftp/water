@@ -23,6 +23,10 @@
       <height>71</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">
+                                             </string>
+    </property>
     <property name="text">
      <string>登记</string>
     </property>
@@ -35,6 +39,9 @@
       <width>48</width>
       <height>48</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_2">
@@ -59,6 +66,9 @@
       <height>48</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QToolButton" name="toolButton_3">
     <property name="geometry">
@@ -81,6 +91,9 @@
       <width>48</width>
       <height>48</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_4">
@@ -105,6 +118,9 @@
       <height>48</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QToolButton" name="toolButton_5">
     <property name="geometry">
@@ -127,6 +143,9 @@
       <width>48</width>
       <height>48</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_6">
@@ -151,6 +170,9 @@
       <height>48</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QToolButton" name="toolButton_7">
     <property name="geometry">
@@ -174,6 +196,9 @@
       <height>48</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QToolButton" name="toolButton_8">
     <property name="geometry">
@@ -196,6 +221,9 @@
       <width>48</width>
       <height>48</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_9">
@@ -266,6 +294,9 @@
       <height>48</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QToolButton" name="toolButton_12">
     <property name="geometry">
@@ -288,6 +319,9 @@
       <width>48</width>
       <height>48</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QToolButton" name="toolButton_13">

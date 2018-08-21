@@ -67,7 +67,7 @@ void MainWindow::initFrames()
     pf[G_SYSTEM]=ui->g_system;
     pf[G_SAMPLE]=ui->g_sample;
 
-    ptb[GUIFrame::G_WARN]=NULL;
+    ptb[GUIFrame::G_WARN]=ui->toolButton_12;
     ptb[GUIFrame::G_HOME]=NULL;
     ptb[GUIFrame::G_REGISTER]=ui->toolButton;
     ptb[GUIFrame::G_ITEM]=ui->toolButton_5;
@@ -88,12 +88,12 @@ void MainWindow::display(GUIFrame frame)
         if(i!=frame)
         {
             pf[i]->hide();
-            //if(ptb[i]) ptb[i]->setStyleSheet("background-color: rgb(214, 214, 214);");
+            if(ptb[i]) ptb[i]->setChecked(false);
         }
         else
         {
             pf[i]->show();
-            //if(ptb[i]) ptb[i]->setStyleSheet("background-color: rgb(85, 255, 255);");
+            if(ptb[i]) ptb[i]->setChecked(true);
 
         }
     }
