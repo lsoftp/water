@@ -96,6 +96,8 @@ CREATE TABLE IF NOT EXISTS `cadetail` (
 
 -- 正在导出表  water.cadetail 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `cadetail` DISABLE KEYS */;
+INSERT INTO `cadetail` (`TestID`, `name`, `type`, `num`, `kvalue`, `testtimes`, `caname0`, `con0`, `dilute0`, `con01`, `caname1`, `con1`, `dilute1`, `con11`, `caname2`, `con2`, `dilute2`, `con21`, `caname3`, `con3`, `dilute3`, `con31`, `caname4`, `con4`, `dilute4`, `con41`, `caname5`, `con5`, `dilute5`, `con51`, `caname6`, `con6`, `dilute6`, `con61`, `caname7`, `con7`, `dilute7`, `con71`) VALUES
+	(28429464, 'AAA', '线性', 1, '', '1', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '');
 /*!40000 ALTER TABLE `cadetail` ENABLE KEYS */;
 
 -- 导出  表 water.comboitem 结构
@@ -106,6 +108,10 @@ CREATE TABLE IF NOT EXISTS `comboitem` (
 
 -- 正在导出表  water.comboitem 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `comboitem` DISABLE KEYS */;
+INSERT INTO `comboitem` (`name`) VALUES
+	('A'),
+	('GBHJDK'),
+	('v');
 /*!40000 ALTER TABLE `comboitem` ENABLE KEYS */;
 
 -- 导出  表 water.comboitem1 结构
@@ -120,6 +126,13 @@ CREATE TABLE IF NOT EXISTS `comboitem1` (
 
 -- 正在导出表  water.comboitem1 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `comboitem1` DISABLE KEYS */;
+INSERT INTO `comboitem1` (`name`, `Item`, `TestID`) VALUES
+	('A', 'CL', 1),
+	('v', 'CL', 1),
+	('v', 'AAA', 7),
+	('v', 'NO2', 0),
+	('v', 'vv', 4),
+	('GBHJDK', 'AAA', 7);
 /*!40000 ALTER TABLE `comboitem1` ENABLE KEYS */;
 
 -- 导出  表 water.item 结构
@@ -187,16 +200,16 @@ CREATE TABLE IF NOT EXISTS `item` (
   UNIQUE KEY `Index 2` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目信息，项目流程，项目重做';
 
--- 正在导出表  water.item 的数据：~6 rows (大约)
+-- 正在导出表  water.item 的数据：~7 rows (大约)
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 INSERT INTO `item` (`TestID`, `Name`, `Fullname`, `Reagent0`, `Time0`, `Volume0`, `Reagent1`, `Time1`, `Volume1`, `Reagent2`, `Time2`, `Volume2`, `Reagent3`, `Time3`, `Volume3`, `Reagent4`, `Time4`, `Volume4`, `Priority`, `zsypkb`, `ReplaceReagent`, `method`, `readstep`, `readInterval`, `readtimes`, `wavenum`, `wl0`, `wl1`, `digitnum`, `unit`, `checkmethod`, `limitlow`, `limitlowjudge`, `limithigh`, `limithighjudge`, `linearlow`, `linearhigh`, `correctA`, `correctB`, `xgdlimit`, `xgdlimitvalue`, `kbxgd`, `kbxgd1`, `kbxgd2`, `xxd`, `xxdvalue`, `redodiluteid`, `redoxxfflow`, `redoxxffhigh`, `redoxxfftimes`, `redodilute1low`, `redodilute1high`, `redodilute1times`, `redodilute2low`, `redodilute2high`, `redodilute2times`, `redootherlow`, `redootherhigh`, `redoothertimes`) VALUES
-	(0, 'NO2', NULL, 0, 10, 10, -2, 20, 20, 1, 30, 30, 2, 40, 40, 4, 40, 40, 0, 0, -1, 1, NULL, NULL, NULL, 2, 10, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(0, 'NO2', NULL, 0, 10, 10, -2, 20, 20, 1, 30, 30, 2, 40, 40, 4, 40, 40, 2, 0, -1, 1, NULL, NULL, NULL, 2, 10, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(1, 'CL', NULL, -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 1, 1, -1, 2, 2, NULL, NULL, 1, 12, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(3, 'TEST', NULL, -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 2, 1, -1, 2, 2, NULL, NULL, 1, 12, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(7, 'AAA', 'ZZZZ', -2, 11, 11, 1, 21, 21, 2, 22, 22, 0, 33, 33, 0, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, '2', 'ug/l', NULL, '', NULL, '', NULL, '', '', '', '', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
-	(2, 'BBB', 'ZZZZ', -2, 11, 11, 1, 21, 21, 2, 22, 22, 0, 33, 33, 0, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, '2', 'ug/l', NULL, '胜多负少的', NULL, '', NULL, '', '', '', '', 1, '', 1, '', '', 1, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
-	(4, 'vv', '', -2, 11, 11, 0, 21, 21, 0, 22, 22, 0, 33, 33, 0, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, NULL, NULL, NULL, '', NULL, '', NULL, '', '', '', '', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
-	(5, 'CL1', '', -2, 11, 11, 0, 21, 21, 1, 22, 22, -3, 33, 33, -3, 44, 44, 12, 1, 0, 2, 2, 0, 0, 1, 12, 13, '3', 'ug/l', NULL, '', 'k', '', NULL, '', '', '1', '2', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', '');
+	(3, 'TEST', NULL, -2, 11, 11, 21, 21, 21, 22, 22, 22, 23, 33, 33, 24, 44, 44, 3, 1, -1, 2, 2, NULL, NULL, 1, 12, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(7, 'AAA', 'ZZZZ', -2, 11, 11, 1, 21, 21, 2, 22, 22, 0, 33, 33, 0, 44, 44, 6, 1, 0, 2, 2, 0, 0, 1, 12, 13, '2', 'ug/l', NULL, '', NULL, '', NULL, '', '', '', '', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
+	(2, 'BBB', 'ZZZZ', -2, 11, 11, 1, 21, 21, 2, 22, 22, 0, 33, 33, 0, 44, 44, 4, 1, 0, 2, 2, 0, 0, 1, 12, 13, '2', 'ug/l', NULL, '胜多负少的', NULL, '', NULL, '', '', '', '', 1, '', 1, '', '', 1, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
+	(4, 'vv', '', -2, 11, 11, 0, 21, 21, 0, 22, 22, 0, 33, 33, 0, 44, 44, 7, 1, 0, 2, 2, 0, 0, 1, 12, 13, NULL, NULL, NULL, '', NULL, '', NULL, '', '', '', '', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', ''),
+	(5, 'CL1', '', -2, 11, 11, 0, 21, 21, 1, 22, 22, -3, 33, 33, -3, 44, 44, 5, 1, 0, 2, 2, 0, 0, 1, 12, 13, '3', 'ug/l', NULL, '', 'k', '', NULL, '', '', '1', '2', 0, '', 0, '', '', 0, '', 0, '', '', '', '', '', '', '', '', '', '', '', '');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 -- 导出  表 water.raw_sr 结构
@@ -258,7 +271,38 @@ INSERT INTO `raw_sr` (`testsn`, `testpageid`, `no`, `id`, `sampleid`, `isPredilu
 	('20180820092546277000', '2018-08-20', 'C2', 2, '', 0, 2004296339, 5, 0, 1, 1, '', 'ee', 5, 0),
 	('20180820092546277001', '2018-08-20', 'C2', 2, '', 0, 2004296339, 5, 0, 1, 1, '', 'ee', 0, 0),
 	('20180820151826052000', '2018-08-20', '3', 3, '', 0, 0, 6, 0, 1, 4, '', '', 1, 0),
-	('20180820152558042000', '2018-08-20', 'Q2', 2, '', 0, 59, 7, 0, 1, 3, 'b', '', 2, 0);
+	('20180820152558042000', '2018-08-20', 'Q2', 2, '', 0, 59, 7, 0, 1, 3, 'b', '', 2, 0),
+	('20180821123903137000', '2018-08-21', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 7, 0),
+	('20180821123903137001', '2018-08-21', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 1, 0),
+	('20180821123903137002', '2018-08-21', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 0, 0),
+	('20180821123903137003', '2018-08-21', '1', 1, '', 0, 0, 1, 0, 1, 4, '', '', 4, 0),
+	('20180821124439532000', '2018-08-21', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 7, 0),
+	('20180821124439532001', '2018-08-21', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 1, 0),
+	('20180821124439532002', '2018-08-21', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 0, 0),
+	('20180821124439532003', '2018-08-21', '2', 2, '', 0, 0, 2, 0, 1, 4, '', '', 4, 0),
+	('20180821124447171000', '2018-08-21', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 7, 0),
+	('20180821124447171001', '2018-08-21', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 1, 0),
+	('20180821124447171002', '2018-08-21', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 0, 0),
+	('20180821124447171003', '2018-08-21', '3', 3, '', 0, 0, 3, 0, 1, 4, '', '', 4, 0),
+	('20180821125212722000', '2018-08-21', 'C1', 1, '', 0, 2004296339, 4, 0, 1, 1, '', 'ee', 1, 0),
+	('20180821125409396000', '2018-08-21', 'Q2', 2, '', 0, 2004296339, 6, 0, 1, 3, 'b', '', 5, 0),
+	('20180821125409396001', '2018-08-21', 'Q2', 2, '', 0, 2004296339, 6, 0, 1, 3, 'b', '', 0, 0),
+	('20180821125638819000', '2018-08-21', 'Q3', 3, '', 0, 59, 7, 0, 1, 3, 'sdf', '', 3, 0),
+	('20180821125656872000', '2018-08-21', 'Q1', 1, '', 0, 531732456, 11, 0, 1, 3, 'b', '', 1, 0),
+	('20180821125656872001', '2018-08-21', 'Q1', 1, '', 0, 531732456, 11, 0, 1, 3, 'b', '', 5, 0),
+	('20180821125656872002', '2018-08-21', 'Q1', 1, '', 0, 531732456, 11, 0, 1, 3, 'b', '', 0, 0),
+	('20180821125656872003', '2018-08-21', 'Q1', 1, '', 0, 531732456, 11, 0, 1, 3, 'b', '', 3, 0),
+	('20180821135633135000', '2018-08-21', '4', 4, '', 0, 0, 5, 0, 1, 4, '', '', 7, 0),
+	('20180821135633135001', '2018-08-21', '4', 4, '', 0, 0, 5, 0, 1, 4, '', '', 1, 0),
+	('20180821135633135002', '2018-08-21', '4', 4, '', 0, 0, 5, 0, 1, 4, '', '', 0, 0),
+	('20180821135633135003', '2018-08-21', '4', 4, '', 0, 0, 5, 0, 1, 4, '', '', 4, 0),
+	('20180821154728106000', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 7, 0),
+	('20180821154728106001', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 2, 0),
+	('20180821154728106002', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 1, 0),
+	('20180821154728106003', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 5, 0),
+	('20180821154728106004', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 0, 0),
+	('20180821154728106005', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 3, 0),
+	('20180821154728106006', '2018-08-21', '5', 5, '', 0, 0, 8, 0, 1, 4, '', '', 4, 0);
 /*!40000 ALTER TABLE `raw_sr` ENABLE KEYS */;
 
 -- 导出  表 water.reagent 结构
@@ -269,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `reagent` (
   `forreplace` tinyint(4) DEFAULT NULL COMMENT '是否为替代试剂'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='试剂位取值，可以为-1为系统水 -2为样本，-3 为无试剂，》=0为试剂id';
 
--- 正在导出表  water.reagent 的数据：~5 rows (大约)
+-- 正在导出表  water.reagent 的数据：~6 rows (大约)
 /*!40000 ALTER TABLE `reagent` DISABLE KEYS */;
 INSERT INTO `reagent` (`id`, `name`, `fordilute`, `forreplace`) VALUES
 	(0, 'A', 0, 0),
