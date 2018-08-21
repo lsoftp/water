@@ -192,6 +192,8 @@ public:
     void updateComboItem1ByName(QString name, QString n1, QString item, int tid);
     void delComboItem1(QString name, QString n1);
     //void getComboItem(QSqlQueryModel &querymode);
+    void getItemOrderByPri(QSqlQueryModel &querymodel);
+    void updateItemPri(QString name, int p);
 signals:
 
 public slots:

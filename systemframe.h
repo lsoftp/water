@@ -24,6 +24,12 @@ private slots:
     void on_pushButton_9_clicked();
     void on_tableWidget_2_itemSelectionChanged();
     void on_careturnbtn_clicked();
+    void on_tabWidget_currentChanged(int index);
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
 signals:
     void back();
 private:
@@ -31,9 +37,13 @@ private:
     bool ifSelectCa(bool b=false);
     QString selCaname;
     QString selTestname;
+    QString selOrdername;
     bool ifSelectTest();
     void refreshtable();
     void refreshtable1(QString sel);
+    void refreshItemOrderTable();
+    int ifSelectItemOrder(bool b);
+    void init_item_order();
 };
 
 #endif // SYSTEMFRAME_H

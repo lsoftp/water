@@ -746,6 +746,29 @@ void DBInterface::getItem(QSqlQueryModel &querymodel)
     querymodel.setQuery(QString("SELECT name  FROM item order by name"),m_db);
 }
 
+void DBInterface::updateItemPri(QString name,int p)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `item` SET `Priority`=%1  WHERE  `name`='%2'").arg(p).arg(name));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+
+
+}
+
+void DBInterface::getItemOrderByPri(QSqlQueryModel &querymodel)
+{
+    querymodel.setQuery(QString("SELECT name  FROM item order by Priority"),m_db);
+}
+
 void DBInterface::getItembyname(QSqlQueryModel &querymodel, QString &name)
 {
     querymodel.setQuery(QString("SELECT *  FROM item where name='%1'").arg(name),m_db);

@@ -16,5 +16,7 @@
         <file>ico/warn.ico</file>
         <file>ico/weihu.ico</file>
         <file>ico/zhikong.ico</file>
+        <file>ico/down.ico</file>
+        <file>ico/up.ico</file>
     </qresource>
 </RCC>

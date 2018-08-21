@@ -22,8 +22,18 @@ SystemFrame::SystemFrame(QWidget *parent) :
     //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
     header = ui->tableWidget_2 ->verticalHeader();
     header->setHidden(true);// 隐藏行号
-
+    ui->tableWidget_4 ->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget_4 ->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_4 ->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
+    header = ui->tableWidget_4 ->verticalHeader();
+    header->setHidden(true);// 隐藏行号
+    ui->tableWidget_4->setColumnWidth(0,400);
+    ui->tableWidget_4->setColumnWidth(1,416);
     refreshtable();
+    refreshItemOrderTable();
+    init_item_order();
 }
 
 SystemFrame::~SystemFrame()
@@ -249,4 +259,83 @@ void SystemFrame::on_tableWidget_2_itemSelectionChanged()
 void SystemFrame::on_careturnbtn_clicked()
 {
     emit back();
+}
+
+void SystemFrame::refreshItemOrderTable()
+{
+    QSqlQueryModel sqm;
+    db.getItemOrderByPri(sqm);
+    QTableWidget *tw=ui->tableWidget_4;
+    tw->clearContents();
+    tw->setRowCount(sqm.rowCount());
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+        tw->setItem(i,0,new QTableWidgetItem(QString::number(i+1)));
+        tw->setItem(i,1,new QTableWidgetItem(sqm.record(i).value("name").toString()));
+
+    }
+
+
+}
+
+void SystemFrame::init_item_order()
+{
+    QTableWidget *tw=ui->tableWidget_4;
+    for(int i=0;i<tw->rowCount();i++)
+    {
+        int p=tw->item(i,0)->text().toInt();
+        QString n=tw->item(i,1)->text();
+        db.updateItemPri(n,p);
+    }
+}
+
+void SystemFrame::on_tabWidget_currentChanged(int index)
+{
+//    if(4==index)
+//    {
+//        item_order_init();
+//    }
+}
+
+int SystemFrame::ifSelectItemOrder(bool b)
+{
+    QList<QTableWidgetItem*> items=ui->tableWidget_4->selectedItems();
+    if(items.size()==0)
+    {
+        if(!b)
+        {
+            QMessageBox box(QMessageBox::Information,"提示","请选择项目");
+            box.setStandardButtons (QMessageBox::Ok);
+            box.setButtonText (QMessageBox::Ok,QString("确 定"));
+            box.exec ();
+        }
+        return -1;
+    }
+    selOrdername=items.at(1)->text();
+    return items.at(0)->row();
+}
+void SystemFrame::on_pushButton_4_clicked()
+{
+    int r=ifSelectItemOrder(0);
+    if(r>0)
+    {
+        db.updateItemPri(selOrdername,r-1);
+        db.updateItemPri(ui->tableWidget_4->item(r-1,1)->text(),r);
+        refreshItemOrderTable();
+        ui->tableWidget_4->selectRow(r-1);
+    }
+}
+
+void SystemFrame::on_pushButton_5_clicked()
+{
+    QTableWidget *tw=ui->tableWidget_4;
+    int r=ifSelectItemOrder(0);
+    if(r>=0 and r<tw->rowCount()-1)
+    {
+        db.updateItemPri(selOrdername,r+1);
+        db.updateItemPri(ui->tableWidget_4->item(r+1,1)->text(),r);
+        refreshItemOrderTable();
+        ui->tableWidget_4->selectRow(r+1);
+    }
+
 }
