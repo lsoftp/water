@@ -149,6 +149,31 @@ void DBInterface::insertCaye(CaDlg &cd)
 
 
 }
+void DBInterface::insertComboItem(QString  &name)
+{
+    QSqlQuery query(m_db);
+    //QString p;
+
+    query.prepare("insert  into comboitem values(?)");
+
+
+    query.bindValue(0,name);
+    //query.bindValue(15,tr.combinetestname); //"" if just a common test
+
+    bool success = query.exec();
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        //qDebug() << a1 << a2<< a3;
+        //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
+
+        return;
+    }
+
+
+}
 
 void DBInterface::insertzhikongye(QuDlg &cd)
 {
@@ -201,9 +226,38 @@ void DBInterface::insertzhikongItem(QString name, QString testname, QString con,
 
 }
 
+
+void DBInterface::insertComboItem1(QString name, QString Item, int  tid)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("insert  into comboitem1 values(?,?,?)");
+
+
+    query.bindValue(0,name);
+    query.bindValue(1,Item);
+    query.bindValue(2,tid);
+    //query.bindValue();
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+
+        return;
+    }
+
+
+}
+
 void DBInterface::getzhikongItem(QSqlQueryModel &querymodel, QString name)
 {
     querymodel.setQuery(QString("SELECT *  FROM zhikongye1 where name='%1' order by TestName").arg(name),m_db);
+}
+
+void DBInterface::getComboItem1(QSqlQueryModel &querymodel, QString name)
+{
+    querymodel.setQuery(QString("SELECT *  FROM comboitem1 where name='%1' order by Item").arg(name),m_db);
 }
 
 void DBInterface::updatezhikongItemByName(QString name, QString n1, QString n2, QString con, QString unit)
@@ -211,6 +265,22 @@ void DBInterface::updatezhikongItemByName(QString name, QString n1, QString n2, 
     QSqlQuery query(m_db);
 
     query.prepare(QString("UPDATE `zhikongye1` SET `TestName`='%1' ,`con`='%2',`unit`='%3' WHERE  `name`='%4' AND `TestName`='%5'").arg(n2).arg(con).arg(unit).arg(name).arg(n1));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::updateComboItem1ByName(QString name, QString n1, QString item, int tid)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `comboitem1` SET `item`='%1' ,`TestID`='%2' WHERE  `name`='%3' AND `item`='%4'").arg(item).arg(tid).arg(name).arg(n1));
 
 
 
@@ -231,7 +301,20 @@ void DBInterface::delzhikongItem(QString name, QString n1)
         QSqlError lastError = query.lastError();
         qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
         return;
-    }}
+    }
+}
+
+void DBInterface::delComboItem1(QString name, QString n1)
+{
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from comboitem1 where name='%1' and item='%2' ").arg(name).arg(n1));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
 
 void DBInterface::getCacurveSetting(QSqlQueryModel &querymodel)
 {
@@ -300,10 +383,28 @@ void DBInterface::getzhikong(QSqlQueryModel &querymodel)
     querymodel.setQuery(sql,m_db);
 }
 
+void DBInterface::getComboItem(QSqlQueryModel &querymodel)
+{
+    QString sql=QString("SELECT *  FROM comboitem  order by name");
+    querymodel.setQuery(sql,m_db);
+}
+
 void DBInterface::delzhikongbyName(QString name)
 {
     QSqlQuery query(m_db);
     query.prepare(QString("DELETE  from zhikongye where name='%1'  ").arg(name));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::delComboItembyName(QString name)
+{
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from comboitem where name='%1'  ").arg(name));
     bool success = query.exec();
     if(!success){
         QSqlError lastError = query.lastError();
@@ -318,6 +419,24 @@ void DBInterface::updatezhikongByName(QString name, QString n1, QString no, QStr
     QSqlQuery query(m_db);
 
     query.prepare(QString("UPDATE `zhikongye` SET `name`='%1' ,`no`='%2',`valid`='%3' WHERE  `name`='%4'").arg(n1).arg(no).arg(valid).arg(name));
+
+
+
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+
+}
+
+void DBInterface::updateComboItemByName(QString name, QString n1)
+{
+
+    QSqlQuery query(m_db);
+
+    query.prepare(QString("UPDATE `comboitem` SET `name`='%1'  WHERE  `name`='%2'").arg(n1).arg(name));
 
 
 

@@ -129,7 +129,9 @@ void MainWindow::initsignal()
     connect(ui->frame_3,SIGNAL(back()),this,SLOT(displayHome()));
 
     connect(pf[G_CACURVE],SIGNAL(back()),this,SLOT(displayHome()));
+    connect(pf[G_SYSTEM],SIGNAL(back()),this,SLOT(displayHome()));
 }
+
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {

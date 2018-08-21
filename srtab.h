@@ -45,6 +45,8 @@ private slots:
 
     void on_srreturnbtn_clicked();
 
+    void updateComboBtn();
+    void on_Combo_toggled(bool b, const QList<int> &tl);
 private:
     Ui::SrTab *ui;
     ItemButton *pb[38*2];   //测试项目按钮

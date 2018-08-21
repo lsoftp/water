@@ -11,6 +11,7 @@ SrTab::SrTab(QWidget *parent) :
     ui->tableWidget->setColumnWidth(0,60);
     initsabutton();
     setbutton();
+    updateComboBtn();
     this->initstate();
     QRegExp regx("^[1-9][0-9]*$");
     QValidator *validator = new QRegExpValidator(regx, ui->lineEdit_4 );
@@ -37,12 +38,56 @@ bool SrTab::isValid()
 
 
 }
+void SrTab::updateComboBtn()
+{
+    for(int i=0; i<22;i++)
+    {
+        cpb[i]->setEnabled(false);
+        cpb[i]->setText("");
+        cpb[i]->setChecked(false);
+    }
+    QSqlQueryModel sqm,sqm1;
+    db.getComboItem(sqm);
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+        QString name=sqm.record(i).value(0).toString();
+        cpb[i]->setText(name);
+        cpb[i]->setEnabled(true);
+        sqm1.clear();
+        cpb[i]->tidlist.clear();
+        db.getComboItem1(sqm1,name);
+        for (int k=0;k<sqm1.rowCount();k++)
+        {
+            int tid=sqm1.record(k).value("TestID").toInt();
+            cpb[i]->tidlist.append(tid);
+        }
+        cpb[i]->setCheckable(true);
+        connect(cpb[i],SIGNAL(toggled(bool)),this,SLOT(ontoggle(bool)));
+        connect(cpb[i],SIGNAL(combo_toggle(bool,const QList<int>&)),this,SLOT(on_Combo_toggled(bool,const QList<int>&)));
+    }
+}
 
 SrTab::~SrTab()
 {
     delete ui;
 }
+void SrTab::on_Combo_toggled(bool b, const QList<int> & tl)
+{
+    for(int i=0;i<tl.size();i++)
+    {
+        int k=tl.at(i) ;
+        for(int l=0;l<g_item_num;l++)
+        {
+            if(pb[l]->testid==k)
+            {
+                pb[l]->setChecked(b);
+            }
+        }
 
+
+    }
+
+}
 void SrTab::initsabutton()
 {
     QWidget *qw=ui->frame_4;
@@ -52,6 +97,7 @@ void SrTab::initsabutton()
     {
         cpb[i]=new ItemButton(qw);
         cpb[i]->setGeometry(IB_LENGTH*i,qw->height()-IB_LENGTH,IB_LENGTH,IB_LENGTH);
+        cpb[i]->type=1;
     }
     for(int i=0;i<11;i++)
     {
@@ -82,6 +128,7 @@ void SrTab::initsabutton()
     {
         cpb[i+11]=new ItemButton(qw);
         cpb[i+11]->setGeometry(IB_LENGTH*i,qw->height()-IB_LENGTH,IB_LENGTH,IB_LENGTH);
+        cpb[i+11]->type=1;
     }
 
     for(int i=0;i<11;i++)

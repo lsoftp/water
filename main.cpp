@@ -9,7 +9,7 @@
 #include "LogFile.h"
 #include <QLockFile>
 #include <QFile>
-
+#include <QDesktopWidget>
 
 QLockFile g_lock("water.txt");
 void testinit()
@@ -19,13 +19,13 @@ void testinit()
     //String mylog=  mypath+Now().FormatString("yyyy-mm-dd hh-nn-ss")+".log";
     //g_log.SetFileName(mylog);
     //LogFile log1(mypath);
-   //	g_log.Log("hahah");
+    //	g_log.Log("hahah");
     char buf[512];
     testinitial();
     DP("rows %d",g_test_row_array.test_array.size());
     //g_test_row_array.rearrange();
-     DP("****************rows %d",g_test_row_array.test_array.size());
-         vector<TestRow>::iterator iter;
+    DP("****************rows %d",g_test_row_array.test_array.size());
+    vector<TestRow>::iterator iter;
     for (iter=g_test_row_array.test_array.begin();iter!=g_test_row_array.test_array.end();iter++)
     {
         DP("***%d*****%d******** %d",(*iter).test_id,(*iter).test_type,(*iter).priority);
@@ -50,7 +50,7 @@ void testinit()
 }
 DBInterface db;
 DBInterface dbhandle;
-    MainWindow *g_w;
+
 //class AAA{
 //public:
 //    int i;
@@ -64,21 +64,30 @@ int main(int argc, char *argv[])
     if(!b) exit(0);
     //g_lock.lock();
 
-//    QMap<int,QString> mm;
-//    mm[1]="AAA(1)";
-//    mm[2]="AAA(2)";
-//    QString pp=mm[0];
-//    qDebug("mm[0] is %s",pp);
-//    qDebug()<<pp;
+    //    QMap<int,QString> mm;
+    //    mm[1]="AAA(1)";
+    //    mm[2]="AAA(2)";
+    //    QString pp=mm[0];
+    //    qDebug("mm[0] is %s",pp);
+    //    qDebug()<<pp;
     db.open();
     dbhandle.open1();
     QApplication a(argc, argv);
-    QFile styleFile(":/water.qss");
-        qDebug()<<"openfile"<<styleFile.open(QIODevice::ReadOnly);
-        QString setStyleSheet(styleFile.readAll());;
-        a.setStyleSheet(setStyleSheet);
+    //    QFile styleFile(":/water.qss");
+    //        qDebug()<<"openfile"<<styleFile.open(QIODevice::ReadOnly);
+    //        QString setStyleSheet(styleFile.readAll());;
+    //        a.setStyleSheet(setStyleSheet);
+    QDesktopWidget *desktop=QApplication::desktop();
+    //获取桌面宽度
+    int w=desktop->width();
+    //获取桌面高度
+    int h=desktop->height();
+
+
 
     MainWindow mw;
+    mw.setWindowFlags(mw.windowFlags()&~Qt::WindowCloseButtonHint&~Qt::WindowMaximizeButtonHint);
+    mw.move((w-mw.width())/2,(h-mw.height())/2);
     //g_w->setStyleSheet("QLineEdit { background-color: yellow }");
     //g_w->initsignal();
 

@@ -183,6 +183,15 @@ public:
     void delQubyid(const QString &index, QString &id);
     void getCabyid(QSqlQueryModel &querymodel, const QString &index, QString &id);
     void getQubyid(QSqlQueryModel &querymodel, const QString &index, QString &id);
+    void getComboItem(QSqlQueryModel &querymodel);
+    void getComboItem1(QSqlQueryModel &querymodel, QString name);
+    void insertComboItem(QString &name);
+    void updateComboItemByName(QString name, QString n1);
+    void delComboItembyName(QString name);
+    void insertComboItem1(QString name, QString Item, int tid);
+    void updateComboItem1ByName(QString name, QString n1, QString item, int tid);
+    void delComboItem1(QString name, QString n1);
+    //void getComboItem(QSqlQueryModel &querymode);
 signals:
 
 public slots:
