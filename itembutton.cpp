@@ -2,8 +2,8 @@
 #include "mainwindow.h"
 ItemButton::ItemButton(QWidget *parent) : QPushButton(parent),type(0)
 {
-    setStyleSheet("selection-color: rgb(0, 255, 255); \
-                  background-color: rgb(170, 170, 255);");
+    setStyleSheet("QPushButton:checked{background-color: rgb(85, 255, 255);} \
+                  QPushButton{background-color: rgb(170, 170, 255);}");
     setCheckable(false);
     setEnabled(false);
     testid=-1;

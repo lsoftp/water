@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
     MainWindow mw;
     //mw.setWindowFlags(mw.windowFlags()&~Qt::WindowCloseButtonHint&~Qt::WindowMaximizeButtonHint);
     mw.move((w-mw.width())/2,(h-mw.height())/8);
-    mw.setStyleSheet("QToolButton{selection-color: rgb(0, 255, 255);}");
+    //mw.setStyleSheet("QToolButton:checked{background-color: rgb(85, 255, 255);}");
 
     mw.show();
 
