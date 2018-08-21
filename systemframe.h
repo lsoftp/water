@@ -30,6 +30,8 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_listWidget_currentTextChanged(const QString &currentText);
+
 signals:
     void back();
 private:
@@ -44,6 +46,7 @@ private:
     void refreshItemOrderTable();
     int ifSelectItemOrder(bool b);
     void init_item_order();
+    void init_dict();
 };
 
 #endif // SYSTEMFRAME_H

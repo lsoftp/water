@@ -31,9 +31,20 @@ SystemFrame::SystemFrame(QWidget *parent) :
     header->setHidden(true);// 隐藏行号
     ui->tableWidget_4->setColumnWidth(0,400);
     ui->tableWidget_4->setColumnWidth(1,416);
+
+    ui->tableWidget_5 ->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget_5 ->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_5 ->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
+    header = ui->tableWidget_4 ->verticalHeader();
+    header->setHidden(true);// 隐藏行号
+    ui->tableWidget_5->setColumnWidth(0,400);
+    ui->tableWidget_5->setColumnWidth(1,416);
     refreshtable();
     refreshItemOrderTable();
     init_item_order();
+    init_dict();
 }
 
 SystemFrame::~SystemFrame()
@@ -338,4 +349,24 @@ void SystemFrame::on_pushButton_5_clicked()
         ui->tableWidget_4->selectRow(r+1);
     }
 
+}
+
+void SystemFrame::init_dict()
+{
+    ui->listWidget->setCurrentRow(0);
+    QString tt= ui->listWidget->currentItem()->text();
+    //QHeaderView *header = ui->tableWidget_5 ->horizontalHeader();
+    ui->tableWidget_5->horizontalHeaderItem(1)->setText(tt);
+    ui->label_6->setText(tt);
+    ui->tableWidget_5->setColumnWidth(0,60);
+    ui->tableWidget_5->setColumnWidth(1,200);
+    ui->tableWidget_5->setColumnWidth(2,569);
+
+
+}
+
+void SystemFrame::on_listWidget_currentTextChanged(const QString &currentText)
+{
+    ui->tableWidget_5->horizontalHeaderItem(1)->setText(currentText);
+    ui->label_6->setText(currentText);
 }
