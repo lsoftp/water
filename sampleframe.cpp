@@ -6,6 +6,7 @@ SampleFrame::SampleFrame(QWidget *parent) :
     ui(new Ui::SampleFrame)
 {
     ui->setupUi(this);
+    ui->tabWidget->setStyleSheet("QLineEdit { background-color: white }QDateEdit { background-color: white }");
 }
 
 SampleFrame::~SampleFrame()
