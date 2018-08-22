@@ -416,4 +416,6 @@ void SystemFrame::init_serial_port_list()
             QString s = info.portName();
             ui->comboBox_4->addItem(s);
         }
+    ui->comboBox_5->setCurrentIndex(5);
+    ui->comboBox_7->setCurrentIndex(3);
 }
