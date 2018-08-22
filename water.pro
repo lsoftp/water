@@ -6,7 +6,7 @@
 
 QT       += core gui
 QT  += sql
-QT +=network charts
+QT +=network charts serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = water

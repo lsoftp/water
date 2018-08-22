@@ -61,6 +61,7 @@ private:
     int ifSelectItemOrder(bool b);
     void init_item_order();
     void init_dict();
+    void init_serial_port_list();
 };
 
 #endif // SYSTEMFRAME_H

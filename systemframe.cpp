@@ -3,6 +3,8 @@
 #include "dbinterface.h"
 #include "comboitem.h"
 #include "comboitem1.h"
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
 SystemFrame::SystemFrame(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::SystemFrame)
@@ -46,6 +48,7 @@ SystemFrame::SystemFrame(QWidget *parent) :
     init_item_order();
     init_dict();
     setStyleSheet("QLineEdit{background-color:white}QComboBox{background-color:white}");
+    init_serial_port_list();
 }
 
 SystemFrame::~SystemFrame()
@@ -405,4 +408,12 @@ void SystemFrame::on_careturnbtn_4_clicked()
 void SystemFrame::on_return_btn_2_clicked()
 {
         emit back();
+}
+
+void SystemFrame::init_serial_port_list()
+{
+    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
+            QString s = info.portName();
+            ui->comboBox_4->addItem(s);
+        }
 }
