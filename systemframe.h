@@ -32,6 +32,10 @@ private slots:
 
     void on_listWidget_currentTextChanged(const QString &currentText);
 
+    void on_singlebtn_toggled(bool checked);
+
+    void on_doublebtn_toggled(bool checked);
+
 signals:
     void back();
 private:

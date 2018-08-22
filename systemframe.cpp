@@ -45,6 +45,7 @@ SystemFrame::SystemFrame(QWidget *parent) :
     refreshItemOrderTable();
     init_item_order();
     init_dict();
+    setStyleSheet("QLineEdit{background-color:white}QComboBox{background-color:white}");
 }
 
 SystemFrame::~SystemFrame()
@@ -369,4 +370,14 @@ void SystemFrame::on_listWidget_currentTextChanged(const QString &currentText)
 {
     ui->tableWidget_5->horizontalHeaderItem(1)->setText(currentText);
     ui->label_6->setText(currentText);
+}
+
+void SystemFrame::on_singlebtn_toggled(bool checked)
+{
+    ui->doublebtn->setChecked(!checked);
+}
+
+void SystemFrame::on_doublebtn_toggled(bool checked)
+{
+    ui->singlebtn->setChecked(!checked);
 }
