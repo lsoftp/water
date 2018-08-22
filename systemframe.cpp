@@ -303,10 +303,10 @@ void SystemFrame::init_item_order()
 
 void SystemFrame::on_tabWidget_currentChanged(int index)
 {
-//    if(4==index)
-//    {
-//        item_order_init();
-//    }
+    //    if(4==index)
+    //    {
+    //        item_order_init();
+    //    }
 }
 
 int SystemFrame::ifSelectItemOrder(bool b)
@@ -380,4 +380,29 @@ void SystemFrame::on_singlebtn_toggled(bool checked)
 void SystemFrame::on_doublebtn_toggled(bool checked)
 {
     ui->singlebtn->setChecked(!checked);
+}
+
+void SystemFrame::on_return_btn_clicked()
+{
+    emit back();
+}
+
+void SystemFrame::on_careturnbtn_2_clicked()
+{
+    emit back();
+}
+
+void SystemFrame::on_careturnbtn_3_clicked()
+{
+    emit back();
+}
+
+void SystemFrame::on_careturnbtn_4_clicked()
+{
+        emit back();
+}
+
+void SystemFrame::on_return_btn_2_clicked()
+{
+        emit back();
 }

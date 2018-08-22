@@ -36,6 +36,16 @@ private slots:
 
     void on_doublebtn_toggled(bool checked);
 
+    void on_return_btn_clicked();
+
+    void on_careturnbtn_2_clicked();
+
+    void on_careturnbtn_3_clicked();
+
+    void on_careturnbtn_4_clicked();
+
+    void on_return_btn_2_clicked();
+
 signals:
     void back();
 private:
