@@ -63,15 +63,17 @@ int main(int argc, char *argv[])
 {
     MSD vars;
     //这里设置未知数
-    vars["x1"] = 123;
-    vars["y1"] = 100;
+    vars["AA_A1"] = 123;
+    vars["BBB1"] = 100;
+    vars["CCC"]=100;
     //输入字符串
-    string str="x1+5*y1";
+    Formula f("AA_A1+5.1*(BBB1+CCC)1");
     //cin >> str;
     //转换为树
-    Expression *exp = strToTree(str, 0, str.length() - 1);
+
     //输出值
-    cout << exp->Evaluate(vars) << endl;
+    cout << f.value(vars) << endl;
+    //formuleDestroy(exp);
     exit(0);
     bool b=g_lock.tryLock();
     if(!b) exit(0);

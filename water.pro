@@ -53,7 +53,8 @@ SOURCES += \
     caqudlg.cpp \
     closedlg.cpp \
     comboitem.cpp \
-    comboitem1.cpp
+    comboitem1.cpp \
+    formula.cpp
 
 
 HEADERS += \
