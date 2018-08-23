@@ -1,0 +1,1 @@
+mysql.exe -h localhost -u root -p123456 < e:\hahah\water\item.sql

@@ -10,6 +10,7 @@
 #include <QThread>
 #include "mainwindow.h"
 #include <debugout.h>
+#include <QProcess>
 DBInterface::DBInterface(QObject *parent) :
     QObject(parent)
 {
@@ -21,7 +22,7 @@ void DBInterface::open1()
     QString qs =m_db.lastError().text();
     qDebug(qs.toLatin1().data());
     LOG("ADD DATABASE %s",qs.toLatin1().data());
-    m_db.setHostName("192.168.10.83");
+    m_db.setHostName("localhost");
     //m_db.setDatabaseName("water");
     m_db.setUserName("root");
     m_db.setPassword("123456");
@@ -40,7 +41,7 @@ void DBInterface::open()
 
     qDebug(qs.toLatin1().data());
     LOG("ADD DATABASE %s",qs.toLatin1().data());
-    m_db.setHostName("192.168.10.83");
+    m_db.setHostName("localhost");
     m_db.setDatabaseName("water");
     m_db.setUserName("root");
     m_db.setPassword("123456");
@@ -49,8 +50,12 @@ void DBInterface::open()
     qDebug("&&&&&&&&&&&&&&&&&&&%d\n",b);
     qs =m_db.lastError().text();
     LOG("ADD DATABASE %s",qs.toLatin1().data());
-    if(!b) qDebug(qs.toLatin1().data());
-    // qtimer = new QTimer(this);
+    if(!b) {
+        qDebug(qs.toLatin1().data());
+
+
+        //open();
+    }// qtimer = new QTimer(this);
 }
 
 void DBInterface::getTestItem(QSqlQueryModel &querymodel)

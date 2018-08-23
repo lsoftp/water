@@ -10,6 +10,7 @@
 #include <QLockFile>
 #include <QFile>
 #include <QDesktopWidget>
+#include <QProcess>
 
 QLockFile g_lock("water.txt");
 void testinit()
@@ -73,6 +74,18 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     //QApplication::addLibraryPath("./plugins");
+/**************************************************************************
+    QProcess p;
+            p.start("cmd.exe", QStringList() << "/c" << "e:/hahah/water/run.bat");
+           if (p.waitForStarted())
+           {
+              p.waitForFinished();
+              qDebug() << p.readAllStandardOutput();
+              qDebug() << "ok------";
+           }
+           else
+               qDebug() << "Failed to start";
+***************************************************************************/
 
     db.open();
     dbhandle.open1();
