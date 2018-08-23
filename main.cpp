@@ -86,7 +86,15 @@ int main(int argc, char *argv[])
            else
                qDebug() << "Failed to start";
 ***************************************************************************/
-
+//    QProcess p;
+//    p.start("cmd.exe", QStringList() << "/c" << "mysql.exe -h localhost -u root -p123456 <item.sql");//<<"-h"<<"localhost"<<"-u"<<"root"<<"-p123456"<<"<"<<"item.sql");
+//    if (p.waitForStarted())
+//    {
+//        p.waitForFinished();
+//        qDebug() << p.readAllStandardOutput();
+//        qDebug() << "ok------";
+//        //m_db.open();
+//    }
     db.open();
     dbhandle.open1();
     //    QFile styleFile(":/water.qss");

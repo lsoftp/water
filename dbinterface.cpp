@@ -52,7 +52,17 @@ void DBInterface::open()
     LOG("ADD DATABASE %s",qs.toLatin1().data());
     if(!b) {
         qDebug(qs.toLatin1().data());
-
+        QProcess p;
+        p.start("cmd.exe", QStringList() << "/c" << "mysql.exe -h localhost -u root -p123456 <item.sql");//<<"-h"<<"localhost"<<"-u"<<"root"<<"-p123456"<<"<"<<"item.sql");
+        if (p.waitForStarted())
+        {
+            p.waitForFinished();
+            qDebug() << p.readAllStandardOutput();
+            qDebug() << "ok------";
+            m_db.open();
+        }
+        else
+            qDebug() << "Failed to start";
 
         //open();
     }// qtimer = new QTimer(this);
