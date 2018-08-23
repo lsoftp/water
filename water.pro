@@ -84,7 +84,8 @@ HEADERS += \
     caqudlg.h \
     closedlg.h \
     comboitem.h \
-    comboitem1.h
+    comboitem1.h \
+    formula.h
 
 LIBS += -lws2_32
 
