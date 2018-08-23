@@ -126,6 +126,7 @@ public:
     string str;
     Expression *e;
     vector<string> itemlist;
+    bool isvalid;
     Formula(string s);
     ~Formula();
     double value(MSD vs)
@@ -217,6 +218,7 @@ public:
             lastPS = lastMD;
         if(lastPS<1)
         {
+            isvalid=false;
             return NULL;
         }
         else

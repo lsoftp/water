@@ -66,15 +66,23 @@ int main(int argc, char *argv[])
     vars["AA_A1"] = 123;
     vars["BBB1"] = 100;
     vars["CCC"]=100;
+    vars["a"]=1;
+    vars["a"]=2;
+    cout<<"vars size"<<vars.size()<<endl;
+    map<string,double>::iterator ttt;
+    for(ttt=vars.begin();ttt!=vars.end();ttt++)
+        cout<<ttt->first<< "  "<<ttt->second<<endl;
+
     //输入字符串
-    Formula f("AA_A1+5.1*(BBB1+CCC)1");
+    Formula f("AA_A1*C+2/5.1*(BBB1+CCC)");
     //cin >> str;
     //转换为树
 
     //输出值
-    cout << f.value(vars) << endl;
+    if(f.isvalid)
+    cout <<"value"<< f.value(vars) << endl;
     //formuleDestroy(exp);
-    exit(0);
+exit(0);
     bool b=g_lock.tryLock();
     if(!b) exit(0);
     //g_lock.lock();

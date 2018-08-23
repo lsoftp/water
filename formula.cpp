@@ -3,6 +3,7 @@
 Formula::Formula(string s)
 {
     str=s;
+    isvalid=true;
     e=strToTree(s, 0, s.length() - 1);
 }
 
