@@ -24,8 +24,8 @@
 
 #endif
 
-
-#ifdef _DEBUG
+#define LOG_INFO
+#ifdef LOG_INFO
 #define LOG(format,...) {char mybuf[1024]; sprintf(mybuf,format,##__VA_ARGS__); g_log.Log(mybuf);}
 #else
 #define LOG(format,... )

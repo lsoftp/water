@@ -70,9 +70,12 @@ int main(int argc, char *argv[])
     //    QString pp=mm[0];
     //    qDebug("mm[0] is %s",pp);
     //    qDebug()<<pp;
+
+    QApplication a(argc, argv);
+    //QApplication::addLibraryPath("./plugins");
+
     db.open();
     dbhandle.open1();
-    QApplication a(argc, argv);
     //    QFile styleFile(":/water.qss");
     //        qDebug()<<"openfile"<<styleFile.open(QIODevice::ReadOnly);
     //        QString setStyleSheet(styleFile.readAll());;

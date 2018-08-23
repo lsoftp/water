@@ -9,16 +9,19 @@
 #include <QByteArray>
 #include <QThread>
 #include "mainwindow.h"
+#include <debugout.h>
 DBInterface::DBInterface(QObject *parent) :
     QObject(parent)
 {
 }
+
 void DBInterface::open1()
 {
     m_db = QSqlDatabase::addDatabase("QMYSQL","handler");
     QString qs =m_db.lastError().text();
     qDebug(qs.toLatin1().data());
-    m_db.setHostName("localhost");
+    LOG("ADD DATABASE %s",qs.toLatin1().data());
+    m_db.setHostName("192.168.10.83");
     //m_db.setDatabaseName("water");
     m_db.setUserName("root");
     m_db.setPassword("123456");
@@ -26,6 +29,7 @@ void DBInterface::open1()
     bool b =m_db.open();
     qDebug("&&&&&&&&&&&&&&&&&&&%d\n",b);
     qs =m_db.lastError().text();
+    LOG("open DATABASE %s",qs.toLatin1().data());
     if(!b) qDebug(qs.toLatin1().data());
     // qtimer = new QTimer(this);
 }
@@ -33,8 +37,10 @@ void DBInterface::open()
 {
     m_db = QSqlDatabase::addDatabase("QMYSQL");
     QString qs =m_db.lastError().text();
+
     qDebug(qs.toLatin1().data());
-    m_db.setHostName("localhost");
+    LOG("ADD DATABASE %s",qs.toLatin1().data());
+    m_db.setHostName("192.168.10.83");
     m_db.setDatabaseName("water");
     m_db.setUserName("root");
     m_db.setPassword("123456");
@@ -42,6 +48,7 @@ void DBInterface::open()
     bool b =m_db.open();
     qDebug("&&&&&&&&&&&&&&&&&&&%d\n",b);
     qs =m_db.lastError().text();
+    LOG("ADD DATABASE %s",qs.toLatin1().data());
     if(!b) qDebug(qs.toLatin1().data());
     // qtimer = new QTimer(this);
 }
