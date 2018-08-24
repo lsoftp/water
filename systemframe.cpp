@@ -500,7 +500,10 @@ void SystemFrame::caluItem_new()
 void SystemFrame::caluItem_del()
 {
     if(calcuItem_ifSelectCa())
+    {
         db.delCalcuItembyName(selCaname);
+        caluItem_refresh_table();
+    }
 }
 void SystemFrame::caluItem_save()
 {
