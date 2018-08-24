@@ -61,28 +61,7 @@ DBInterface dbhandle;
 #include "formula.h"
 int main(int argc, char *argv[])
 {
-    MSD vars;
-    //这里设置未知数
-    vars["AA_A1"] = 123;
-    vars["BBB1"] = 100;
-    vars["CCC"]=100;
-    vars["a"]=1;
-    vars["a"]=2;
-    cout<<"vars size"<<vars.size()<<endl;
-    map<string,double>::iterator ttt;
-    for(ttt=vars.begin();ttt!=vars.end();ttt++)
-        cout<<ttt->first<< "  "<<ttt->second<<endl;
-
-    //输入字符串
-    Formula f("AA_A1*C+2/5.1*(BBB1+CCC)");
-    //cin >> str;
-    //转换为树
-
-    //输出值
-    if(f.isvalid)
-    cout <<"value"<< f.value(vars) << endl;
-    //formuleDestroy(exp);
-exit(0);
+    test_formula1();
     bool b=g_lock.tryLock();
     if(!b) exit(0);
     //g_lock.lock();
@@ -96,7 +75,7 @@ exit(0);
 
     QApplication a(argc, argv);
     //QApplication::addLibraryPath("./plugins");
-/**************************************************************************
+    /**************************************************************************
     QProcess p;
             p.start("cmd.exe", QStringList() << "/c" << "e:/hahah/water/run.bat");
            if (p.waitForStarted())
@@ -108,15 +87,15 @@ exit(0);
            else
                qDebug() << "Failed to start";
 ***************************************************************************/
-//    QProcess p;
-//    p.start("cmd.exe", QStringList() << "/c" << "mysql.exe -h localhost -u root -p123456 <item.sql");//<<"-h"<<"localhost"<<"-u"<<"root"<<"-p123456"<<"<"<<"item.sql");
-//    if (p.waitForStarted())
-//    {
-//        p.waitForFinished();
-//        qDebug() << p.readAllStandardOutput();
-//        qDebug() << "ok------";
-//        //m_db.open();
-//    }
+    //    QProcess p;
+    //    p.start("cmd.exe", QStringList() << "/c" << "mysql.exe -h localhost -u root -p123456 <item.sql");//<<"-h"<<"localhost"<<"-u"<<"root"<<"-p123456"<<"<"<<"item.sql");
+    //    if (p.waitForStarted())
+    //    {
+    //        p.waitForFinished();
+    //        qDebug() << p.readAllStandardOutput();
+    //        qDebug() << "ok------";
+    //        //m_db.open();
+    //    }
     db.open();
     dbhandle.open1();
     //    QFile styleFile(":/water.qss");

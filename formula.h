@@ -7,6 +7,7 @@
 #include<map>
 #include<cstring>
 #include<string>
+//#include<set>
 using namespace std;
 
 typedef map<string, double> MSD;
@@ -125,7 +126,7 @@ class Formula
 public:
     string str;
     Expression *e;
-    vector<string> itemlist;
+    MSD itemmap;
     bool isvalid;
     Formula(string s);
     ~Formula();
@@ -208,7 +209,7 @@ public:
             return new Constant(stod(str.substr(s, t - s + 1)));
         //从s到t是未知数
         if (findChar == false){
-            itemlist.push_back(str.substr(s, t - s + 1));
+            itemmap[str.substr(s, t - s + 1)]=0;
             return new VariableReference(str.substr(s, t - s + 1));
         }
 
@@ -228,8 +229,10 @@ public:
             return new Operation(strToTree(str, s, lastPS - 1), str[lastPS], strToTree(str, lastPS + 1, t));
         }
 }
-
+    int count() {return itemmap.size();}
 
 };
+
+void test_formula1();
 
 #endif // FORMULA_H
