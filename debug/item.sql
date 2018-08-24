@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `cadetail` (
   `con71` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定标方法明细表';
 
--- 正在导出表  water.cadetail 的数据：~0 rows (大约)
+-- 正在导出表  water.cadetail 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `cadetail` DISABLE KEYS */;
 INSERT INTO `cadetail` (`TestID`, `name`, `type`, `num`, `kvalue`, `testtimes`, `caname0`, `con0`, `dilute0`, `con01`, `caname1`, `con1`, `dilute1`, `con11`, `caname2`, `con2`, `dilute2`, `con21`, `caname3`, `con3`, `dilute3`, `con31`, `caname4`, `con4`, `dilute4`, `con41`, `caname5`, `con5`, `dilute5`, `con51`, `caname6`, `con6`, `dilute6`, `con61`, `caname7`, `con7`, `dilute7`, `con71`) VALUES
 	(28429464, 'AAA', '线性', 1, '', '1', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', '', 'ee', '', '', ''),
@@ -226,6 +226,8 @@ CREATE TABLE IF NOT EXISTS `itemcalcu` (
 
 -- 正在导出表  water.itemcalcu 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `itemcalcu` DISABLE KEYS */;
+INSERT INTO `itemcalcu` (`name`, `fullname`, `digitnum`, `unit`, `formula`) VALUES
+	('d', 'aaaa', NULL, NULL, 'AAA+BBB');
 /*!40000 ALTER TABLE `itemcalcu` ENABLE KEYS */;
 
 -- 导出  表 water.raw_sr 结构
