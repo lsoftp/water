@@ -111,6 +111,13 @@ struct Cadetail
     QString con71;
 };
 
+struct CalcuItem{
+    QString name;
+    QString fullname;
+    QString digitnum;
+    QString unit;
+    QString formula;
+};
 
 class DBInterface : public QObject
 {
@@ -136,6 +143,7 @@ public:
     void insertSample(const TestRegister & tr );
     void insertItem(const Item &it);//添加项目
     void insertCadetail(const Cadetail & ca);
+    void insertCalcuItem(const CalcuItem &ci);
     void getItem(QSqlQueryModel &querymodel);
     //void getItemInfo()
     void getItembyname(QSqlQueryModel &querymodel,QString &name);
@@ -194,6 +202,10 @@ public:
     //void getComboItem(QSqlQueryModel &querymode);
     void getItemOrderByPri(QSqlQueryModel &querymodel);
     void updateItemPri(QString name, int p);
+
+    void getCalcuItem(QSqlQueryModel &querymodel);
+    void delCalcuItembyName(QString name);
+    void getCalcuItembyname(QSqlQueryModel &querymodel, QString &name);
 signals:
 
 public slots:

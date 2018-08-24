@@ -762,6 +762,49 @@ void DBInterface::insertCadetail(const Cadetail &ca)
     }
 
 }
+void DBInterface::delCalcuItembyName(QString name)
+{
+    //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));
+    QSqlQuery query(m_db);
+    query.prepare(QString("DELETE  from itemcalcu where name='%1'  ").arg(name));
+    bool success = query.exec();
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        return;
+    }
+}
+
+void DBInterface::insertCalcuItem(const CalcuItem &ci)
+{
+    QSqlQuery query(m_db);
+    QString p;
+
+    query.prepare("insert  into itemcalcu values("
+                  "?,?,?,?,?)");
+    query.bindValue(0,ci.name);
+    query.bindValue(1,ci.fullname);
+    query.bindValue(2,ci.digitnum);
+    query.bindValue(3,ci.unit);
+    query.bindValue(4,ci.formula);
+
+
+    qDebug()<<query.lastQuery();
+    bool success = query.exec();
+    //qDebug() <<"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"<<t;
+    //  qDebug<<phone<<"  "<<msgid<<" "<<t<<" "<<s3;
+    if(!success){
+        QSqlError lastError = query.lastError();
+        qDebug() << "插入失败：" << lastError.driverText() << lastError.databaseText();
+        //qDebug() << a1 << a2<< a3;
+        qDebug()<<query.lastQuery();
+        //qDebug << a1 << "  " << a2 << " " << t << " " << a3;
+
+        return;
+    }
+
+
+}
 
 void DBInterface::getItem(QSqlQueryModel &querymodel)
 {
@@ -786,6 +829,11 @@ void DBInterface::updateItemPri(QString name,int p)
 
 }
 
+void DBInterface::getCalcuItem(QSqlQueryModel &querymodel)
+{
+    querymodel.setQuery(QString("SELECT name  FROM itemcalcu   order by name"),m_db);
+}
+
 void DBInterface::getItemOrderByPri(QSqlQueryModel &querymodel)
 {
     querymodel.setQuery(QString("SELECT name  FROM item order by Priority"),m_db);
@@ -801,6 +849,10 @@ void DBInterface::getCadetailbyname(QSqlQueryModel &querymodel, QString &name)
     querymodel.setQuery(QString("SELECT *  FROM cadetail where name='%1'").arg(name),m_db);
 }
 
+void DBInterface::getCalcuItembyname(QSqlQueryModel &querymodel, QString &name)
+{
+    querymodel.setQuery(QString("SELECT *  FROM itemcalcu where name='%1'").arg(name),m_db);
+}
 void DBInterface::delItembyName(const QString &name)
 {
     //querymodel.setQuery(QString("DELLET  from raw_sr where id=%1 and testpageid='%2'  ").arg(id.toInt()).arg(index));

@@ -1,6 +1,6 @@
 #include "systemframe.h"
 #include "ui_systemframe.h"
-#include "dbinterface.h"
+
 #include "comboitem.h"
 #include "comboitem1.h"
 #include <QtSerialPort/QSerialPort>
@@ -39,7 +39,7 @@ SystemFrame::SystemFrame(QWidget *parent) :
     ui->tableWidget_5 ->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget_5 ->setSelectionMode(QAbstractItemView::SingleSelection);
     //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
-    header = ui->tableWidget_4 ->verticalHeader();
+    header = ui->tableWidget_5->verticalHeader();
     header->setHidden(true);// 隐藏行号
     ui->tableWidget_5->setColumnWidth(0,400);
     ui->tableWidget_5->setColumnWidth(1,416);
@@ -64,7 +64,7 @@ bool SystemFrame::ifSelectCa(bool b)
     {
         if(!b)
         {
-            QMessageBox box(QMessageBox::Information,"提示","请选择质控液");
+            QMessageBox box(QMessageBox::Information,"提示","请选择组合项目");
             box.setStandardButtons (QMessageBox::Ok);
             box.setButtonText (QMessageBox::Ok,QString("确 定"));
             box.exec ();
@@ -403,20 +403,20 @@ void SystemFrame::on_careturnbtn_3_clicked()
 
 void SystemFrame::on_careturnbtn_4_clicked()
 {
-        emit back();
+    emit back();
 }
 
 void SystemFrame::on_return_btn_2_clicked()
 {
-        emit back();
+    emit back();
 }
 
 void SystemFrame::init_serial_port_list()
 {
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
-            QString s = info.portName();
-            ui->comboBox_4->addItem(s);
-        }
+        QString s = info.portName();
+        ui->comboBox_4->addItem(s);
+    }
     ui->comboBox_5->setCurrentIndex(5);
     ui->comboBox_7->setCurrentIndex(3);
 }
@@ -434,8 +434,15 @@ void SystemFrame::Calcu_init()
     QHeaderView *header = ui->tableWidget_7 ->verticalHeader();
     header->setHidden(true);// 隐藏行号
     header = ui->tableWidget_7 ->horizontalHeader();
-        header->setHidden(true);// 隐藏行号
+    header->setHidden(true);// 隐藏行号
 
+    ui->tableWidget  ->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    ui->tableWidget  ->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget  ->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
+     header = ui->tableWidget ->verticalHeader();
+    header->setHidden(true);// 隐藏行号
     tw->clearContents();
     tw->setRowCount(sqm.rowCount()/5+1);
     for(int i=0;i<sqm.rowCount();i++)
@@ -444,6 +451,8 @@ void SystemFrame::Calcu_init()
         tw->setItem(i/5,i%5,new QTableWidgetItem(sqm.record(i).value("name").toString()));
 
     }
+    caluItem_refresh_table();
+    this->cacuItem_selectrow(0);
 }
 
 void SystemFrame::on_tableWidget_7_cellDoubleClicked(int row, int column)
@@ -454,12 +463,125 @@ void SystemFrame::on_tableWidget_7_cellDoubleClicked(int row, int column)
     int len=f.size();
     QTableWidgetItem *si=tw->item(row,column);
     if(NULL==si) return;
-    QString item=tw->item(row,column)->text();
+    QString item=si->text();
     if(item!="")
     {
-     int i=ui->lineEdit_3->cursorPosition();
-     QString newf=f.left(i)+item+f.right(len-i);
-     l->setText(newf);
-     l->setCursorPosition(i+item.size());
+        int i=ui->lineEdit_3->cursorPosition();
+        QString newf=f.left(i)+item+f.right(len-i);
+        l->setText(newf);
+        l->setCursorPosition(i+item.size());
     }
+}
+
+void SystemFrame::caluItem_refresh_table()
+{
+    QSqlQueryModel sqm;
+    db.getCalcuItem(sqm);
+    QTableWidget *tw=ui->tableWidget;
+    tw->clearContents();
+    tw->setRowCount(sqm.rowCount());
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+        tw->setItem(i,0,new QTableWidgetItem(QString::number(i+1)));
+        tw->setItem(i,1,new QTableWidgetItem(sqm.record(i).value("name").toString()));
+
+    }
+}
+
+void SystemFrame::caluItem_new()
+{
+    QList<QLineEdit *> ls = ui->tab->findChildren<QLineEdit *>();
+    foreach(QLineEdit *le,ls)
+    {
+        le->clear();
+    }
+    ui->tableWidget->clearSelection();
+}
+void SystemFrame::caluItem_del()
+{
+    if(calcuItem_ifSelectCa())
+        db.delCalcuItembyName(selCaname);
+}
+void SystemFrame::caluItem_save()
+{
+    CalcuItem ci;
+    calcuItem_load(ci);
+    if(calcuItem_ifSelectCa())
+    {
+        db.delCalcuItembyName(selCaname);
+    }
+    db.insertCalcuItem(ci);
+    caluItem_refresh_table();
+}
+void SystemFrame::cacuItem_selectrow(int row)
+{
+    ui->tableWidget->selectRow(row);
+}
+
+void SystemFrame::calcuItem_load(CalcuItem &ci)
+{
+    ci.name=ui->lineEdit->text();
+    ci.fullname=ui->lineEdit_2->text();
+    ci.digitnum=ui->comboBox->currentText();
+    ci.unit=ui->comboBox_2->currentText();
+    ci.formula=ui->lineEdit_3->text();
+
+}
+
+bool SystemFrame::calcuItem_ifSelectCa()
+{
+    QList<QTableWidgetItem*> items=ui->tableWidget->selectedItems();
+    if(items.size()==0)
+    {
+        //        QMessageBox box(QMessageBox::Information,"提示","请选择计算项目");
+        //        box.setStandardButtons (QMessageBox::Ok);
+        //        box.setButtonText (QMessageBox::Ok,QString("确 定"));
+        //        //box.setButtonText (QMessageBox::Cancel,QString("取 消"));
+        //        box.exec ();
+        return false;
+    }
+    selCaname=items.at(1)->text();
+    return true;
+}
+void SystemFrame::on_tableWidget_itemSelectionChanged()
+{
+    calcuItem_ifSelectCa();
+    QSqlQueryModel sqm;
+    db.getCalcuItembyname(sqm,selCaname);
+    CalcuItem ci;
+    int i=0;
+#define ITEM_I(p,q) q=sqm.record(i).value(p).toInt()
+#define ITEM_C(p,q) q=sqm.record(i).value(p).toString()
+    ITEM_C(0,ci.name);
+    ITEM_C(1,ci.fullname);
+    ITEM_C(2,ci.digitnum);
+    ITEM_C(3,ci.unit);
+    ITEM_C(4,ci.formula);
+
+    ui->lineEdit->setText(ci.name);
+    ui->lineEdit_2->setText(ci.fullname);
+    i=ui->comboBox->findText(ci.digitnum);
+    ui->comboBox_2->setCurrentIndex(i);
+    i=ui->comboBox_2->findText(ci.unit);
+    ui->comboBox_2->setCurrentIndex(i);
+    ui->lineEdit_3->setText(ci.formula);
+
+
+
+
+}
+
+void SystemFrame::on_pushButton_6_clicked()
+{
+    caluItem_new();
+}
+
+void SystemFrame::on_pushButton_11_clicked()
+{
+    this->caluItem_save();
+}
+
+void SystemFrame::on_pushButton_10_clicked()
+{
+    this->caluItem_del();
 }

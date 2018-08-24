@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QMessageBox>
+#include "dbinterface.h"
 namespace Ui {
 class SystemFrame;
 }
@@ -48,6 +49,14 @@ private slots:
 
     void on_tableWidget_7_cellDoubleClicked(int row, int column);
 
+    void on_tableWidget_itemSelectionChanged();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_10_clicked();
+
 signals:
     void back();
 private:
@@ -65,6 +74,15 @@ private:
     void init_dict();
     void init_serial_port_list();
     void Calcu_init();
+    void caluItem_refresh_table();
+    void cacuItem_selectrow(int row);
+    void caluItem_new();
+    void caluItem_save();
+    void caluItem_del();
+
+
+    void calcuItem_load(CalcuItem &ci);
+    bool calcuItem_ifSelectCa();
 };
 
 #endif // SYSTEMFRAME_H
