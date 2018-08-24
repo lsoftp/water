@@ -47,7 +47,7 @@ SystemFrame::SystemFrame(QWidget *parent) :
     refreshItemOrderTable();
     init_item_order();
     init_dict();
-    setStyleSheet("QLineEdit{background-color:white}QComboBox{background-color:white}");
+    ui->tabWidget->setStyleSheet(" QLineEdit{background-color:white} QComboBox{background-color:white}");
     init_serial_port_list();
     Calcu_init();
 }
@@ -191,7 +191,7 @@ void SystemFrame::on_pushButton_2_clicked()
 void SystemFrame::on_pushButton_3_clicked()
 {
     //delete qu
-    QList<QTableWidgetItem*> items=ui->tableWidget->selectedItems();
+    QList<QTableWidgetItem*> items=ui->tableWidget_2->selectedItems();
     if(items.size()==0)
     {
         QMessageBox box(QMessageBox::Information,"提示","请选择组合项目");
