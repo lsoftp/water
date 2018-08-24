@@ -206,7 +206,7 @@ void MainWindow::on_srtabWidget_currentChanged(int index)
 
 void MainWindow::on_toolButton_13_clicked()
 {
-    ::CloseDlg  dl;
+    ::CloseDlg  dl(this);
     int i=dl.exec();
     if(QDialog::Rejected==i)
     {
@@ -271,7 +271,7 @@ void MainWindow::on_pushButton_13_clicked()
 void MainWindow::on_toolButton_9_clicked()
 {
 
-    QMessageBox::StandardButton sb=QMessageBox::information(NULL, "注意", QString("是否停止采样?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+    QMessageBox::StandardButton sb=QMessageBox::information(this, "注意", QString("是否停止采样?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     if(sb==QMessageBox::Yes)
     {
         g_handler.stop=1;
@@ -324,7 +324,9 @@ void MainWindow::on_toolButton_7_clicked()
 void MainWindow::on_toolButton_14_clicked()
 {
     //QMessageBox::information(0,QString("关于"),"水质分析仪\n版本：1.0\nCopyright 2018-2020");
-    QMessageBox box(QMessageBox::Information,"关于","水质分析仪\n\n\n版本：1.0\n\nCopyright 2018-2020 The Skysoft Company Ltd. All rights reserved.");
+    QMessageBox box(QMessageBox::Information,"关于","水质分析仪\n\n\n版本：1.0\n\nCopyright 2018-2020 The Skysoft Company Ltd. All rights reserved."  ,  \
+                    QMessageBox::NoButton,this);
+    //box.setParent(this);
     box.setStandardButtons (QMessageBox::Ok);
     //box.setStandardButtons ();
     QPixmap g_pm(":/ico/app.ico");
@@ -351,8 +353,8 @@ void MainWindow::displayHome()
 void MainWindow::on_toolButton_10_clicked()
 {
     //stop
-    QMessageBox box(QMessageBox::Information,"提示","是否停止测试?");
-    box.setStandardButtons (QMessageBox::Ok|QMessageBox::Cancel);
+    QMessageBox box(QMessageBox::Information,"提示","是否停止测试?",QMessageBox::Ok|QMessageBox::Cancel,this);
+    //box.setStandardButtons ();
     //box.setStandardButtons ();
 
     box.setButtonText (QMessageBox::Ok,QString("确 定"));
@@ -373,4 +375,9 @@ void MainWindow::on_toolButton_12_clicked()
 void MainWindow::on_warn_back_btn_clicked()
 {
     displayHome();
+}
+
+void MainWindow::on_toolButton_11_triggered(QAction *arg1)
+{
+
 }

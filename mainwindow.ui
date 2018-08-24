@@ -24,8 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-                                             </string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>登记</string>
@@ -1116,10 +1115,10 @@
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <attribute name="horizontalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <attribute name="verticalHeaderVisible">
-         <bool>true</bool>
+         <bool>false</bool>
         </attribute>
         <column>
          <property name="text">

@@ -104,6 +104,8 @@ private slots:
 
     void on_warn_back_btn_clicked();
 
+    void on_toolButton_11_triggered(QAction *arg1);
+
 private:
     Ui::MainWindow *ui;
 

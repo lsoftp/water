@@ -466,6 +466,7 @@ void CaTab::on_lineEdit_7_textChanged(const QString &arg1)
 void CaTab::on_sr_del_clicked()
 {
     QMessageBox box(QMessageBox::Information,"提示","是否删除?");
+    //box.setParent(this->get);
     box.setStandardButtons (QMessageBox::Ok|QMessageBox::Cancel);
     //box.setStandardButtons ();
     box.setButtonText (QMessageBox::Ok,QString("确 定"));
