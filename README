@@ -11,11 +11,11 @@ sr 的delete  批量登记， （上一个，下一个）这个好像没有必�
 
 todo list
 组合项目  差不多了，刷新没有完成，刷新的方式采用每次display update这种方式比较好
-测试流程  ********** 确定稀释取样问题
+测试流程  ********** 确定稀释取样问题*********
 计算方法
 重做
 计算项目
-报表   打印问题，确定配什么打印机
+报表   打印问题，确定配什么打印机***************
 状态   样品状态控价已经做好
 试剂位置
 
@@ -25,6 +25,9 @@ lis
 日质控
 月质控
 
-
+some problem
+print how
+redo
+status to be do
 
 mysql -h localhost -u root -p123456 < e:\hahah\water\item.sql
