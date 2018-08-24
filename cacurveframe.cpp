@@ -110,6 +110,7 @@ void CaCurveFrame::on_pushButton_clicked()
         refreshtable();
         for(int k=0;k<ui->tableWidget->rowCount();k++)
         {
+            // this is sample to reselect
             if(!ui->tableWidget->item(k,1)->text().compare(cd.name))
             {
                 ui->tableWidget->selectRow(k);
