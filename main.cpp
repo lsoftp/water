@@ -61,7 +61,7 @@ DBInterface dbhandle;
 #include "formula.h"
 int main(int argc, char *argv[])
 {
-    test_formula1();
+    //test_formula1();
     bool b=g_lock.tryLock();
     if(!b) exit(0);
     //g_lock.lock();

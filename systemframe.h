@@ -46,6 +46,8 @@ private slots:
 
     void on_return_btn_2_clicked();
 
+    void on_tableWidget_7_cellDoubleClicked(int row, int column);
+
 signals:
     void back();
 private:
@@ -62,6 +64,7 @@ private:
     void init_item_order();
     void init_dict();
     void init_serial_port_list();
+    void Calcu_init();
 };
 
 #endif // SYSTEMFRAME_H

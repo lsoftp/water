@@ -49,6 +49,7 @@ SystemFrame::SystemFrame(QWidget *parent) :
     init_dict();
     setStyleSheet("QLineEdit{background-color:white}QComboBox{background-color:white}");
     init_serial_port_list();
+    Calcu_init();
 }
 
 SystemFrame::~SystemFrame()
@@ -418,4 +419,47 @@ void SystemFrame::init_serial_port_list()
         }
     ui->comboBox_5->setCurrentIndex(5);
     ui->comboBox_7->setCurrentIndex(3);
+}
+
+void SystemFrame::Calcu_init()
+{
+    QSqlQueryModel sqm;
+    db.getItem(sqm);
+    QTableWidget *tw=ui->tableWidget_7;
+    ui->tableWidget_7 ->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //一次选择一行
+    //ui->tableWidget_5 ->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget_7 ->setSelectionMode(QAbstractItemView::SingleSelection);
+    //ui->tableWidget->setStyleSheet("QTableWidget{selection-background-color:blue;}");
+    QHeaderView *header = ui->tableWidget_7 ->verticalHeader();
+    header->setHidden(true);// 隐藏行号
+    header = ui->tableWidget_7 ->horizontalHeader();
+        header->setHidden(true);// 隐藏行号
+
+    tw->clearContents();
+    tw->setRowCount(sqm.rowCount()/5+1);
+    for(int i=0;i<sqm.rowCount();i++)
+    {
+        //tw->setItem(i/5,i/%5,new QTableWidgetItem(QString::number(i+1)));
+        tw->setItem(i/5,i%5,new QTableWidgetItem(sqm.record(i).value("name").toString()));
+
+    }
+}
+
+void SystemFrame::on_tableWidget_7_cellDoubleClicked(int row, int column)
+{
+    QLineEdit *l=ui->lineEdit_3;
+    QTableWidget *tw=ui->tableWidget_7;
+    QString f=l->text();
+    int len=f.size();
+    QTableWidgetItem *si=tw->item(row,column);
+    if(NULL==si) return;
+    QString item=tw->item(row,column)->text();
+    if(item!="")
+    {
+     int i=ui->lineEdit_3->cursorPosition();
+     QString newf=f.left(i)+item+f.right(len-i);
+     l->setText(newf);
+     l->setCursorPosition(i+item.size());
+    }
 }
