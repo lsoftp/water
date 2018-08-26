@@ -6,7 +6,7 @@
 
 QT       += core gui
 QT  += sql
-QT +=network charts serialport
+QT +=network charts serialport printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = water
@@ -54,7 +54,8 @@ SOURCES += \
     closedlg.cpp \
     comboitem.cpp \
     comboitem1.cpp \
-    formula.cpp
+    formula.cpp \
+    printer.cpp
 
 
 HEADERS += \
@@ -86,7 +87,8 @@ HEADERS += \
     closedlg.h \
     comboitem.h \
     comboitem1.h \
-    formula.h
+    formula.h \
+    printer.h
 
 LIBS += -lws2_32
 
