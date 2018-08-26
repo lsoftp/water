@@ -1,7 +1,8 @@
 #ifndef PRINTER_H
 #define PRINTER_H
 #include <QtPrintSupport/QPrinter>
-
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrintPreviewDialog>
 #include <QObject>
 
 class Printer : public QObject
@@ -14,6 +15,7 @@ public:
 signals:
 
 public slots:
+    void printDocument(QPrinter *printer);
 };
 
 #endif // PRINTER_H

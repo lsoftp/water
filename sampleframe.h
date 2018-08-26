@@ -15,6 +15,9 @@ public:
     explicit SampleFrame(QWidget *parent = 0);
     ~SampleFrame();
 
+private slots:
+    void on_printbtn_clicked();
+
 private:
     Ui::SampleFrame *ui;
 };
