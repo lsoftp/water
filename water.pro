@@ -55,7 +55,9 @@ SOURCES += \
     comboitem.cpp \
     comboitem1.cpp \
     formula.cpp \
-    printer.cpp
+    printer.cpp \
+    reagentstatuswidget.cpp \
+    cupstatuswidget.cpp
 
 
 HEADERS += \
@@ -88,7 +90,9 @@ HEADERS += \
     comboitem.h \
     comboitem1.h \
     formula.h \
-    printer.h
+    printer.h \
+    reagentstatuswidget.h \
+    cupstatuswidget.h
 
 LIBS += -lws2_32
 
