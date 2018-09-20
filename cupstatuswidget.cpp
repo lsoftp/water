@@ -2,7 +2,7 @@
 #include <QStyleOption>
 #define MY_PI 3.14159265358979323846
 #define MY_PI_SPAN MY_PI/180
-const QColor CupStatusWidget::scolor[S_NUM]={QColor(Qt::green),QColor(Qt::red),QColor(Qt::white)};
+const QColor CupStatusWidget::scolor[S_NUM]={QColor(Qt::green),QColor(Qt::red),QColor(Qt::gray)};
 CupStatusWidget::CupStatusWidget(QWidget *parent) : QWidget(parent)
 {
     current=-1;
