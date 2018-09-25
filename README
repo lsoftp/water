@@ -31,3 +31,6 @@ redo
 status to be do
 
 mysql -h localhost -u root -p123456 < e:\hahah\water\item.sql
+
+试剂登记，定标稀释，重做稀释，确定稀释液的问题，以及稀释时取样的数量
+生成测试序列
