@@ -8,7 +8,7 @@ ReagentStatusWidget::ReagentStatusWidget(QWidget *parent) : QWidget(parent)
     current=-1;
     for(int i=0;i<rnum;i++)
     {
-        m_status[i]=S_IDLE;
+        m_status[i]=state(i%S_NUM);
     }
 }
 
